@@ -1,0 +1,77 @@
+import request from '@/utils/request'
+
+// 查询菜单列表
+export function listMenu(query) {
+    return request({
+        url: '/menu/findAll',
+        method: 'post',
+        params: query
+    })
+}
+
+// // 查询菜单列表
+// export function findListByRole(query) {
+//   return request({
+//     url: '/menu/findList'
+//     params: query,
+//   })
+// }
+
+// 查询菜单详细
+export function getMenu(menuId) {
+    return request({
+        url: '/menu/findById',
+        method: 'get',
+        params: {
+            'menuId': menuId
+        }
+    })
+}
+
+// 查询菜单下拉树结构
+export function treeselect() {
+    return request({
+        url: '/menu/treeselect',
+        method: 'post'
+    })
+}
+
+// 根据角色ID查询菜单下拉树结构
+export function roleMenuTreeselect(roleId) {
+    return request({
+        url: '/menu/roleMenuTreeselect',
+        method: 'get',
+        params: {
+            'roleId': roleId
+        }
+    })
+}
+
+// 新增菜单
+export function addMenu(data) {
+    return request({
+        url: '/menu/add',
+        method: 'post',
+        data: data
+    })
+}
+
+// 修改菜单
+export function updateMenu(data) {
+    return request({
+        url: '/menu/update',
+        method: 'post',
+        data: data
+    })
+}
+
+// 删除菜单
+export function delMenu(menuId) {
+    return request({
+        url: '/menu/delete/',
+        method: 'get',
+        params: {
+            'menuId': menuId
+        }
+    })
+}
