@@ -9,7 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RequestMapping("/network")
-@Api(value = "应用及硬件版本管理",tags = "应用及硬件版本管理")
+@Api(value = "主链管理",tags = "主链管理")
 public interface NetWorkService{
 	
 	@GetMapping("/obtainList")

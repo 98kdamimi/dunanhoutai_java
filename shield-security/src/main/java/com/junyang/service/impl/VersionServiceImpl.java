@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -36,11 +37,14 @@ import com.junyang.entity.release.VersionDigtalshieFirmwareEntity;
 import com.junyang.entity.release.VersionEntity;
 import com.junyang.entity.release.VersionIosEntity;
 import com.junyang.entity.release.VersionTypeEntity;
+import com.junyang.entity.response.RpcResponseEntity;
 import com.junyang.enums.FilePathEnums;
+import com.junyang.enums.HttpAddressEunms;
 import com.junyang.enums.ReleaseStateEnums;
 import com.junyang.enums.VersionTypeEnums;
 import com.junyang.service.VersionService;
 import com.junyang.utils.GenericityUtil;
+import com.junyang.utils.HttpUtil;
 import com.junyang.utils.RedisUtil;
 
 @RestController
@@ -85,6 +89,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	private String HTTP_URL;
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "发版接口")
 	public ResponseBase add(String versionStr,MultipartFile iosFile,MultipartFile androidFile,MultipartFile deviceFile) {
 		try {
 			if (versionStr != null && versionStr.length() > 0) {
@@ -256,6 +261,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "软件版本列表")
 	public ResponseBase findList(@RequestBody VersionEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<VersionEntity> list = versionDao.findList(entity);
@@ -298,6 +304,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "下线")
 	public ResponseBase Offline(Integer id) {
 		try {
 			VersionEntity entity = versionDao.selectById(id);
@@ -320,6 +327,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "软件上线接口")
 	public ResponseBase onlineSoftware(Integer id) {
 		try {
 			VersionEntity entity = versionDao.selectById(id);
@@ -342,23 +350,23 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 					androidEntity.setVersion(this.strToList(androidEntity.getAndroidVersion()));
 					entity.setAndroid(androidEntity);
 				}
-//				String jsonParam = JSON.toJSONString(entity);
-//				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.ONLINE.getName(), jsonParam);
-//				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
-//				if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
-//					// 下线所有版本
-//					this.OfflineAllMethod();
-//					// 上线指定版本
-//					this.onlineOneMethod(entity);
-//					return setResultSuccess();
-//				}else {
-//					return setResultError(Constants.ERROR);
-//				}
-				// 下线所有版本
-				this.OfflineAllMethod();
-				// 上线指定版本
-				this.onlineOneMethod(entity);
-				return setResultSuccess();
+				String jsonParam = JSON.toJSONString(entity);
+				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.ONLINE.getName(), jsonParam);
+				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
+				if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
+					// 下线所有版本
+					this.OfflineAllMethod();
+					// 上线指定版本
+					this.onlineOneMethod(entity);
+					return setResultSuccess();
+				}else {
+					return setResultError(Constants.ERROR);
+				}
+//				// 下线所有版本
+//				this.OfflineAllMethod();
+//				// 上线指定版本
+//				this.onlineOneMethod(entity);
+//				return setResultSuccess();
 			} else {
 				return setResultError(Constants.ERROR);
 			}
@@ -453,6 +461,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "新版本提示")
 	public ResponseBase msgWarn() {
 		Object obj = redisUtil.get(Constants.MSG_KEY);
 		if(obj != null) {
@@ -463,6 +472,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "硬件版本列表")
 	public ResponseBase hardwareFindList(@RequestBody VersionEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		List<VersionDigtalshieFirmwareEntity> list = VersionDigtalshieFirmwareDao.findList(entity);
@@ -477,6 +487,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "硬件上线接口")
 	public ResponseBase onlineHardware(Integer id) {
 		try {
 			VersionDigtalshieFirmwareEntity entity = VersionDigtalshieFirmwareDao.selectById(id);
@@ -491,9 +502,21 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 					VersionEntity versionEntity = new VersionEntity();
 					versionEntity.setDigtalshield(digtalshieEntity);
 					String jsonParam = JSON.toJSONString(versionEntity);
-//					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.ONLINE.getName(), jsonParam);
-//					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
-//					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
+					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.ONLINE.getName(), jsonParam);
+					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
+					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
+//					下线所有版本
+					VersionDigtalshieFirmwareDao.updateStateAll(ReleaseStateEnums.DOWN_LINE.getIndex());
+					versionDigtalshieDao.updateStateAll(ReleaseStateEnums.DOWN_LINE.getIndex());
+					//上线指定版本
+					entity.setReleaseState(ReleaseStateEnums.TOP_LINE.getIndex());
+					VersionDigtalshieFirmwareDao.updateById(entity);
+					digtalshieEntity.setReleaseState(ReleaseStateEnums.TOP_LINE.getIndex());
+					versionDigtalshieDao.updateById(digtalshieEntity);
+					return setResultSuccess();
+					}else {
+						return setResultError(Constants.ERROR);
+					}
 					//下线所有版本
 //					VersionDigtalshieFirmwareDao.updateStateAll(ReleaseStateEnums.DOWN_LINE.getIndex());
 //					versionDigtalshieDao.updateStateAll(ReleaseStateEnums.DOWN_LINE.getIndex());
@@ -503,18 +526,6 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 //					digtalshieEntity.setReleaseState(ReleaseStateEnums.TOP_LINE.getIndex());
 //					versionDigtalshieDao.updateById(digtalshieEntity);
 //					return setResultSuccess();
-//					}else {
-//						return setResultError(Constants.ERROR);
-//					}
-					//下线所有版本
-					VersionDigtalshieFirmwareDao.updateStateAll(ReleaseStateEnums.DOWN_LINE.getIndex());
-					versionDigtalshieDao.updateStateAll(ReleaseStateEnums.DOWN_LINE.getIndex());
-					//上线指定版本
-					entity.setReleaseState(ReleaseStateEnums.TOP_LINE.getIndex());
-					VersionDigtalshieFirmwareDao.updateById(entity);
-					digtalshieEntity.setReleaseState(ReleaseStateEnums.TOP_LINE.getIndex());
-					versionDigtalshieDao.updateById(digtalshieEntity);
-					return setResultSuccess();
 				}else {
 					return setResultError(Constants.ERROR);
 				}

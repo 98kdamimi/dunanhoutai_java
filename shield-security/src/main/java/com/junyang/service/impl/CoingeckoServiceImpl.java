@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONArray;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.coingecko.AssetplatformsEntity;
@@ -32,6 +33,7 @@ public class CoingeckoServiceImpl extends BaseApiService implements CoingeckoSer
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "coingecko平台调用", type = "GET", remark = "资产平台列表拉取")
 	public ResponseBase assetPlatforms() {
 		String str = HttpUtil.getCoingecko(CoingeckoSiteEunms.ASSET_PLATFORMS.getName(),COINGECKO_SIGN);
 		if(str != null && str.length() > 0) {
@@ -50,6 +52,7 @@ public class CoingeckoServiceImpl extends BaseApiService implements CoingeckoSer
 	}
 
 	@Override
+	@SysLogAnnotation(module = "coingecko平台调用", type = "GET", remark = "网络列表列表拉取")
 	public ResponseBase network() {
 		String str = HttpUtil.getCoingecko(CoingeckoSiteEunms.NETWORKS.getName(),COINGECKO_SIGN);
 		if(str != null && str.length() > 0) {

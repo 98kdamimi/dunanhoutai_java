@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -40,6 +41,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "GET", remark = "获取列表")
 	public ResponseBase rpcList() {
 		try {
 			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.DAPP_LIST.getName());
@@ -60,6 +62,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "POST", remark = "分页列表查询")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
 //			this.rpcList();
@@ -86,6 +89,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "GET", remark = "上线")
 	public ResponseBase online(String id) {
 		try {
 			try {
@@ -118,6 +122,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "GET", remark = "下线")
 	public ResponseBase Offline(String id) {
 		try {
 			DappEntity entity = mongoTemplate.findById(id, DappEntity.class);
@@ -145,6 +150,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "POST", remark = "调用更新")
 	public ResponseBase rpcUpdate(@RequestBody DappEntity entity) {
 		try {
 			String jsonParam = JSON.toJSONString(entity);
@@ -162,6 +168,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "POST", remark = "本地更新")
 	public ResponseBase update(@RequestBody DappEntity entity) {
 		try {
 			DappEntity dappEntity = mongoTemplate.findById(entity.getId(), DappEntity.class);

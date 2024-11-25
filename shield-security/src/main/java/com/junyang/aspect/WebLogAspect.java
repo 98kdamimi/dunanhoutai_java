@@ -1,6 +1,8 @@
 package com.junyang.aspect;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.Enumeration;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
@@ -11,6 +13,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
@@ -21,6 +25,7 @@ import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.ResponseBase;
+import com.junyang.entity.coingecko.AssetplatformsEntity;
 import com.junyang.entity.system.SysLogEntity;
 import com.junyang.filter.JWTAuthenticationFilter;
 import com.junyang.utils.RedisUtil;
@@ -40,8 +45,7 @@ public class WebLogAspect {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-//	@Autowired
-//	private SysLogEntity entity = new SysLogEntity();
+	private SysLogEntity entity;
 
 	@Pointcut("execution(public * com.junyang.service..*.*(..))")
 	public void webLog() {
@@ -55,14 +59,16 @@ public class WebLogAspect {
         HttpServletRequest request = attributes.getRequest();
         UsernamePasswordAuthenticationToken token = JWTAuthenticationFilter.getAuthentication(request);
 		String username = token.getName();
-//		entity.setUserName(username);
+		entity = new SysLogEntity();
+		entity.setUserName(username);
         // 记录请求开始
         log.info("##################### 请求开始 ####################");
         log.info("URL : " + request.getRequestURL().toString());
         log.info("HTTP_METHOD : " + request.getMethod());
         log.info("IP : " + request.getRemoteAddr());
-//        entity.setReqUrl(request.getRequestURL().toString());
-//        entity.setIpUrl(request.getRemoteAddr());
+        entity.setReqUrl(request.getRequestURL().toString());
+        entity.setIpUrl(request.getRemoteAddr());
+        entity.setBegTime(new Date());
         // 获取目标方法
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         // 获取切入点所在的方法
@@ -79,19 +85,19 @@ public class WebLogAspect {
             log.info("操作模块 : " + module);
             log.info("操作类型 : " + type);
             log.info("操作说明 : " + remark);
-//            entity.setModuleName(module);
-//            entity.setReqType(type);
-//            entity.setModuleInfo(remark);
+            entity.setModuleName(module);
+            entity.setReqType(type);
+            entity.setModuleInfo(remark);
         }
 		 Object[] args = joinPoint.getArgs();
 		 if(args != null && args.length > 0 && args[0] != null) {
 			 try {
 			        String parameterJson = JSON.toJSONString(args[0]);
 			        log.info("PARAMETER：" + request.getRequestURL().toString() + "-[" + parameterJson+"]");
-//			        entity.setReqParamet("[" + parameterJson+"]");
+			        entity.setReqParamet("[" + parameterJson+"]");
 			    } catch (JSONException e) {
 			        log.error("PARAMETER：" + request.getRequestURL().toString() + "-[]");
-//			        entity.setReqParamet("[]");
+			        entity.setReqParamet("[]");
 			}
 		 }
 		Enumeration<String> enu = request.getParameterNames();
@@ -109,7 +115,12 @@ public class WebLogAspect {
 				ResponseBase base = JSONObject.parseObject(JSON.toJSONString(ret), ResponseBase.class);
 				log.info("RESPONSE11 : "+point.getSignature().toString().substring(point.getSignature().toString().indexOf(" "))+"-" + (base.getMsg()));
 			}
-			log.info("RESPONSE22 : " + (ret==null?"":JSON.toJSONString(ret)));
+			String resData = ret==null?"":JSON.toJSONString(ret);
+			log.info("RESPONSE22 : " + resData);
+			entity.setResData(resData);
+			entity.setId(UUID.randomUUID().toString());
+			entity.setEndTime(new Date());
+			mongoTemplate.insert(entity);
 		}
 		log.info("#####################请求结束####################");
 	}

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -50,6 +51,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "附件管理", type = "POST", remark = "上传升级文件")
 	public ResponseBase fileUpload(@RequestParam("file") MultipartFile file,@RequestParam("typeId")Integer typeId, String dbId) {
 		try {
 			// 检查文件是否为空或大小是否超过限制
@@ -99,6 +101,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "附件管理", type = "POST", remark = "分页列表查询")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
@@ -124,6 +127,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "附件管理", type = "GET", remark = "附件分类列表查询")
 	public ResponseBase findTypeList() {
 		List<DicEntity> list = FilePathEnums.getList();
 		return setResultSuccess(list);

@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.response.RpcResponseEntity;
@@ -40,6 +41,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "GET", remark = "接口获取代币列表")
 	public ResponseBase rpcList() {
 		try {
 			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.TOKEN_LIST.getName());
@@ -64,11 +66,10 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "GET", remark = "获取第三方平台代币")
 	public ResponseBase ThirdPartylist() {
 		try {
 			String str = CoinGeckoAPIUtil.fetchTokenData();
-			System.out.println("*********************************");
-			System.out.println(str);
 			if(str != null &&str.length() > 0) {
 				List<PlatformTokenEntity> list = JSONArray.parseArray(str, PlatformTokenEntity.class);
 				if(list != null && list.size() > 0) {
@@ -90,6 +91,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "POST", remark = "分页代币列表")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
@@ -118,6 +120,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "POST", remark = "新增代币")
 	public ResponseBase add(@RequestBody TokenEntity entity) {
 		try {
 			String str = HttpUtil.sendPostRequest(HTTP_URL + HttpAddressEunms.TOKEN_ADD.getName(), JSON.toJSONString(entity));
@@ -130,6 +133,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "POST", remark = "更新代币")
 	public ResponseBase update(@RequestBody TokenEntity entity) {
 		try {
 			String str = HttpUtil.sendPostRequest(HTTP_URL + HttpAddressEunms.TOKEN_UPDATE.getName(), JSON.toJSONString(entity));

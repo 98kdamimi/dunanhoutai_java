@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.network.NetWorkEntity;
@@ -40,6 +41,7 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@SysLogAnnotation(module = "主链管理", type = "GET", remark = "主链列表获取")
 	public ResponseBase obtainList() {
 		try {
 			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.NETWORK_LIST.getName());
@@ -78,6 +80,7 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "主链管理", type = "POST", remark = "主链分页列表查询")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		Query query = new Query();
 		if(entity.getName() != null && entity.getName().length() > 0) {
@@ -98,6 +101,7 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "主链管理", type = "GET", remark = "查询所有主链")
 	public ResponseBase findAll() {
 		try {
 			List<NetWorkEntity> listAll = mongoTemplate.findAll(NetWorkEntity.class);

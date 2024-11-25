@@ -54,7 +54,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 	
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "用户列表分页查询未注销用户")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "用户列表分页查询未注销用户")
 	public ResponseBase findList(@RequestBody SysUserEntity entity) {
 		PageHelper.startPage(entity.getPageNumber(), entity.getPageSize());
 		if (entity.getRoleId() != null && entity.getRoleId().size() < 1) {
@@ -74,7 +74,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "用户注册")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "用户注册")
 	public ResponseBase signUp(String user, MultipartFile file) {
 		try {
 			SysUserEntity entity = JSON.parseObject(user, SysUserEntity.class);
@@ -115,7 +115,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "GET", remark = "通过token获取用户信息")
+	@SysLogAnnotation(module = "用户管理", type = "GET", remark = "通过token获取用户信息")
 	public ResponseBase findToken(HttpServletRequest request) {
 		String tokenStr = request.getHeader(Constants.HEADER_AUTH);
 		UsernamePasswordAuthenticationToken token = JWTAuthenticationFilter.getAuthentication(request);
@@ -158,7 +158,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 	
 	@Override
-	@SysLogAnnotation(module = "用户", type = "GET", remark = "删除用户信息")
+	@SysLogAnnotation(module = "用户管理", type = "GET", remark = "删除用户信息")
 	public ResponseBase delUser(@PathVariable("userId") Integer userId) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
@@ -175,7 +175,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "改变用户账号状态")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "改变用户账号状态")
 	public ResponseBase updateUserState(Integer userId, Integer newState) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
@@ -193,7 +193,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "编辑用户信息")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "编辑用户信息")
 	public ResponseBase updateUser(String user, MultipartFile file) {
 		try {
 			SysUserEntity entity = JSON.parseObject(user, SysUserEntity.class);
@@ -231,7 +231,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "重置密码")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "重置密码")
 	public ResponseBase resetUserPwd(@RequestParam("userId") Integer userId) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
@@ -249,7 +249,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "修改密码")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "修改密码")
 	public ResponseBase resetPwd(@RequestParam("userId") Integer userId, @RequestParam("password") String password) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
@@ -267,7 +267,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 
 	@Override
-	@SysLogAnnotation(module = "用户", type = "POST", remark = "校验账号密码")
+	@SysLogAnnotation(module = "用户管理", type = "POST", remark = "校验账号密码")
 	public ResponseBase verifyPwd(Integer userId, String password) {
 		try {
 			SysUserEntity entity = sysUserDao.findById(userId);
@@ -300,6 +300,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 	
 	@Override
+	@SysLogAnnotation(module = "用户管理", type = "GET", remark = "发版Token查询")
 	public ResponseBase generateToken() {
 		try {
 			String subject = "root";

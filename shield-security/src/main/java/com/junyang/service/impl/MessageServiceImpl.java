@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -30,6 +31,7 @@ public class MessageServiceImpl extends BaseApiService implements MessageService
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "消息推送管理", type = "POST", remark = "编辑消息")
 	public ResponseBase add(@RequestBody MessageEntity entity) {
 		try {
 			GenericityUtil.setDate(entity);
@@ -42,6 +44,7 @@ public class MessageServiceImpl extends BaseApiService implements MessageService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "消息推送管理", type = "POST", remark = "删除消息")
 	public ResponseBase delete(String id) {
 		try {
 	        Query query = new Query(Criteria.where("_id").is(id));
@@ -60,6 +63,7 @@ public class MessageServiceImpl extends BaseApiService implements MessageService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "消息推送管理", type = "POST", remark = "消息列表")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();

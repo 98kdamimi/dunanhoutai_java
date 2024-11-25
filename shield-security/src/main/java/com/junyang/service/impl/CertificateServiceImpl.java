@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -54,6 +55,7 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "证书管理", type = "GET", remark = "生成32位随机数")
 	public ResponseBase randomNumber(String deviceSn) {
 		byte[] randomBytes = new byte[32];
 		new SecureRandom().nextBytes(randomBytes);
@@ -63,6 +65,7 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "证书管理", type = "POST", remark = "验证签名")
 	public ResponseBase verification(String deviceSn, String sign) {
 		try {
 			String num = redisUtil.get(deviceSn).toString();
@@ -124,6 +127,7 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "证书管理", type = "POST", remark = "导入证书")
 	public ResponseBase upload(@RequestParam("pemCertificateFile") MultipartFile pemCertificateFile,
 			@RequestParam("serialNumber") String serialNumber) {
 		try {
@@ -185,6 +189,7 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "证书管理", type = "POST", remark = "查询证书")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
@@ -210,6 +215,7 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "证书管理", type = "GET", remark = "下载证书")
 	public void downloadFile(String id, HttpServletResponse response) {
 		try {
 			// 从 MongoDB 查询到文件实体

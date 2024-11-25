@@ -17,7 +17,7 @@ import lombok.Data;
 @ApiModel(value = "系统日志",description = "系统日志")
 public class SysLogEntity {
 	
-	@Id
+	@TableField("id")
 	@ApiModelProperty(name = "id", value = "唯一标识符", required = false, dataType = "String")
 	private String id;
 	
