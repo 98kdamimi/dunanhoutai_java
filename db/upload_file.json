@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "673eac8ded02a1530dedd0c1"
+  },
+  "typeId": 3,
+  "typeName": "版本apk",
+  "fileCatalogue": "apk/",
+  "databseName": "version_db",
+  "databseId": "33",
+  "filePath": "https://digitalsheild.s3.eu-west-3.amazonaws.com/%E7%89%88%E6%9C%ACapknew%202.txt",
+  "fileSize": "914.00BT",
+  "fileType": "txt",
+  "imageLable": false,
+  "setTime": {
+    "$date": "2024-11-21T03:44:13.284Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T03:44:13.284Z"
+  },
+  "_class": "com.junyang.entity.uploadefiel.UploadFileEntity"
+},
+{
+  "_id": {
+    "$oid": "673eac8eed02a1530dedd0c2"
+  },
+  "typeId": 3,
+  "typeName": "版本apk",
+  "fileCatalogue": "apk/",
+  "databseName": "version_db",
+  "databseId": "33",
+  "filePath": "https://digitalsheild.s3.eu-west-3.amazonaws.com/%E7%89%88%E6%9C%ACapk98K.png",
+  "fileSize": "243.65KB",
+  "fileType": "png",
+  "imageLable": true,
+  "setTime": {
+    "$date": "2024-11-21T03:44:14.802Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T03:44:14.802Z"
+  },
+  "_class": "com.junyang.entity.uploadefiel.UploadFileEntity"
+},
+{
+  "_id": {
+    "$oid": "673eac8fed02a1530dedd0c3"
+  },
+  "typeId": 3,
+  "typeName": "版本apk",
+  "fileCatalogue": "apk/",
+  "databseName": "version_db",
+  "databseId": "33",
+  "filePath": "https://digitalsheild.s3.eu-west-3.amazonaws.com/%E7%89%88%E6%9C%ACapk%E7%9B%BE%E5%AE%89%E9%97%AE%E9%A2%98.doc",
+  "fileSize": "13.50KB",
+  "fileType": "doc",
+  "imageLable": false,
+  "setTime": {
+    "$date": "2024-11-21T03:44:15.413Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T03:44:15.413Z"
+  },
+  "_class": "com.junyang.entity.uploadefiel.UploadFileEntity"
+},
+{
+  "_id": {
+    "$oid": "673eacf2ed02a1530dedd0c4"
+  },
+  "typeId": 3,
+  "typeName": "版本apk",
+  "fileCatalogue": "apk/",
+  "databseName": "version_db",
+  "databseId": "34",
+  "filePath": "https://digitalsheild.s3.eu-west-3.amazonaws.com/%E7%89%88%E6%9C%ACapknew%202.txt",
+  "fileSize": "914.00BT",
+  "fileType": "txt",
+  "imageLable": false,
+  "setTime": {
+    "$date": "2024-11-21T03:45:54.141Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T03:45:54.141Z"
+  },
+  "_class": "com.junyang.entity.uploadefiel.UploadFileEntity"
+},
+{
+  "_id": {
+    "$oid": "673eacf3ed02a1530dedd0c5"
+  },
+  "typeId": 3,
+  "typeName": "版本apk",
+  "fileCatalogue": "apk/",
+  "databseName": "version_db",
+  "databseId": "34",
+  "filePath": "https://digitalsheild.s3.eu-west-3.amazonaws.com/%E7%89%88%E6%9C%ACapk98K.png",
+  "fileSize": "243.65KB",
+  "fileType": "png",
+  "imageLable": true,
+  "setTime": {
+    "$date": "2024-11-21T03:45:55.725Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T03:45:55.725Z"
+  },
+  "_class": "com.junyang.entity.uploadefiel.UploadFileEntity"
+},
+{
+  "_id": {
+    "$oid": "673eacf4ed02a1530dedd0c6"
+  },
+  "typeId": 3,
+  "typeName": "版本apk",
+  "fileCatalogue": "apk/",
+  "databseName": "version_db",
+  "databseId": "34",
+  "filePath": "https://digitalsheild.s3.eu-west-3.amazonaws.com/%E7%89%88%E6%9C%ACapk%E7%9B%BE%E5%AE%89%E9%97%AE%E9%A2%98.doc",
+  "fileSize": "13.50KB",
+  "fileType": "doc",
+  "imageLable": false,
+  "setTime": {
+    "$date": "2024-11-21T03:45:56.340Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T03:45:56.340Z"
+  },
+  "_class": "com.junyang.entity.uploadefiel.UploadFileEntity"
+}]

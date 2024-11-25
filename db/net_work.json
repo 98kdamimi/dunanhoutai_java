@@ -1,0 +1,207 @@
+[{
+  "_id": {
+    "$oid": "670604748b5c451823135ade"
+  },
+  "workId": "tron--0x2b6653dc",
+  "__v": 0,
+  "balance2FeeDecimals": 0,
+  "chainId": "0x2b6653dc",
+  "code": "trx",
+  "decimals": 6,
+  "defaultEnabled": true,
+  "impl": "tron",
+  "testnet": false,
+  "logoURI": "http://47.237.139.124:9000/assets/trx/trx.png",
+  "name": "Tron",
+  "shortcode": "trx",
+  "shortname": "TRX",
+  "status": "LISTED",
+  "symbol": "TRX",
+  "updatedAt": "2024-06-09T07:55:48.537Z",
+  "feeMeta": {
+    "code": "trx",
+    "decimals": "6",
+    "symbol": "TRX"
+  },
+  "rpcURLs": [
+    {
+      "url": "https://tron-mainnet.token.im"
+    },
+    {
+      "url": "https://node.onekey.so/trx"
+    }
+  ],
+  "extensions": {
+    "position": 0
+  },
+  "_class": "com.junyang.entity.network.NetWorkEntity"
+},
+{
+  "_id": {
+    "$oid": "670604748b5c451823135ab0"
+  },
+  "workId": "evm--1",
+  "__v": 0,
+  "balance2FeeDecimals": 9,
+  "chainId": "1",
+  "code": "eth",
+  "decimals": 18,
+  "defaultEnabled": true,
+  "impl": "evm",
+  "testnet": false,
+  "logoURI": "http://47.237.139.124:9000/assets/eth/eth.png",
+  "name": "Ethereum",
+  "shortcode": "eth",
+  "shortname": "ETH",
+  "status": "LISTED",
+  "symbol": "ETH",
+  "updatedAt": "2024-09-24T07:53:04.786Z",
+  "feeMeta": {
+    "code": "eth",
+    "decimals": "9",
+    "symbol": "Gwei"
+  },
+  "rpcURLs": [
+    {
+      "url": "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+    },
+    {
+      "url": "https://cloudflare-eth.com"
+    },
+    {
+      "url": "https://rpc.ankr.com/eth"
+    },
+    {
+      "url": "https://rpc.flashbots.net"
+    },
+    {
+      "url": "https://api.mycryptoapi.com/eth"
+    },
+    {
+      "url": "https://eth.public-rpc.com"
+    },
+    {
+      "url": "https://eth626892d.jccdex.cn"
+    },
+    {
+      "url": "https://1rpc.io/eth"
+    },
+    {
+      "ur": "https://eth.meowrpc.com"
+    }
+  ],
+  "extensions": {
+    "position": 3,
+    "defaultStableTokens": [
+      "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "0x4fabb145d64652a948d72533023f6e7a623c7c53",
+      "0x6b175474e89094c44da98b954eedeac495271d0f"
+    ],
+    "providerOptions": {
+      "EIP1559Enabled": true,
+      "preferMetamask": true
+    }
+  },
+  "_class": "com.junyang.entity.network.NetWorkEntity"
+},
+{
+  "_id": {
+    "$oid": "670604748b5c451823135ab1"
+  },
+  "workId": "sol--101",
+  "__v": 0,
+  "balance2FeeDecimals": 0,
+  "chainId": "101",
+  "code": "sol",
+  "decimals": 9,
+  "defaultEnabled": true,
+  "impl": "sol",
+  "testnet": false,
+  "logoURI": "http://47.237.139.124:9000/assets/sol/sol.png",
+  "name": "Solana",
+  "shortcode": "sol",
+  "shortname": "SOL",
+  "status": "LISTED",
+  "symbol": "SOL",
+  "updatedAt": "2024-09-11T07:28:01.545Z",
+  "feeMeta": {
+    "code": "sol",
+    "decimals": "9",
+    "symbol": "SOL"
+  },
+  "rpcURLs": [
+    {
+      "url": "https://solana-mainnet.phantom.tech/"
+    },
+    {
+      "url": "https://solana-api.projectserum.com/"
+    },
+    {
+      "url": "https://node.onekey.so/sol"
+    },
+    {
+      "url": "https://swr.xnftdata.com/rpc-proxy",
+      "index": 3,
+      "indexer": ""
+    },
+    {
+      "url": "https://api.tatum.io/v3/blockchain/node/solana-mainnet",
+      "index": 4,
+      "indexer": ""
+    }
+  ],
+  "extensions": {
+    "position": 4,
+    "defaultStableTokens": [
+      "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "FR87nWEUxVgerFGhZM8Y4AggKGLnaXswr1Pd8wZ4kZcp",
+      "9mWRABuz2x6koTPCWiCPM49WUbcrNqGTHBV9T9k7y1o7"
+    ]
+  },
+  "_class": "com.junyang.entity.network.NetWorkEntity"
+},
+{
+  "_id": {
+    "$oid": "670604748b5c451823135ab5"
+  },
+  "workId": "btc--0",
+  "__v": 0,
+  "balance2FeeDecimals": 0,
+  "chainId": "0",
+  "code": "btc",
+  "decimals": 8,
+  "defaultEnabled": true,
+  "impl": "btc",
+  "testnet": false,
+  "logoURI": "http://47.237.139.124:9000/assets/btc/btc.png",
+  "name": "Bitcoin",
+  "shortcode": "btc",
+  "shortname": "BTC",
+  "status": "LISTED",
+  "symbol": "BTC",
+  "updatedAt": "2024-09-24T07:53:04.786Z",
+  "feeMeta": {
+    "code": "btc",
+    "decimals": "8",
+    "symbol": "BTC"
+  },
+  "rpcURLs": [
+    {
+      "url": "https://node.onekey.so/btc"
+    },
+    {
+      "url": "https://1rpc.io/btc"
+    }
+  ],
+  "extensions": {
+    "position": 1,
+    "providerOptions": {
+      "EIP1559Enabled": false,
+      "preferMetamask": false,
+      "hardwareCoinName": "btc"
+    }
+  },
+  "_class": "com.junyang.entity.network.NetWorkEntity"
+}]

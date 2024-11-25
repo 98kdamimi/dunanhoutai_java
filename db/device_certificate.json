@@ -1,0 +1,85 @@
+[{
+  "_id": {
+    "$oid": "6739a5029bdeea4f4c9f02a5"
+  },
+  "serialNumber": "246546546516",
+  "certificatePem": "-----BEGIN CERTIFICATE-----\nMIIBGjCBwKADAgECAgYBkzMdzr8wCgYIKoZIzj0EAwIwETEPMA0GA1UEAwwGSXNz\ndWVyMB4XDTI0MTExNjAzNTY1MVoXDTI1MTExNjAzNTY1MVowGjEYMBYGA1UEAwwP\nRFMwMDAwMDAwMDAwMDAxMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEQYYdnJc8eB8y\nKtZ742JPznczhkfD/hWwJ1VRjcFlPLjXKOZOmdl6jJyy6F0ByB4CUGEAH4oQYmV/\ngmPorS/a4jAKBggqhkjOPQQDAgNJADBGAiEAldw8hXruxvNmSwxVRDeFcuCHJ+6O\nHOcbuiGWtn5o4RYCIQDdetVYgsMO9E1HIA4fkIl7aTmkp9XL1IvrRLFuFfxLBg==\n-----END CERTIFICATE-----\n",
+  "isValid": true,
+  "fileSize": "452.00BT",
+  "fileName": "certificate.pem",
+  "setTime": {
+    "$date": "2024-11-17T08:10:42.357Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-17T08:10:42.357Z"
+  },
+  "_class": "com.junyang.entity.device.DeviceCertificateEntity"
+},
+{
+  "_id": {
+    "$oid": "6739a5689bdeea4f4c9f02a6"
+  },
+  "serialNumber": "4354654651623",
+  "certificatePem": "-----BEGIN CERTIFICATE-----\nMIIBGjCBwKADAgECAgYBkzMdzr8wCgYIKoZIzj0EAwIwETEPMA0GA1UEAwwGSXNz\ndWVyMB4XDTI0MTExNjAzNTY1MVoXDTI1MTExNjAzNTY1MVowGjEYMBYGA1UEAwwP\nRFMwMDAwMDAwMDAwMDAxMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEQYYdnJc8eB8y\nKtZ742JPznczhkfD/hWwJ1VRjcFlPLjXKOZOmdl6jJyy6F0ByB4CUGEAH4oQYmV/\ngmPorS/a4jAKBggqhkjOPQQDAgNJADBGAiEAldw8hXruxvNmSwxVRDeFcuCHJ+6O\nHOcbuiGWtn5o4RYCIQDdetVYgsMO9E1HIA4fkIl7aTmkp9XL1IvrRLFuFfxLBg==\n-----END CERTIFICATE-----\n",
+  "isValid": true,
+  "fileSize": "452.00BT",
+  "fileName": "certificate3232.pem",
+  "setTime": {
+    "$date": "2024-11-17T08:12:24.806Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-17T08:12:24.806Z"
+  },
+  "_class": "com.junyang.entity.device.DeviceCertificateEntity"
+},
+{
+  "_id": {
+    "$oid": "6739a7ae9bdeea4f4c9f02a8"
+  },
+  "serialNumber": "545454",
+  "certificatePem": "-----BEGIN CERTIFICATE-----\nMIIBGjCBwKADAgECAgYBkzMdzr8wCgYIKoZIzj0EAwIwETEPMA0GA1UEAwwGSXNz\ndWVyMB4XDTI0MTExNjAzNTY1MVoXDTI1MTExNjAzNTY1MVowGjEYMBYGA1UEAwwP\nRFMwMDAwMDAwMDAwMDAxMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEQYYdnJc8eB8y\nKtZ742JPznczhkfD/hWwJ1VRjcFlPLjXKOZOmdl6jJyy6F0ByB4CUGEAH4oQYmV/\ngmPorS/a4jAKBggqhkjOPQQDAgNJADBGAiEAldw8hXruxvNmSwxVRDeFcuCHJ+6O\nHOcbuiGWtn5o4RYCIQDdetVYgsMO9E1HIA4fkIl7aTmkp9XL1IvrRLFuFfxLBg==\n-----END CERTIFICATE-----\n",
+  "isValid": true,
+  "fileSize": "452.00BT",
+  "fileName": "certificate3232.pem",
+  "setTime": {
+    "$date": "2024-11-17T08:22:06.569Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-17T08:22:06.569Z"
+  },
+  "_class": "com.junyang.entity.device.DeviceCertificateEntity"
+},
+{
+  "_id": {
+    "$oid": "673d4a6ca9269e672d062c11"
+  },
+  "serialNumber": "546516516548",
+  "certificatePem": "-----BEGIN CERTIFICATE-----\nMIIBGjCBwKADAgECAgYBkzMdzr8wCgYIKoZIzj0EAwIwETEPMA0GA1UEAwwGSXNz\ndWVyMB4XDTI0MTExNjAzNTY1MVoXDTI1MTExNjAzNTY1MVowGjEYMBYGA1UEAwwP\nRFMwMDAwMDAwMDAwMDAxMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEQYYdnJc8eB8y\nKtZ742JPznczhkfD/hWwJ1VRjcFlPLjXKOZOmdl6jJyy6F0ByB4CUGEAH4oQYmV/\ngmPorS/a4jAKBggqhkjOPQQDAgNJADBGAiEAldw8hXruxvNmSwxVRDeFcuCHJ+6O\nHOcbuiGWtn5o4RYCIQDdetVYgsMO9E1HIA4fkIl7aTmkp9XL1IvrRLFuFfxLBg==\n-----END CERTIFICATE-----\n",
+  "isValid": true,
+  "fileSize": "452.00BT",
+  "fileName": "56165156.pem",
+  "setTime": {
+    "$date": "2024-11-20T02:33:16.266Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-20T02:33:16.266Z"
+  },
+  "_class": "com.junyang.entity.device.DeviceCertificateEntity"
+},
+{
+  "_id": {
+    "$oid": "673ee2c37c98834d5da28277"
+  },
+  "serialNumber": "DS0000000000001",
+  "certificatePem": "-----BEGIN CERTIFICATE-----\nMIIBGDCBvwIBATAKBggqhkjOPQQDAjAaMRgwFgYDVQQDDA9EUzAwMDAwMDAwMDAw\nMDEwHhcNMjQxMTIxMDQwMTQwWhcNMjUxMTIxMDQwMTQwWjAaMRgwFgYDVQQDDA9E\nUzAwMDAwMDAwMDAwMDEwVjAQBgcqhkjOPQIBBgUrgQQACgNCAASWaG0k6OEyfOgi\nkAolUBZxP7cFy9WHuiOHp6vmxt2G92B/dqBPtXkR2/xkihnI+eM/vW7WykE0mVCf\nwKXsEsxLMAoGCCqGSM49BAMCA0gAMEUCIFtC8UukXXGk+KR0110bXr1rrR3ahGnw\n755BTycrFvU1AiEAuHcJij4ZlAKKf6nk/HpakTbQ4uE4PaTsqhEtaL41mSw=\n-----END CERTIFICATE-----\n",
+  "isValid": true,
+  "fileSize": "440.00BT",
+  "fileName": "certificate.pem",
+  "setTime": {
+    "$date": "2024-11-21T07:35:31.374Z"
+  },
+  "gmtModified": {
+    "$date": "2024-11-21T07:35:31.374Z"
+  },
+  "_class": "com.junyang.entity.device.DeviceCertificateEntity"
+}]

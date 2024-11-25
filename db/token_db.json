@@ -1,0 +1,5743 @@
+[{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515d8"
+  },
+  "addToIndex": false,
+  "address": "0x292fcdd1b104de5a00250febba9bc6a5092a0076",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 30369,
+  "coingeckoId": "hashai",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "127159085",
+  "name": "HashAI",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "HashAI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395160b"
+  },
+  "addToIndex": false,
+  "address": "0x8c543aed163909142695f2d2acd0d55791a9edb9",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "velas",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8c543aed163909142695f2d2acd0d55791a9edb9.png",
+  "marketCap": "103191474.45111136",
+  "name": "VLX",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "VLX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951538"
+  },
+  "addToIndex": false,
+  "address": "0x58b6a8a3302369daec383334672404ee733ab239",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3640,
+  "coingeckoId": "livepeer",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x58b6A8A3302369DAEc383334672404Ee733aB239.png",
+  "marketCap": "300745700.8882943",
+  "name": "Livepeer Token",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "LPT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515b9"
+  },
+  "addToIndex": false,
+  "address": "0x046eee2cc3188071c02bfc1745a6b17c656e3f3d",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 15271,
+  "coingeckoId": "rollbit-coin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x046eee2cc3188071c02bfc1745a6b17c656e3f3d.png",
+  "marketCap": "147622603",
+  "name": "Rollbit Coin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "RLB",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951568"
+  },
+  "addToIndex": false,
+  "address": "0x949d48eca67b17269629c7194f4b727d4ef9e5d6",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 13523,
+  "coingeckoId": "merit-circle",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x949D48EcA67b17269629c7194F4b727d4Ef9E5d6.png",
+  "marketCap": "222260414.09851226",
+  "name": "Merit Circle",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "MC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951511"
+  },
+  "addToIndex": false,
+  "address": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 24478,
+  "coingeckoId": "pepe",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6982508145454ce325ddbe47a25d4ec3d2311933.png",
+  "marketCap": "387196764",
+  "name": "Pepe",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "PEPE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515f5"
+  },
+  "addToIndex": false,
+  "address": "0xb9f599ce614feb2e1bbe58f180f370d05b39344e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 29220,
+  "coingeckoId": "pepefork",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "115262557",
+  "name": "PepeFork",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "PORK",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514cb"
+  },
+  "addToIndex": false,
+  "address": "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2586,
+  "coingeckoId": "havven",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F.jpg",
+  "marketCap": "710383140.5514792",
+  "name": "Synthetix Network Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SNX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395154a"
+  },
+  "addToIndex": false,
+  "address": "0x8c1bed5b9a0928467c9b1341da1d7bd5e10b6549",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 23782,
+  "coingeckoId": "liquid-staked-ethereum",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "258174841",
+  "name": "Liquid Staked ETH",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "LsETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514d5"
+  },
+  "addToIndex": false,
+  "address": "0x45804880de22913dafe09f4980848ece6ecbaf78",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4705,
+  "coingeckoId": "pax-gold",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x45804880De22913dAFE09f4980848ECE6EcbAf78.png",
+  "marketCap": "595650423.8834703",
+  "name": "Paxos Gold",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "PAXG",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395159f"
+  },
+  "addToIndex": false,
+  "address": "0xba9d4199fab4f26efe3551d490e3821486f135ba",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2499,
+  "coingeckoId": "swissborg",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xba9d4199fab4f26efe3551d490e3821486f135ba.png",
+  "marketCap": "164749543.6569837",
+  "name": "SwissBorg Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "CHSB",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951578"
+  },
+  "addToIndex": false,
+  "address": "0x8ce9137d39326ad0cd6491fb5cc0cba0e089b6a9",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "swipe",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8CE9137d39326AD0cD6491fb5CC0CbA0e089b6A9.jpg",
+  "marketCap": "202717310.2800883",
+  "name": "Swipe",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SXP",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514fc"
+  },
+  "addToIndex": false,
+  "address": "0x6810e776880c02933d47db1b9fc05908e5386b96",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1659,
+  "coingeckoId": "gnosis",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6810e776880C02933D47DB1b9fc05908e5386b96.png",
+  "marketCap": "435221740.2951239",
+  "name": "Gnosis Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "GNO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515c9"
+  },
+  "addToIndex": false,
+  "address": "0xa2e3356610840701bdf5611a53974510ae27e2e1",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 24760,
+  "coingeckoId": "wrapped-beacon-eth",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xa2e3356610840701bdf5611a53974510ae27e2e1.png",
+  "marketCap": "130480762",
+  "name": "Wrapped Binance Beacon ETH",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "wBETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514b9"
+  },
+  "addToIndex": false,
+  "address": "0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "compound-ether",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5.jpg",
+  "marketCap": "840830699.6424398",
+  "name": "Compound Ether",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "cETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e6"
+  },
+  "addToIndex": false,
+  "address": "0x744d70fdbe2ba4cf95131626614a1763df805b9e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1759,
+  "coingeckoId": "status",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x744d70FDBE2Ba4CF95131626614a1763DF805B9E.png",
+  "marketCap": "121881275.19575639",
+  "name": "Status Network Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SNT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951525"
+  },
+  "addToIndex": false,
+  "address": "0x64aa3364f17a4d01c6f1751fd97c2bd3d7e7f1d5",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9067,
+  "coingeckoId": "olympus",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 9,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x64aa3364F17a4D01c6f1751Fd97C2BD3D7e7f1D5.jpg",
+  "marketCap": "328760430.7901644",
+  "name": "Olympus",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "OHM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951601"
+  },
+  "addToIndex": false,
+  "address": "0x3c4b6e6e1ea3d4863700d7f76b36b7f3d3f13e3d",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1817,
+  "coingeckoId": "ethos",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3C4B6E6e1eA3D4863700D7F76b36B7f3D3f13E3d.png",
+  "marketCap": "109604813.82303785",
+  "name": "Voyager Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "VGX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395148b"
+  },
+  "addToIndex": false,
+  "address": "0x0f5d2fb29fb7d3cfee444a200298f468908cc942",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1966,
+  "coingeckoId": "decentraland",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0F5D2fB29fb7d3CFeE444a200298f468908cC942.jpg",
+  "marketCap": "1523548309.797597",
+  "name": "Decentraland MANA",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "MANA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951623"
+  },
+  "addToIndex": false,
+  "address": "0x65ef703f5594d2573eb71aaf55bc0cb548492df4",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 17050,
+  "coingeckoId": "multichain",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x65Ef703f5594D2573eb71Aaf55BC0CB548492df4.png",
+  "marketCap": "98959619.36894643",
+  "name": "Multichain",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MULTI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514cf"
+  },
+  "addToIndex": false,
+  "address": "0xe66747a101bff2dba3697199dcce5b743b454759",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4269,
+  "coingeckoId": "gatechain-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xe66747a101bff2dba3697199dcce5b743b454759.png",
+  "marketCap": "664706693.3586065",
+  "name": "GateChainToken",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "GT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951558"
+  },
+  "addToIndex": false,
+  "address": "0xba100000625a3754423978a60c9317c58a424e3d",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5728,
+  "coingeckoId": "balancer",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xba100000625a3754423978a60c9317c58a424e3D.png",
+  "marketCap": "233858031.45108432",
+  "name": "Balancer",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BAL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951495"
+  },
+  "addToIndex": false,
+  "address": "0x4a220e6096b25eadb88358cb44068a3248254675",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3155,
+  "coingeckoId": "quant-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4a220E6096B25EADb88358cb44068A3248254675.jpg",
+  "marketCap": "1425284821.6682806",
+  "name": "Quant",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "QNT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951572"
+  },
+  "addToIndex": false,
+  "address": "0xac57de9c1a09fec648e93eb98875b212db0d460b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10407,
+  "coingeckoId": "baby-doge-coin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 9,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xac57de9c1a09fec648e93eb98875b212db0d460b.png",
+  "marketCap": "213312669.1608186",
+  "name": "Baby Doge Coin",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "BabyDoge",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514e3"
+  },
+  "addToIndex": false,
+  "address": "0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2130,
+  "coingeckoId": "enjincoin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xF629cBd94d3791C9250152BD8dfBDF380E2a3B9c.jpg",
+  "marketCap": "537424778.3752993",
+  "name": "Enjin Coin",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ENJ",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951596"
+  },
+  "addToIndex": false,
+  "address": "0x761d38e5ddf6ccf6cf7c55759d5210750b5d60f3",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9436,
+  "coingeckoId": "dogelon-mars",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x761D38e5ddf6ccf6Cf7c55759d5210750B5D60F3.jpg",
+  "marketCap": "170313487.01393738",
+  "name": "Dogelon",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ELON",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951586"
+  },
+  "addToIndex": false,
+  "address": "0x5f98805a4e8be255a32880fdec7f6728c6568ba0",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9566,
+  "coingeckoId": "liquity-usd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5f98805A4E8be255a32880FDeC7F6728C6568bA0.png",
+  "marketCap": "192522938.6942995",
+  "name": "LUSD Stablecoin",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "LUSD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514f4"
+  },
+  "addToIndex": false,
+  "address": "0x667102bd3413bfeaa3dffb48fa8288819e480a88",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4715,
+  "coingeckoId": "tokenize-xchange",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x667102bd3413bfeaa3dffb48fa8288819e480a88.png",
+  "marketCap": "455822386.0044879",
+  "name": "Tokenize Emblem",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "TKX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515ae"
+  },
+  "addToIndex": false,
+  "address": "0xaf5191b0de278c7286d6c7cc6ab6bb8a73ba2cd6",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 18934,
+  "coingeckoId": "stargate-finance",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xAf5191B0De278C7286d6C7CC6ab6BB8A73bA2Cd6.jpg",
+  "marketCap": "151987346.32369867",
+  "name": "StargateToken",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "STG",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514b0"
+  },
+  "addToIndex": false,
+  "address": "0xae78736cd615f374d3085123a210448e74fc6393",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 15060,
+  "coingeckoId": "rocket-pool-eth",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xae78736cd615f374d3085123a210448e74fc6393.png",
+  "marketCap": "867740035",
+  "name": "Rocket Pool ETH",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "rETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515c2"
+  },
+  "addToIndex": false,
+  "address": "0xc221b7e65ffc80de234bbb6667abdd46593d34f0",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10898,
+  "coingeckoId": "wrapped-centrifuge",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xc221b7e65ffc80de234bbb6667abdd46593d34f0.jpg",
+  "marketCap": "137833589.8789775",
+  "name": "Wrapped Centrifuge",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "wCFG",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395150d"
+  },
+  "addToIndex": false,
+  "address": "0x3432b6a60d23ca0dfca7761b7ab56459d9c964d0",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6953,
+  "coingeckoId": "frax-share",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3432B6A60D23Ca0dFCa7761B7ab56459D9C964D0.png",
+  "marketCap": "413126547.7214622",
+  "name": "Frax Share",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "FXS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515d1"
+  },
+  "addToIndex": false,
+  "address": "0xe72b141df173b999ae7c1adcbf60cc9833ce56a8",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "reserve-protocol-eth-plus",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xe72b141df173b999ae7c1adcbf60cc9833ce56a8.png",
+  "marketCap": "129258420",
+  "name": "ETHPlus",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ETH+",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951482"
+  },
+  "addToIndex": false,
+  "address": "0x4be10da47a07716af28ad199fbe020501bddd7af",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5999,
+  "coingeckoId": "xtcom-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4be10da47a07716af28ad199fbe020501bddd7af.jpg",
+  "marketCap": "3056216805",
+  "name": "XT Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "XT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e0"
+  },
+  "addToIndex": false,
+  "address": "0x467719ad09025fcc6cf6f8311755809d45a5e5f3",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 17799,
+  "coingeckoId": "axelar",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x467719ad09025fcc6cf6f8311755809d45a5e5f3.png",
+  "marketCap": "123926746",
+  "name": "Axelar",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "AXL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395151d"
+  },
+  "addToIndex": false,
+  "address": "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 13855,
+  "coingeckoId": "ethereum-name-service",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72.png",
+  "marketCap": "349827732.9849576",
+  "name": "Ethereum Name Service",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ENS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515ef"
+  },
+  "addToIndex": false,
+  "address": "0x96e61422b6a9ba0e068b6c5add4ffabc6a4aae27",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "iron-bank-euro",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x96e61422b6a9ba0e068b6c5add4ffabc6a4aae27.png",
+  "marketCap": "119375560.78127621",
+  "name": "Iron Bank EUR",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ibEUR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514c0"
+  },
+  "addToIndex": false,
+  "address": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1518,
+  "coingeckoId": "maker",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2.jpg",
+  "marketCap": "754440355.2039648",
+  "name": "Maker",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MKR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515fb"
+  },
+  "addToIndex": false,
+  "address": "0x429d83bb0dcb8cdd5311e34680adc8b12070a07f",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "platoncoin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x429d83bb0dcb8cdd5311e34680adc8b12070a07f.png",
+  "marketCap": "113228961.36155745",
+  "name": "PlatonCoin",
+  "riskLevel": "2",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "PLTC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": false,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395152e"
+  },
+  "addToIndex": false,
+  "address": "0x476c5e26a75bd202a9683ffd34359c0cc15be0ff",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "serum",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x476c5E26a75bd202a9683ffD34359C0CC15be0fF.jpg",
+  "marketCap": "318301728.3519356",
+  "name": "Serum",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SRM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951605"
+  },
+  "addToIndex": false,
+  "address": "0x8a2279d4a90b6fe1c4b30fa660cc9f926797baa2",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3978,
+  "coingeckoId": "chromaway",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8a2279d4a90b6fe1c4b30fa660cc9f926797baa2.png",
+  "marketCap": "106395055.97999866",
+  "name": "Chroma",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "CHR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951466"
+  },
+  "addToIndex": false,
+  "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3717,
+  "coingeckoId": "wrapped-bitcoin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599.jpg",
+  "marketCap": "5337944063.946045",
+  "name": "Wrapped BTC",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "WBTC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951616"
+  },
+  "addToIndex": false,
+  "address": "0xd13c7342e1ef687c5ad21b27c2b65d772cab5c8c",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4189,
+  "coingeckoId": "ultra",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 4,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xd13c7342e1ef687c5ad21b27c2b65d772cab5c8c.png",
+  "marketCap": "100422678.79932448",
+  "name": "Ultra Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "UOS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951544"
+  },
+  "addToIndex": false,
+  "address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1896,
+  "coingeckoId": "0x",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xE41d2489571d322189246DaFA5ebDe1F4699F498.jpg",
+  "marketCap": "274644133.60836947",
+  "name": "0x Protocol Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ZRX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951546"
+  },
+  "addToIndex": false,
+  "address": "0x7dd9c5cba05e151c895fde1cf355c9a1d5da6429",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1455,
+  "coingeckoId": "golem",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x7DD9c5Cba05E151C895FDe1CF355C9A1D5DA6429.png",
+  "marketCap": "262661402.2454957",
+  "name": "Golem Network Token",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "GLM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951493"
+  },
+  "addToIndex": false,
+  "address": "0x853d955acef822db058eb8505911ed77f175b99e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6952,
+  "coingeckoId": "frax",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x853d955aCEf822Db058eb8505911ED77F175b99e.png",
+  "marketCap": "1447694170.911753",
+  "name": "Frax",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "FRAX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395154d"
+  },
+  "addToIndex": false,
+  "address": "0x0f2d719407fdbeff09d87557abb7232601fd9f29",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 12147,
+  "coingeckoId": "synapse-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0f2D719407FdBeFF09D87557AbB7232601FD9F29.png",
+  "marketCap": "250009334.97051066",
+  "name": "Synapse",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SYN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514d2"
+  },
+  "addToIndex": false,
+  "address": "0xd1d2eb1b1e90b638588728b4130137d262c87cae",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7080,
+  "coingeckoId": "gala",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xd1d2eb1b1e90b638588728b4130137d262c87cae.png",
+  "marketCap": "618283758",
+  "name": "Gala",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "GALA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951560"
+  },
+  "addToIndex": false,
+  "address": "0xa2085073878152ac3090ea13d1e41bd69e60dc99",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10312,
+  "coingeckoId": "escoin-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xa2085073878152ac3090ea13d1e41bd69e60dc99.png",
+  "marketCap": "228752259.23020595",
+  "name": "EscoinToken",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ELG",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951469"
+  },
+  "addToIndex": false,
+  "address": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3897,
+  "coingeckoId": "okb",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x75231f58b43240c9718dd58b4967c5114342a86c.png",
+  "marketCap": "4536986605.686995",
+  "name": "OKB",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "OKB",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395156e"
+  },
+  "addToIndex": false,
+  "address": "0x163f8c2467924be0ae7b5347228cabf260318753",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 13502,
+  "coingeckoId": "worldcoin-wld",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x163f8c2467924be0ae7b5347228cabf260318753.png",
+  "marketCap": "216064373",
+  "name": "Worldcoin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "WLD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514e0"
+  },
+  "addToIndex": false,
+  "address": "0xb62132e35a6c13ee1ee0f84dc5d40bad8d815206",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2694,
+  "coingeckoId": "nexo",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xB62132e35a6c13ee1EE0f84dC5d40bad8d815206.png",
+  "marketCap": "560334329.7554402",
+  "name": "Nexo",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "NEXO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951575"
+  },
+  "addToIndex": false,
+  "address": "0xc581b735a1688071a1746c968e0798d642ede491",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10789,
+  "coingeckoId": "tether-eurt",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xc581b735a1688071a1746c968e0798d642ede491.png",
+  "marketCap": "205519013.4384268",
+  "name": "Euro Tether",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "EURT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951498"
+  },
+  "addToIndex": false,
+  "address": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7278,
+  "coingeckoId": "aave",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9.jpg",
+  "marketCap": "1299019160.8838916",
+  "name": "Aave Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "AAVE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951583"
+  },
+  "addToIndex": false,
+  "address": "0x00c83aecc790e8a4453e5dd3b0b4b3680501a7a7",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5691,
+  "coingeckoId": "skale",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x00c83aeCC790e8a4453e5dD3B0B4b3680501a7A7.png",
+  "marketCap": "196983353.38559872",
+  "name": "SKALE",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SKL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514e6"
+  },
+  "addToIndex": false,
+  "address": "0x1cf4592ebffd730c7dc92c1bdffdfc3b9efcf29a",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "waves",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x1cF4592ebfFd730c7dc92c1bdFFDfc3B9EfCf29a.jpg",
+  "marketCap": "508898817.9618177",
+  "name": "WAVES",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "WAVES",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951593"
+  },
+  "addToIndex": false,
+  "address": "0x36ac219f90f5a6a3c77f2a7b660e3cc701f68e25",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4105,
+  "coingeckoId": "coinmetro",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x36ac219f90f5a6a3c77f2a7b660e3cc701f68e25.png",
+  "marketCap": "180770994.2883002",
+  "name": "CoinMetro Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "XCM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951589"
+  },
+  "addToIndex": false,
+  "address": "0xaedf386b755465871ff874e3e37af5976e247064",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 22615,
+  "coingeckoId": "fasttoken",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "190182384",
+  "name": "Fasttoken",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "FTN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514ef"
+  },
+  "addToIndex": false,
+  "address": "0xe3c408bd53c31c085a1746af401a4042954ff740",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 18069,
+  "coingeckoId": "stepn",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xe3c408bd53c31c085a1746af401a4042954ff740.png",
+  "marketCap": "474984386.2561173",
+  "name": "GreenMetaverseToken",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "GMT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395159b"
+  },
+  "addToIndex": false,
+  "address": "0x839e71613f9aa06e5701cf6de63e303616b0dde3",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 14519,
+  "coingeckoId": "vvs-finance",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x839e71613f9aa06e5701cf6de63e303616b0dde3.jpg",
+  "marketCap": "165697750.97791713",
+  "name": "VVS",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "VVS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514aa"
+  },
+  "addToIndex": false,
+  "address": "0x39aa39c021dfbae8fac545936693ac917d5e7563",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5265,
+  "coingeckoId": "compound-usd-coin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x39aa39c021dfbae8fac545936693ac917d5e7563.png",
+  "marketCap": "988681967.8636606",
+  "name": "Compound USD Coin",
+  "riskLevel": "2",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "cUSDC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515a4"
+  },
+  "addToIndex": false,
+  "address": "0xb056c38f6b7dc4064367403e26424cd2c60655e1",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2856,
+  "coingeckoId": "ceek",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xb056c38f6b7dc4064367403e26424cd2c60655e1.png",
+  "marketCap": "157321225.95399797",
+  "name": "CEEK",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "CEEK",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514f6"
+  },
+  "addToIndex": false,
+  "address": "0x62d0a8458ed7719fdaf978fe5929c6d342b0bfce",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 28298,
+  "coingeckoId": "beam-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x62d0a8458ed7719fdaf978fe5929c6d342b0bfce.png",
+  "marketCap": "450110945",
+  "name": "Beam",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BEAM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515b5"
+  },
+  "addToIndex": false,
+  "address": "0x090185f2135308bad17527004364ebcc2d37e5f6",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11289,
+  "coingeckoId": "spell-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x090185f2135308BaD17527004364eBcC2D37e5F6.png",
+  "marketCap": "150120377.94392574",
+  "name": "Spell Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SPELL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395147e"
+  },
+  "addToIndex": false,
+  "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7083,
+  "coingeckoId": "uniswap",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984.jpg",
+  "marketCap": "3187628420.4806957",
+  "name": "Uniswap",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "UNI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515be"
+  },
+  "addToIndex": false,
+  "address": "0x26fb86579e371c7aedc461b2ddef0a8628c93d3b",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "bora",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x26fb86579e371c7aedc461b2ddef0a8628c93d3b.jpeg",
+  "marketCap": "143325819",
+  "name": "BORA",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "BORA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951503"
+  },
+  "addToIndex": false,
+  "address": "0x68749665ff8d2d112fa859aa293f07a622782f38",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5176,
+  "coingeckoId": "tether-gold",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x68749665ff8d2d112fa859aa293f07a622782f38.png",
+  "marketCap": "424824206.2144736",
+  "name": "Tether Gold",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "XAUt",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515c6"
+  },
+  "addToIndex": false,
+  "address": "0x408e41876cccdc0f92210600ef50372656052a38",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2539,
+  "coingeckoId": "republic-protocol",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x408e41876cCCDC0F92210600ef50372656052a38.jpg",
+  "marketCap": "132890327.5676637",
+  "name": "Republic Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "REN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514b5"
+  },
+  "addToIndex": false,
+  "address": "0xc669928185dbce49d2230cc9b0979be6dc797957",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 16086,
+  "coingeckoId": "bittorrent",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xc669928185dbce49d2230cc9b0979be6dc797957.png",
+  "marketCap": "856223867.567089",
+  "name": "BitTorrent",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BTT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515ce"
+  },
+  "addToIndex": false,
+  "address": "0x9e9fbde7c7a83c43913bddc8779158f1368f0413",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 29291,
+  "coingeckoId": "pandora",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "130009144",
+  "name": "Pandora",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "PANDORA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395150f"
+  },
+  "addToIndex": false,
+  "address": "0x6c6ee5e31d828de241282b9606c8e98ea48526e2",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2682,
+  "coingeckoId": "holotoken",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6c6ee5e31d828de241282b9606c8e98ea48526e2.png",
+  "marketCap": "399244339.0243799",
+  "name": "HoloToken",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "HOT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515d5"
+  },
+  "addToIndex": false,
+  "address": "0x081131434f93063751813c619ecca9c4dc7862a3",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11374,
+  "coingeckoId": "mines-of-dalarnia",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x081131434f93063751813c619ecca9c4dc7862a3.png",
+  "marketCap": "127915270",
+  "name": "Dalarnia",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "DAR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951457"
+  },
+  "addToIndex": false,
+  "address": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8085,
+  "coingeckoId": "staked-ether",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xae7ab96520de3a18e5e111b5eaab095312d7fe84.png",
+  "marketCap": "7050752621.138686",
+  "name": "Liquid staked Ether 2.0",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "stETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515db"
+  },
+  "addToIndex": false,
+  "address": "0x41e5560054824ea6b0732e656e3ad64e20e94e45",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1816,
+  "coingeckoId": "civic",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x41e5560054824eA6B0732E656E3Ad64E20e94E45.png",
+  "marketCap": "125023123.82802391",
+  "name": "Civic",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "CVC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951515"
+  },
+  "addToIndex": false,
+  "address": "0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "nxm",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b.jpg",
+  "marketCap": "368814663.20424044",
+  "name": "NXM",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "NXM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": false,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e3"
+  },
+  "addToIndex": false,
+  "address": "0xdb25f211ab05b1c97d595516f45794528a807ad8",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2989,
+  "coingeckoId": "stasis-eurs",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 2,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xdb25f211ab05b1c97d595516f45794528a807ad8.png",
+  "marketCap": "123376038.6718106",
+  "name": "STASIS EURS Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "EURS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514bb"
+  },
+  "addToIndex": false,
+  "address": "0x5d3a536e4d6dbd6114cc1ead35777bab948e3643",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5263,
+  "coingeckoId": "cdai",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643.jpg",
+  "marketCap": "817990447.6668888",
+  "name": "Compound Dai",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "cDAI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e9"
+  },
+  "addToIndex": false,
+  "address": "0xff56cc6b1e6ded347aa0b7676c85ab0b3d08b0fa",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3835,
+  "coingeckoId": "orbs",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xff56cc6b1e6ded347aa0b7676c85ab0b3d08b0fa.jpg",
+  "marketCap": "120281957.19947802",
+  "name": "Orbs",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ORBS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951522"
+  },
+  "addToIndex": false,
+  "address": "0x62b9c7356a2dc64a1969e19c23e4f579f9810aa7",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10291,
+  "coingeckoId": "convex-crv",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x62B9c7356A2Dc64a1969e19C23e4f579F9810Aa7.jpg",
+  "marketCap": "338235645.92117876",
+  "name": "Convex CRV",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "cvxCRV",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515f2"
+  },
+  "addToIndex": false,
+  "address": "0x0b38210ea11411557c13457d4da7dc6ea731b88a",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7737,
+  "coingeckoId": "api3",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0b38210ea11411557c13457D4dA7dC6ea731B88a.png",
+  "marketCap": "117439602.25911635",
+  "name": "API3",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "API3",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951488"
+  },
+  "addToIndex": false,
+  "address": "0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 18679,
+  "coingeckoId": "chain-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18.png",
+  "marketCap": "1806262391.3041291",
+  "name": "Chain",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "XCN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515f9"
+  },
+  "addToIndex": false,
+  "address": "0x4f9254c83eb525f9fcf346490bbb3ed28a81c667",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3814,
+  "coingeckoId": "celer-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4f9254c83eb525f9fcf346490bbb3ed28a81c667.png",
+  "marketCap": "113824242.7821664",
+  "name": "CelerToken",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "CELR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395152a"
+  },
+  "addToIndex": false,
+  "address": "0x38e382f74dfb84608f3c1f10187f6bef5951de93",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 28412,
+  "coingeckoId": "multibit",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x38e382f74dfb84608f3c1f10187f6bef5951de93.png",
+  "marketCap": "326820612",
+  "name": "MUBI",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MUBI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515ff"
+  },
+  "addToIndex": false,
+  "address": "0x3a8cccb969a61532d1e6005e2ce12c200caece87",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7206,
+  "coingeckoId": "titanswap",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3a8cccb969a61532d1e6005e2ce12c200caece87.png",
+  "marketCap": "111107038.7448639",
+  "name": "TitanSwap",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "Titan",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514c3"
+  },
+  "addToIndex": false,
+  "address": "0x6f259637dcd74c767781e37bc6133cd6a68aa161",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2502,
+  "coingeckoId": "huobi-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6f259637dcD74C767781E37Bc6133cd6A68aa161.jpg",
+  "marketCap": "738696985.1326326",
+  "name": "HuobiToken",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "HT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951603"
+  },
+  "addToIndex": false,
+  "address": "0xc7283b66eb1eb5fb86327f08e1b5816b0720212b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9025,
+  "coingeckoId": "tribe-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xc7283b66Eb1EB5FB86327f08e1B5816b0720212B.jpg",
+  "marketCap": "108717989.54300329",
+  "name": "Tribe",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "TRIBE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951530"
+  },
+  "addToIndex": false,
+  "address": "0x056fd409e1d7a124bd7017459dfea2f387b6d5cd",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3306,
+  "coingeckoId": "gemini-dollar",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 2,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd.png",
+  "marketCap": "317411124.93934286",
+  "name": "Gemini dollar",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "GUSD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951609"
+  },
+  "addToIndex": false,
+  "address": "0x467bccd9d29f223bce8043b84e8c8b282827790f",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2394,
+  "coingeckoId": "telcoin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 2,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x467bccd9d29f223bce8043b84e8c8b282827790f.png",
+  "marketCap": "105387623.25648576",
+  "name": "Telcoin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "TEL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395141d"
+  },
+  "addToIndex": true,
+  "address": "",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "ethereum",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": true,
+  "logoURI": "http://192.168.124.17:9000/chain/eth.png",
+  "name": "Ethereum",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "ETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951610"
+  },
+  "addToIndex": false,
+  "address": "0x55296f69f40ea6d20e478533c15a6b08b654e758",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2765,
+  "coingeckoId": "xyo-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x55296f69f40Ea6d20E478533C15A6B08B654E758.png",
+  "marketCap": "102112903.88598454",
+  "name": "XY Oracle",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "XYO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395153c"
+  },
+  "addToIndex": false,
+  "address": "0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 21159,
+  "coingeckoId": "ondo-finance",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xfaba6f8e4a5e8ab82f62fe7c39859fa577269be3.jpg",
+  "marketCap": "285799494",
+  "name": "Ondo",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "ONDO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395161b"
+  },
+  "addToIndex": false,
+  "address": "0x3597bfd533a99c9aa083587b074434e61eb0a258",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1886,
+  "coingeckoId": "dent",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3597bfd533a99c9aa083587b074434e61eb0a258.png",
+  "marketCap": "99887188.77425872",
+  "name": "DENT",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "DENT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514cd"
+  },
+  "addToIndex": false,
+  "address": "0x925206b8a707096ed26ae47c84747fe0bb734f59",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 21353,
+  "coingeckoId": "whitebit",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x925206b8a707096ed26ae47c84747fe0bb734f59.png",
+  "marketCap": "679627543",
+  "name": "WBT",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "WBT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951624"
+  },
+  "addToIndex": false,
+  "address": "0x595832f8fc6bf59c85c527fec3740a1b7a361269",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2132,
+  "coingeckoId": "power-ledger",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x595832F8FC6BF59c85C527fEC3740A1b7a361269.png",
+  "marketCap": "98504726.44666083",
+  "name": "PowerLedger",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "POWR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514ce"
+  },
+  "addToIndex": false,
+  "address": "0xec53bf9167f50cdeb3ae105f56099aaab9061f83",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 30494,
+  "coingeckoId": "eigenlayer",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xec53bf9167f50cdeb3ae105f56099aaab9061f83.png",
+  "marketCap": "669495058",
+  "name": "Eigen",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "EIGEN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951547"
+  },
+  "addToIndex": false,
+  "address": "0x18aaa7115705e8be94bffebde57af9bfc265b998",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7455,
+  "coingeckoId": "audius",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x18aAA7115705e8be94bfFEBDE57Af9BFc265B998.png",
+  "marketCap": "262427853.75132915",
+  "name": "Audius",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "AUDIO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951468"
+  },
+  "addToIndex": false,
+  "address": "0x2af5d2ad76741191d15dfe7bf6ac92d4bd912ca3",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3957,
+  "coingeckoId": "leo-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x2af5d2ad76741191d15dfe7bf6ac92d4bd912ca3.png",
+  "marketCap": "4834769509.943889",
+  "name": "Bitfinex LEO Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "LEO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395154c"
+  },
+  "addToIndex": false,
+  "address": "0x2a79324c19ef2b89ea98b23bc669b7e7c9f8a517",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "wax",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x2a79324c19ef2b89ea98b23bc669b7e7c9f8a517.png",
+  "marketCap": "250574757",
+  "name": "WAXP Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "WAXP",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514d0"
+  },
+  "addToIndex": false,
+  "address": "0x674c6ad92fd080e4004b2312b45f796a192d27a0",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5068,
+  "coingeckoId": "neutrino",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x674C6Ad92Fd080e4004b2312b45f796a192D27a0.png",
+  "marketCap": "634566181.7307749",
+  "name": "Neutrino USD",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "USDN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951553"
+  },
+  "addToIndex": false,
+  "address": "0x12e2b8033420270db2f3b328e32370cb5b2ca134",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8119,
+  "coingeckoId": "safepal",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "248581771",
+  "name": "SafePalToken",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SFP",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951494"
+  },
+  "addToIndex": false,
+  "address": "0xb50721bcf8d664c30412cfbc6cf7a15145234ad1",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11841,
+  "coingeckoId": "arbitrum",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xb50721bcf8d664c30412cfbc6cf7a15145234ad1.png",
+  "marketCap": "1441654538",
+  "name": "Arbitrum",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ARB",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395155f"
+  },
+  "addToIndex": false,
+  "address": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6758,
+  "coingeckoId": "sushi",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2.jpg",
+  "marketCap": "232362031.03096697",
+  "name": "SushiToken",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SUSHI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514d4"
+  },
+  "addToIndex": false,
+  "address": "0x1a4b46696b2bb4794eb3d4c26f1c55f9170fa4c5",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11221,
+  "coingeckoId": "bitdao",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x1A4b46696b2bB4794Eb3D4c26f1c55F9170fa4C5.jpg",
+  "marketCap": "598248533.8675745",
+  "name": "BitDAO",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BIT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951566"
+  },
+  "addToIndex": false,
+  "address": "0x99d8a9c45b2eca8864373a26d1459e3dff1e17f3",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "magic-internet-money",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x99D8a9C45b2ecA8864373A26D1459e3Dff1e17F3.jpg",
+  "marketCap": "224980501.5105962",
+  "name": "Magic Internet Money",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MIM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951449"
+  },
+  "addToIndex": false,
+  "address": "0x85f17cf997934a597031b2e18a9ab6ebd4b9f6a4",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "near",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 24,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x85F17Cf997934a597031b2E18a9aB6ebD4B9f6a4.png",
+  "marketCap": "8576642422",
+  "name": "NEAR",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "NEAR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395156c"
+  },
+  "addToIndex": false,
+  "address": "0x4fe83213d56308330ec302a8bd641f1d0113a4cc",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4761,
+  "coingeckoId": "nucypher",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4fE83213D56308330EC302a8BD641f1d0113A4Cc.jpg",
+  "marketCap": "216693588.4676884",
+  "name": "NuCypher",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "NU",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514de"
+  },
+  "addToIndex": false,
+  "address": "0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1697,
+  "coingeckoId": "basic-attention-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0D8775F648430679A709E98d2b0Cb6250d2887EF.jpg",
+  "marketCap": "562353880.6246594",
+  "name": "Basic Attention Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BAT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395156f"
+  },
+  "addToIndex": false,
+  "address": "0x92d6c1e31e14520e676a687f0a93788b716beff5",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11156,
+  "coingeckoId": "dydx",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x92D6C1e31e14520e676a687F0a93788B716BEff5.png",
+  "marketCap": "215638956.29611775",
+  "name": "dYdX",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "DYDX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951497"
+  },
+  "addToIndex": false,
+  "address": "0xbb0e17ef65f82ab018d8edd776e8dd940327b28b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6783,
+  "coingeckoId": "axie-infinity",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xBB0E17EF65F82Ab018d8EDd776e8DD940327B28b.png",
+  "marketCap": "1330197282.6747818",
+  "name": "Axie Infinity Shard",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "AXS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951573"
+  },
+  "addToIndex": false,
+  "address": "0x5283d291dbcf85356a21ba090e6db59121208b44",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 23121,
+  "coingeckoId": "blur",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5283d291dbcf85356a21ba090e6db59121208b44.png",
+  "marketCap": "206770730",
+  "name": "Blur",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BLUR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514e1"
+  },
+  "addToIndex": false,
+  "address": "0x8fc8f8269ebca376d046ce292dc7eac40c8d358a",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "defichain",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8fc8f8269ebca376d046ce292dc7eac40c8d358a.png",
+  "marketCap": "554444204.5293764",
+  "name": "DeFiChain Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "DFI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951576"
+  },
+  "addToIndex": false,
+  "address": "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10603,
+  "coingeckoId": "immutable-x",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF.png",
+  "marketCap": "204711524.38967893",
+  "name": "Immutable X",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "IMX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395146c"
+  },
+  "addToIndex": false,
+  "address": "0x50d1c9771902476076ecfc8b2a83ad6b9355a4c9",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4195,
+  "coingeckoId": "ftx-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x50D1c9771902476076eCFc8B2A83Ad6b9355a4c9.png",
+  "marketCap": "3746661447.0545707",
+  "name": "FTT",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "FTX Token",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395157b"
+  },
+  "addToIndex": false,
+  "address": "0x04fa0d235c4abf4bcf4787af4cf447de572ef828",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5617,
+  "coingeckoId": "uma",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x04Fa0d235C4abf4BcF4787aF4CF447DE572eF828.jpg",
+  "marketCap": "201066990.89667758",
+  "name": "UMA Voting Token v1",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "UMA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514e4"
+  },
+  "addToIndex": false,
+  "address": "0xff20817765cb7f73d4bde2e66e067e58d11095c2",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6945,
+  "coingeckoId": "amp-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xfF20817765cB7f73d4bde2e66e067E58D11095C2.jpg",
+  "marketCap": "532495459.91172886",
+  "name": "Amp",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "AMP",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951584"
+  },
+  "addToIndex": false,
+  "address": "0x4691937a7508860f876c9c0a2a617e7d9e945d4b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7501,
+  "coingeckoId": "woo-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4691937a7508860F876c9c0a2a617E7d9E945D4B.jpg",
+  "marketCap": "196727551.41217932",
+  "name": "Wootrade Network",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "WOO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514a0"
+  },
+  "addToIndex": false,
+  "address": "0x3506424f91fd33084466f402d5d97f05f8e3b4af",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4066,
+  "coingeckoId": "chiliz",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3506424F91fD33084466F402d5D97f05F8e3b4AF.png",
+  "marketCap": "1216997541.0761676",
+  "name": "chiliZ",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "CHZ",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951588"
+  },
+  "addToIndex": false,
+  "address": "0x0f51bb10119727a7e5ea3538074fb341f56b09ad",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8420,
+  "coingeckoId": "dao-maker",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0f51bb10119727a7e5eA3538074fb341F56B09Ad.png",
+  "marketCap": "192347985.13471806",
+  "name": "DAO Maker",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "DAO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514e8"
+  },
+  "addToIndex": false,
+  "address": "0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2700,
+  "coingeckoId": "celsius-degree-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 4,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xaaAEBE6Fe48E54f431b0C390CfaF0b017d09D42d.jpg",
+  "marketCap": "502561820.4829234",
+  "name": "Celsius",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "CEL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951592"
+  },
+  "addToIndex": false,
+  "address": "0xdefa4e8a7bcba345f687a2f1456f5edd9ce97202",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9444,
+  "coingeckoId": "kyber-network-crystal",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xdefa4e8a7bcba345f687a2f1456f5edd9ce97202.jpg",
+  "marketCap": "180930852.80181736",
+  "name": "Kyber Network Crystal v2",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "KNC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395158b"
+  },
+  "addToIndex": false,
+  "address": "0x9992ec3cf6a55b00978cddf2b27bc6882d88d1ec",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2496,
+  "coingeckoId": "polymath",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x9992eC3cF6A55b00978cdDF2b27BC6882d88D1eC.png",
+  "marketCap": "186763563.73699468",
+  "name": "Polymath",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "POLY",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514ed"
+  },
+  "addToIndex": false,
+  "address": "0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5745,
+  "coingeckoId": "compound-usdt",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9.png",
+  "marketCap": "475198301.00106907",
+  "name": "Compound USDT",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "cUSDT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951594"
+  },
+  "addToIndex": false,
+  "address": "0x5ca381bbfb58f0092df149bd3d243b08b9a8386e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3628,
+  "coingeckoId": "mxc",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5ca381bbfb58f0092df149bd3d243b08b9a8386e.png",
+  "marketCap": "178197697.98766476",
+  "name": "MXCToken",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MXC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514a7"
+  },
+  "addToIndex": false,
+  "address": "0x0000000000085d4780b73119b644ae5ecd22b376",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2563,
+  "coingeckoId": "true-usd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0000000000085d4780B73119b644AE5ecd22b376.jpg",
+  "marketCap": "1096951579.631157",
+  "name": "TrueUSD",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "TUSD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951599"
+  },
+  "addToIndex": false,
+  "address": "0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5690,
+  "coingeckoId": "render-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6De037ef9aD2725EB40118Bb1702EBb27e4Aeb24.png",
+  "marketCap": "166409850.20448828",
+  "name": "Render Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "RNDR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514f3"
+  },
+  "addToIndex": false,
+  "address": "0xd533a949740bb3306d119cc777fa900ba034cd52",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6538,
+  "coingeckoId": "curve-dao-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xD533a949740bb3306d119CC777fa900bA034cd52.jpg",
+  "marketCap": "468060764.3468969",
+  "name": "Curve DAO Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "CRV",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395159d"
+  },
+  "addToIndex": false,
+  "address": "0x198d14f2ad9ce69e76ea330b374de4957c3f850a",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9816,
+  "coingeckoId": "apenft",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x198d14f2ad9ce69e76ea330b374de4957c3f850a.jpg",
+  "marketCap": "165357174.98348278",
+  "name": "APENFT",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "NFT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951477"
+  },
+  "addToIndex": false,
+  "address": "0xa0b73e1ff0b80914ab6fe0444e65848c4c34450b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3635,
+  "coingeckoId": "crypto-com-chain",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xA0b73E1Ff0B80914AB6fe0444E65848C4C34450b.jpg",
+  "marketCap": "3319659306.9036155",
+  "name": "CRO",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "CRO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515a0"
+  },
+  "addToIndex": false,
+  "address": "0x3a4f40631a4f906c2bad353ed06de7a5d3fcb430",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7461,
+  "coingeckoId": "playdapp",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3a4f40631a4f906c2BaD353Ed06De7A5D3fCb430.png",
+  "marketCap": "161962891.87598014",
+  "name": "PlayDapp Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "PLA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514f5"
+  },
+  "addToIndex": false,
+  "address": "0xa9e8acf069c58aec8825542845fd754e41a9489a",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 24835,
+  "coingeckoId": "pepecoin-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xa9e8acf069c58aec8825542845fd754e41a9489a.png",
+  "marketCap": "455363089",
+  "name": "pepeCoin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "pepecoin",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515a8"
+  },
+  "addToIndex": false,
+  "address": "0x9e32b13ce7f2e80a01932b42553652e053d6ed8e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9640,
+  "coingeckoId": "metis-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x9e32b13ce7f2e80a01932b42553652e053d6ed8e.jpeg",
+  "marketCap": "153296516.2765645",
+  "name": "Metis Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "Metis",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514ab"
+  },
+  "addToIndex": false,
+  "address": "0x8e870d67f660d95d5be530380d0ec0bd388289e1",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3330,
+  "coingeckoId": "paxos-standard",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8E870D67F660D95d5be530380D0eC0bd388289E1.jpg",
+  "marketCap": "946770676.7857053",
+  "name": "Pax Dollar",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "USDP",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515b1"
+  },
+  "addToIndex": false,
+  "address": "0xf4d2888d29d722226fafa5d9b24f9164c092421e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 17081,
+  "coingeckoId": "looksrare",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xf4d2888d29d722226fafa5d9b24f9164c092421e.png",
+  "marketCap": "150206277.23121685",
+  "name": "LooksRare Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "LOOKS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514f7"
+  },
+  "addToIndex": false,
+  "address": "0x5e8422345238f34275888049021821e8e08caa1f",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 23225,
+  "coingeckoId": "frax-ether",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5e8422345238f34275888049021821e8e08caa1f.png",
+  "marketCap": "437809738",
+  "name": "Frax Ether",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "frxETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515b7"
+  },
+  "addToIndex": false,
+  "address": "0x0fd10b9899882a6f2fcb5c371e17e70fdee00c38",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9040,
+  "coingeckoId": "pundi-x-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0FD10b9899882a6f2fcb5c371E17e70FdEe00C38.jpg",
+  "marketCap": "148624161.1900839",
+  "name": "Pundi X Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "PUNDIX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395144b"
+  },
+  "addToIndex": false,
+  "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2396,
+  "coingeckoId": "weth",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2.jpg",
+  "marketCap": "7769939607",
+  "name": "Wrapped Ether",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "WETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515bc"
+  },
+  "addToIndex": false,
+  "address": "0x8c15ef5b4b21951d50e53e4fbda8298ffad25057",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3884,
+  "coingeckoId": "fx-coin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8c15Ef5b4B21951d50E53E4fbdA8298FFAD25057.jpg",
+  "marketCap": "145389117.7181135",
+  "name": "Function X",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "FX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951502"
+  },
+  "addToIndex": false,
+  "address": "0x111111111117dc0aa78b770fa6a738034120c302",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8104,
+  "coingeckoId": "1inch",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x111111111117dc0aa78b770fa6a738034120c302.png",
+  "marketCap": "434361707.12804556",
+  "name": "1INCH Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "1INCH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515bf"
+  },
+  "addToIndex": false,
+  "address": "0x956f47f50a910163d8bf957cf5846d573e7f87ca",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8642,
+  "coingeckoId": "fei-usd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x956F47F50A910163D8BF957Cf5846D573E7f87CA.jpg",
+  "marketCap": "143033892.95688754",
+  "name": "Fei USD",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "FEI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514b4"
+  },
+  "addToIndex": false,
+  "address": "0xc944e90c64b2c07662a292be6244bdf05cda44a7",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6719,
+  "coingeckoId": "the-graph",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xc944E90C64B2c07662A292be6244BDf05Cda44a7.jpg",
+  "marketCap": "859449894.6186599",
+  "name": "Graph Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "GRT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515c3"
+  },
+  "addToIndex": false,
+  "address": "0x42476f744292107e34519f9c357927074ea3f75d",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2588,
+  "coingeckoId": "loom-network-new",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x42476f744292107e34519f9c357927074ea3f75d.png",
+  "marketCap": "137282857",
+  "name": "Loom Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "LOOM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951505"
+  },
+  "addToIndex": false,
+  "address": "0xd33526068d116ce69f19a9ee46f0bd304f21a51f",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2943,
+  "coingeckoId": "rocket-pool",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xd33526068d116ce69f19a9ee46f0bd304f21a51f.png",
+  "marketCap": "416270704.50873107",
+  "name": "Rocket Pool Protocol",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "RPL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515c7"
+  },
+  "addToIndex": false,
+  "address": "0x081f67afa0ccf8c7b17540767bbe95df2ba8d97f",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "coinex-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x081f67afa0ccf8c7b17540767bbe95df2ba8d97f.png",
+  "marketCap": "132466182.17648995",
+  "name": "CoinEx Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "CET",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395147f"
+  },
+  "addToIndex": false,
+  "address": "0xbf5495efe5db9ce00f80364c8b423567e58d2110",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 29520,
+  "coingeckoId": "renzo-restaked-eth",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "3183960284",
+  "name": "Renzo Restaked ETH",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ezETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515cc"
+  },
+  "addToIndex": false,
+  "address": "0x12bb890508c125661e03b09ec06e404bc9289040",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11346,
+  "coingeckoId": "radio-caca",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x12bb890508c125661e03b09ec06e404bc9289040.jpg",
+  "marketCap": "130319510.9171084",
+  "name": "Radio Caca V2",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "RACA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395150e"
+  },
+  "addToIndex": false,
+  "address": "0x15d4c048f83bd7e37d49ea4c83a07267ec4203da",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "gala",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 8,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x15D4c048F83bd7e37d49eA4C83a07267Ec4203dA.png",
+  "marketCap": "412931531.7327724",
+  "name": "Gala",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "GALA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515cf"
+  },
+  "addToIndex": false,
+  "address": "0x8c9532a60e0e7c6bbd2b2c1303f63ace1c3e9811",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 32298,
+  "coingeckoId": "renzo-restaked-lst",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "129727099",
+  "name": "Renzo Restaked LST ",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "pzETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514b7"
+  },
+  "addToIndex": false,
+  "address": "0x5afe3855358e112b5647b952709e6165e1c1eeee",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 21585,
+  "coingeckoId": "safe",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5afe3855358e112b5647b952709e6165e1c1eeee.png",
+  "marketCap": "847005166",
+  "name": "Safe Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SAFE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515d3"
+  },
+  "addToIndex": false,
+  "address": "0xe28b3b32b6c345a34ff64674606124dd5aceca30",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7226,
+  "coingeckoId": "injective-protocol",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xe28b3B32B6c345A34Ff64674606124Dd5Aceca30.jpg",
+  "marketCap": "128013795.1615513",
+  "name": "Injective Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "INJ",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951510"
+  },
+  "addToIndex": false,
+  "address": "0x4e3fbd56cd56c3e72c1403e103b45db9da5b9d2b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9903,
+  "coingeckoId": "convex-finance",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4e3FBD56CD56c3e72c1403e103b45Db9da5B9D2B.png",
+  "marketCap": "397598516.55098885",
+  "name": "Convex Token",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "CVX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515d6"
+  },
+  "addToIndex": false,
+  "address": "0xa849eaae994fb86afa73382e9bd88c2b6b18dc71",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 2982,
+  "coingeckoId": "mass-vehicle-ledger",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xa849eaae994fb86afa73382e9bd88c2b6b18dc71.png",
+  "marketCap": "127629927.26114736",
+  "name": "Mass Vehicle Ledger Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MVL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951416"
+  },
+  "addToIndex": true,
+  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4943,
+  "coingeckoId": "dai",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6B175474E89094C44Da98b954EedeAC495271d0F.jpg",
+  "marketCap": "6512888979.494833",
+  "name": "Dai Stablecoin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "DAI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515d9"
+  },
+  "addToIndex": false,
+  "address": "0x9d65ff81a3c488d585bbfb0bfe3c7707c7917f54",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 12999,
+  "coingeckoId": "ssv-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x9d65ff81a3c488d585bbfb0bfe3c7707c7917f54.png",
+  "marketCap": "126773998.24109972",
+  "name": "SSV Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SSV",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951514"
+  },
+  "addToIndex": false,
+  "address": "0xed35af169af46a02ee13b9d79eb57d6d68c1749e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 19075,
+  "coingeckoId": "ecomi",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xed35af169af46a02ee13b9d79eb57d6d68c1749e.png",
+  "marketCap": "384470764.6375284",
+  "name": "OMI Token",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "OMI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515dc"
+  },
+  "addToIndex": false,
+  "address": "0x04abeda201850ac0124161f037efd70c74ddc74c",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5841,
+  "coingeckoId": "nest",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x04abeda201850ac0124161f037efd70c74ddc74c.png",
+  "marketCap": "124299154.65049246",
+  "name": "NEST",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "NEST",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514ba"
+  },
+  "addToIndex": false,
+  "address": "0x0316eb71485b0ab14103307bf65a021042c6d380",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6941,
+  "coingeckoId": "huobi-btc",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0316EB71485b0Ab14103307bf65a021042c6d380.png",
+  "marketCap": "835470812.2560618",
+  "name": "Huobi BTC",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "HBTC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e2"
+  },
+  "addToIndex": false,
+  "address": "0xf939e0a03fb07f59a73314e73794be0e57ac1b4e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 24927,
+  "coingeckoId": "crvusd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "123805061",
+  "name": "Curve.Fi USD Stablecoin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "crvUSD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951518"
+  },
+  "addToIndex": false,
+  "address": "0xc00e94cb662c3520282e6f5717214004a7f26888",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5692,
+  "coingeckoId": "compound-governance-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xc00e94Cb662C3520282E6f5717214004A7f26888.jpg",
+  "marketCap": "352539792.3179281",
+  "name": "Compound",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "COMP",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e5"
+  },
+  "addToIndex": false,
+  "address": "0x7a58c0be72be218b41c608b7fe7c5bb630736c71",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 14806,
+  "coingeckoId": "constitutiondao",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x7a58c0be72be218b41c608b7fe7c5bb630736c71.jpg",
+  "marketCap": "121989218.79009905",
+  "name": "ConstitutionDAO",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "PEOPLE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951485"
+  },
+  "addToIndex": false,
+  "address": "0x582d872a1b094fc48f5de31d3b73f2d9be47def1",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "the-open-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 9,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x582d872a1b094fc48f5de31d3b73f2d9be47def1.png",
+  "marketCap": "2134953975",
+  "name": "Wrapped TON Coin",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "TONCOIN",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515e8"
+  },
+  "addToIndex": false,
+  "address": "0xac51066d7bec65dc4589368da368b212745d63e8",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8766,
+  "coingeckoId": "my-neighbor-alice",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xAC51066d7bEC65Dc4589368da368b212745d63E8.jpg",
+  "marketCap": "121006557.77015851",
+  "name": "ALICE",
+  "riskLevel": "0",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "ALICE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951521"
+  },
+  "addToIndex": false,
+  "address": "0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3783,
+  "coingeckoId": "ankr",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x8290333ceF9e6D528dD5618Fb97a76f268f3EDD4.jpg",
+  "marketCap": "339180420.7682294",
+  "name": "Ankr Network",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "ANKR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515eb"
+  },
+  "addToIndex": false,
+  "address": "0xb1191f691a355b43542bea9b8847bc73e7abb137",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7276,
+  "coingeckoId": "kirobo",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xb1191f691a355b43542bea9b8847bc73e7abb137.png",
+  "marketCap": "119964465.1630308",
+  "name": "Kirobo",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "KIRO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514bd"
+  },
+  "addToIndex": false,
+  "address": "0x4e15361fd6b4bb609fa63c81a2be19d873717870",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "fantom",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4E15361FD6b4BB609Fa63C81A2be19d873717870.jpg",
+  "marketCap": "776816681.3809156",
+  "name": "Fantom",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "FTM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515f1"
+  },
+  "addToIndex": false,
+  "address": "0xfc82bb4ba86045af6f327323a46e80412b91b27d",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4120,
+  "coingeckoId": "prometeus",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xfc82bb4ba86045af6f327323a46e80412b91b27d.png",
+  "marketCap": "118934355.17066409",
+  "name": "Token Prometeus Network",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "PROM",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951524"
+  },
+  "addToIndex": false,
+  "address": "0x152649ea73beab28c5b49b26eb48f7ead6d4c898",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 7186,
+  "coingeckoId": "pancakeswap-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "",
+  "marketCap": "332464025",
+  "name": "PancakeSwap Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "Cake",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515f4"
+  },
+  "addToIndex": false,
+  "address": "0x33349b282065b0284d756f0577fb39c158f935e6",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 9417,
+  "coingeckoId": "maple",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x33349B282065b0284d756F0577FB39c158F935e6.jpeg",
+  "marketCap": "115576267.65275474",
+  "name": "Maple Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MPL",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395145b"
+  },
+  "addToIndex": false,
+  "address": "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "matic-network",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0.jpg",
+  "marketCap": "6126893790.915463",
+  "name": "Polygon",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MATIC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515f7"
+  },
+  "addToIndex": false,
+  "address": "0x29d578cec46b50fa5c88a99c6a4b70184c062953",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "everscale",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 9,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x29d578cec46b50fa5c88a99c6a4b70184c062953.png",
+  "marketCap": "114492305.8771374",
+  "name": "Wrapped Ever",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "WEVER",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951529"
+  },
+  "addToIndex": false,
+  "address": "0xbe9895146f7af43049ca1c1ae358b0541ea49704",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 21535,
+  "coingeckoId": "coinbase-wrapped-staked-eth",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xbe9895146f7af43049ca1c1ae358b0541ea49704.png",
+  "marketCap": "327783153",
+  "name": "Coinbase Wrapped Staked ETH",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "cbETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515fa"
+  },
+  "addToIndex": false,
+  "address": "0xf1f955016ecbcd7321c7266bccfb96c68ea5e49b",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8075,
+  "coingeckoId": "rally-2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xf1f955016EcbCd7321c7266BccFB96c68ea5E49b.png",
+  "marketCap": "113391492.1671029",
+  "name": "Rally",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "RLY",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514c1"
+  },
+  "addToIndex": false,
+  "address": "0x0c10bf8fcb7bf5412187a595ab97a3609160b5c6",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 19891,
+  "coingeckoId": "usdd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0c10bf8fcb7bf5412187a595ab97a3609160b5c6.jpg",
+  "marketCap": "744971901.5575355",
+  "name": "Decentralized USD",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "USDD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039515fc"
+  },
+  "addToIndex": false,
+  "address": "0x1776e1f26f98b1a5df9cd347953a26dd3cb46671",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1732,
+  "coingeckoId": "numeraire",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671.jpg",
+  "marketCap": "112993552.99269755",
+  "name": "Numeraire",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "NMR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395152d"
+  },
+  "addToIndex": false,
+  "address": "0x4385328cc4d643ca98dfea734360c0f596c83449",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 23246,
+  "coingeckoId": "tominet",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4385328cc4d643ca98dfea734360c0f596c83449.png",
+  "marketCap": "319784805",
+  "name": "tomi Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "TOMI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951600"
+  },
+  "addToIndex": false,
+  "address": "0xddb3422497e61e13543bea06989c0789117555c5",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "coti",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xDDB3422497E61e13543BeA06989C0789117555c5.png",
+  "marketCap": "110103761.08607282",
+  "name": "COTI Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "COTI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951489"
+  },
+  "addToIndex": false,
+  "address": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 18876,
+  "coingeckoId": "apecoin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4d224452801ACEd8B2F0aebE155379bb5D594381.png",
+  "marketCap": "1673725074.1801655",
+  "name": "ApeCoin",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "APE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951602"
+  },
+  "addToIndex": false,
+  "address": "0x11eef04c884e24d9b7b4760e7476d06ddf797f36",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4041,
+  "coingeckoId": "mx-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x11eef04c884e24d9b7b4760e7476d06ddf797f36.png",
+  "marketCap": "108792522.54273662",
+  "name": "MX Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "MX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395152f"
+  },
+  "addToIndex": false,
+  "address": "0x6fb3e0a217407efff7ca062d46c26e5d60a14d69",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "iotex",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x6fB3e0A217407EFFf7Ca062D46c26E5d60a14d69.png",
+  "marketCap": "317634299.3002382",
+  "name": "IoTeX Network",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "IOTX",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951604"
+  },
+  "addToIndex": false,
+  "address": "0x25f8087ead173b73d6e8b84329989a8eea16cf73",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10688,
+  "coingeckoId": "yield-guild-games",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x25f8087EAD173b73D6e8B84329989A8eEA16CF73.jpg",
+  "marketCap": "108347857.54723136",
+  "name": "Yield Guild Games Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "YGG",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514c5"
+  },
+  "addToIndex": false,
+  "address": "0x93581991f68dbae1ea105233b67f7fa0d6bdee7b",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "evmos",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x93581991f68dbae1ea105233b67f7fa0d6bdee7b.png",
+  "marketCap": "726762508.7291518",
+  "name": "Wrapped Evmos",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "WEVMOS",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951607"
+  },
+  "addToIndex": false,
+  "address": "0xfe2e637202056d30016725477c5da089ab0a043a",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 16602,
+  "coingeckoId": "seth2",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xfe2e637202056d30016725477c5da089ab0a043a.png",
+  "marketCap": "105914465.2753035",
+  "name": "StakeWise Staked ETH2",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "sETH2",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951537"
+  },
+  "addToIndex": false,
+  "address": "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5864,
+  "coingeckoId": "yearn-finance",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e.jpg",
+  "marketCap": "304699345.8458823",
+  "name": "yearn.finance",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "YFI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395160a"
+  },
+  "addToIndex": false,
+  "address": "0x5dc60c4d5e75d22588fa17ffeb90a63e535efce0",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5908,
+  "coingeckoId": "dkargo",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5dc60c4d5e75d22588fa17ffeb90a63e535efce0.jpg",
+  "marketCap": "105141628.88254744",
+  "name": "dKargo",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "DKA",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951407"
+  },
+  "addToIndex": true,
+  "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3408,
+  "coingeckoId": "usd-coin",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48.jpg",
+  "marketCap": "52137757305.98288",
+  "name": "USD Coin",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "USDC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395160f"
+  },
+  "addToIndex": false,
+  "address": "0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1727,
+  "coingeckoId": "bancor",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C.png",
+  "marketCap": "102195735.59053133",
+  "name": "Bancor Network Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BNT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951539"
+  },
+  "addToIndex": false,
+  "address": "0xac3e018457b222d93114458476f3e3416abbe38f",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 23177,
+  "coingeckoId": "staked-frax-ether",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xac3e018457b222d93114458476f3e3416abbe38f.png",
+  "marketCap": "290640472",
+  "name": "Staked Frax Ether",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "sfrxETH",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951611"
+  },
+  "addToIndex": false,
+  "address": "0x607f4c5bb672230e8672085532f7e901544a7375",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1637,
+  "coingeckoId": "iexec-rlc",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 9,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x607F4C5BB672230e8672085532f7e901544a7375.jpg",
+  "marketCap": "101788108.22538348",
+  "name": "iEx.ec Network Token",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "RLC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514cc"
+  },
+  "addToIndex": false,
+  "address": "0x19de6b897ed14a376dda0fe53a5420d2ac828a28",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 11092,
+  "coingeckoId": "bitget-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x19de6b897ed14a376dda0fe53a5420d2ac828a28.jpg",
+  "marketCap": "686951841",
+  "name": "BitgetToken",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "BGB",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951617"
+  },
+  "addToIndex": false,
+  "address": "0xcb86c6a22cb56b6cf40cafedb06ba0df188a416e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5113,
+  "coingeckoId": "insure",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xcb86c6a22cb56b6cf40cafedb06ba0df188a416e.png",
+  "marketCap": "99920651.22608565",
+  "name": "inSure",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SURE",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951540"
+  },
+  "addToIndex": false,
+  "address": "0xd26114cd6ee289accf82350c8d8487fedb8a0c07",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1808,
+  "coingeckoId": "omisego",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xd26114cd6EE289AccF82350c8d8487fedB8A0C07.jpg",
+  "marketCap": "279470116.36751956",
+  "name": "OMGToken",
+  "riskLevel": "0",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "OMG",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395161c"
+  },
+  "addToIndex": false,
+  "address": "0xcf0c122c6b73ff809c693db761e7baebe62b6a2e",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 10804,
+  "coingeckoId": "floki",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 9,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-56/0xfb5b838b6cfeedc2873ab27866079ac55363d37e.png",
+  "marketCap": "99389317.97763216",
+  "name": "FLOKI",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "FLOKI",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395148d"
+  },
+  "addToIndex": false,
+  "address": "0x3845badade8e6dff049820680d1f14bd3903a5d0",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 6210,
+  "coingeckoId": "the-sandbox",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x3845badAde8e6dFF049820680d1F14bD3903a5d0.jpg",
+  "marketCap": "1504670467.3739207",
+  "name": "SAND",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "SAND",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951545"
+  },
+  "addToIndex": false,
+  "address": "0x320623b8e4ff03373931769a31fc52a4e78b5d70",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 3964,
+  "coingeckoId": "reserve-rights-token",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x320623b8e4ff03373931769a31fc52a4e78b5d70.png",
+  "marketCap": "266523274.61189276",
+  "name": "Reserve Rights",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "RSR",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039513fd"
+  },
+  "addToIndex": true,
+  "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 825,
+  "coingeckoId": "tether",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 6,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xdAC17F958D2ee523a2206206994597C13D831ec7.jpg",
+  "marketCap": "67600751622.405464",
+  "name": "Tether",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "USDT",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395140d"
+  },
+  "addToIndex": true,
+  "address": "0x4fabb145d64652a948d72533023f6e7a623c7c53",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 4687,
+  "coingeckoId": "binance-usd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x4Fabb145d64652a948d72533023f6E7A623C7C53.jpg",
+  "marketCap": "19215809262.622444",
+  "name": "Binance USD",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "BUSD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko",
+    "Uniswap Labs Default"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395144a"
+  },
+  "addToIndex": false,
+  "address": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 5994,
+  "coingeckoId": "shiba-inu",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE.png",
+  "marketCap": "8192845576.956669",
+  "name": "SHIBA INU",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "SHIB",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb03951475"
+  },
+  "addToIndex": false,
+  "address": "0x514910771af9ca656af840dff83e8264ecf986ca",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1975,
+  "coingeckoId": "chainlink",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x514910771AF9Ca656af840dff83E8264EcF986CA.jpg",
+  "marketCap": "3330544901.9977202",
+  "name": "ChainLink Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "LINK",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514a2"
+  },
+  "addToIndex": false,
+  "address": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 8000,
+  "coingeckoId": "lido-dao",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32.png",
+  "marketCap": "1166228977.8362458",
+  "name": "Lido DAO Token",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "LDO",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb039514ec"
+  },
+  "addToIndex": false,
+  "address": "0xbbbbca6a901c926f240b89eacb641d8aec7aeafd",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1934,
+  "coingeckoId": "loopring",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xBBbbCA6A901c926F240b89EacB641d8Aec7AEafD.jpg",
+  "marketCap": "494393644.98141146",
+  "name": "LoopringCoin V2",
+  "riskLevel": "1",
+  "security": false,
+  "status": "LISTED",
+  "symbol": "LRC",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Uniswap Labs Default",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "6720985fab5f02bb0395158d"
+  },
+  "addToIndex": false,
+  "address": "0xbc6da0fe9ad5f3b0d58160288917aa56653660e9",
+  "chainId": "1",
+  "checked": true,
+  "coingeckoId": "alchemix-usd",
+  "createdAt": "2024-10-26T09:07:48.210Z",
+  "decimals": 18,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://192.168.124.17:9000/tokens/evm-1/0xBC6DA0FE9aD5f3b0d58160288917AA56653660E9.jpg",
+  "marketCap": "180937866.31748724",
+  "name": "Alchemix USD",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "alUSD",
+  "updatedAt": "2024-10-26T09:07:48.210Z",
+  "verified": true,
+  "source": [
+    "sushi",
+    "Coingecko"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+},
+{
+  "_id": {
+    "$oid": "673708944e71e61da08cdb52"
+  },
+  "addToIndex": false,
+  "address": "",
+  "chainId": "1",
+  "checked": true,
+  "cmcId": 1,
+  "coingeckoId": "ethereum",
+  "createdAt": "2024-11-15T04:10:44.885Z",
+  "decimals": 12,
+  "impl": "evm",
+  "isNative": false,
+  "logoURI": "http://静态资源/assets/eth/eth.png",
+  "marketCap": "67600751622.405464",
+  "name": "Ethereum",
+  "riskLevel": "1",
+  "security": true,
+  "status": "LISTED",
+  "symbol": "eth",
+  "updatedAt": "2024-11-15T04:10:44.886Z",
+  "verified": true,
+  "source": [
+    "string"
+  ],
+  "_class": "com.junyang.entity.token.TokenEntity"
+}]

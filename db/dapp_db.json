@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "6736b17458b57cd94eb1c7b3"
+  },
+  "__v": 0,
+  "createdAt": "2024-11-06T12:19:56.594Z",
+  "path": "ddddsdddddddddddd",
+  "remark": "大多数水水水水水水水水水水水水水水水水",
+  "status": "ONLINE",
+  "updatedAt": "2024-11-06T12:19:38.116Z",
+  "version": "20241002"
+},
+{
+  "_id": {
+    "$oid": "6736b1e958b57cd94eb1c7b4"
+  },
+  "__v": 0,
+  "createdAt": "2024-11-06T12:19:56.594Z",
+  "path": "20241001",
+  "remark": "20241001",
+  "status": "OFFLINE",
+  "updatedAt": "2024-11-06T12:19:38.116Z",
+  "version": "20241001"
+},
+{
+  "_id": {
+    "$oid": "673870ce312937dd57b6873e"
+  },
+  "__v": 0,
+  "createdAt": "2024-11-06T12:19:56.594Z",
+  "path": "是大多数都是",
+  "remark": "dsdssddsds",
+  "status": "ONLINE",
+  "updatedAt": "2024-11-06T12:19:38.116Z",
+  "version": "20241001"
+}]

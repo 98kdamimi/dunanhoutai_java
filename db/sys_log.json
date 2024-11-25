@@ -1,0 +1,20 @@
+[{
+  "_id": {
+    "$oid": "6743e8171c11ee5ee2c082ca"
+  },
+  "userName": "csz",
+  "moduleName": "用户",
+  "moduleInfo": "通过token获取用户信息",
+  "reqType": "GET",
+  "reqUrl": "http://127.0.0.1:8082/shieldSecurity/user/findToken",
+  "ipUrl": "127.0.0.1",
+  "reqParamet": "[]",
+  "resData": "{\"data\":{\"pageNumber\":1,\"roles\":[\"admin\"],\"pageSize\":10,\"password\":\"e10adc3949ba59abbe56e057f20f883e\",\"loginTime\":1732503575943,\"userState\":1,\"permissions\":[\"*:*:*\"],\"tel\":\"15621349306\",\"id\":1,\"power\":[{\"authority\":\"ROLE_system:user:list\"},{\"authority\":\"ROLE_system:role:list\"},{\"authority\":\"ROLE_system:menu:list\"},{\"authority\":\"ROLE_system:user:query\"},{\"authority\":\"ROLE_system:user:add\"},{\"authority\":\"ROLE_system:user:edit\"},{\"authority\":\"ROLE_system:user:remove\"},{\"authority\":\"ROLE_system:user:export\"},{\"authority\":\"ROLE_system:user:import\"},{\"authority\":\"ROLE_system:user:resetPwd\"},{\"authority\":\"ROLE_system:role:query\"},{\"authority\":\"ROLE_system:role:add\"},{\"authority\":\"ROLE_system:role:edit\"},{\"authority\":\"ROLE_system:role:remove\"},{\"authority\":\"ROLE_system:role:export\"},{\"authority\":\"ROLE_system:menu:query\"},{\"authority\":\"ROLE_system:menu:add\"},{\"authority\":\"ROLE_system:menu:edit\"},{\"authority\":\"ROLE_system:menu:remove\"},{\"authority\":\"ROLE_netWork:index:list\"},{\"authority\":\"ROLE_message:index\"},{\"authority\":\"ROLE_dapp:index\"},{\"authority\":\"ROLE_fileUplod:index\"},{\"authority\":\"ROLE_token:index:list\"},{\"authority\":\"ROLE_certificate:index\"},{\"authority\":\"ROLE_platformToken:index\"},{\"authority\":\"ROLE_software:index\"},{\"authority\":\"ROLE_hardware:index\"},{\"authority\":\"ROLE_releaseToken:index\"},{\"authority\":\"ROLE_logIndex:index\"}],\"roleList\":[{\"flag\":false,\"roleId\":1,\"admin\":true,\"dataScope\":\"1\",\"delFlag\":\"0\",\"params\":{},\"roleSort\":0,\"deptCheckStrictly\":true,\"createBy\":\"admin\",\"createTime\":1685093851000,\"updateBy\":\"\",\"menuCheckStrictly\":true,\"roleKey\":\"admin\",\"roleName\":\"超级管理员\",\"status\":\"0\"}],\"acctive\":\"csz\",\"createTime\":\"2022-04-14 09:29:44\",\"createUser\":1,\"username\":\"csz1\"},\"msg\":\"操作成功\",\"rtncode\":200}",
+  "begTime": {
+    "$date": "2024-11-25T02:59:35.934Z"
+  },
+  "endTime": {
+    "$date": "2024-11-25T02:59:35.952Z"
+  },
+  "_class": "com.junyang.entity.system.SysLogEntity"
+}]
