@@ -28,6 +28,8 @@ import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.NetWorkService;
 import com.junyang.utils.HttpUtil;
 
+import javassist.expr.NewArray;
+
 @RestController
 @Transactional
 @CrossOrigin
@@ -38,6 +40,9 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	@Autowired
+	private TokenServiceImpl tokenServiceImpl;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -69,6 +74,13 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 
 							}
 						}
+					}
+				}
+				List<NetWorkEntity> netWorkList = mongoTemplate.findAll(NetWorkEntity.class);
+				if(netWorkList != null && netWorkList.size() > 0) {
+					for (int i = 0; i < netWorkList.size(); i++) {
+						tokenServiceImpl.rpcList(HTTP_URL+HttpAddressEunms.TOKEN_LIST.getName()+"chainId="+netWorkList.get(i).getChainId()+"&impl="+netWorkList.get(i).getImpl());
+//						System.out.println(HTTP_URL+HttpAddressEunms.TOKEN_LIST.getName()+"chainId="+netWorkList.get(i).getChainId()+"&impl="+netWorkList.get(i).getImpl());
 					}
 				}
 			}
@@ -122,6 +134,20 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
+	}
+
+	@Override
+	public ResponseBase findNetWorkIdList() {
+		List<NetWorkEntity> listAll = mongoTemplate.findAll(NetWorkEntity.class);
+		List<DicEntity> list = new ArrayList<DicEntity>();
+		if(listAll != null && listAll.size() > 0) {
+			for (int i = 0; i < listAll.size(); i++) {
+				DicEntity dicEntity = new DicEntity();
+				dicEntity.setName(listAll.get(i).getWorkId());
+				list.add(dicEntity);
+			}
+		}
+		return setResultSuccess(list);
 	}
 
 }

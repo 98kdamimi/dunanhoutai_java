@@ -39,6 +39,10 @@ public interface VersionService {
 	@ApiOperation(value = "新版本提示",notes = "新版本提示",response = ResponseBase.class)
 	ResponseBase msgWarn();
 	
+	@GetMapping("/deleteMsg")
+	@ApiOperation(value = "删除消息",notes = "删除消息",response = ResponseBase.class)
+	ResponseBase deleteMsg();
+	
 	@PostMapping("/Offline")
 	@ApiOperation(value = "下线接口",notes = "下线接口",response = ResponseBase.class)
 	ResponseBase Offline(Integer id);

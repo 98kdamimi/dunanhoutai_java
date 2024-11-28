@@ -35,6 +35,12 @@ public interface CertificateService {
 	@ApiOperation(value = "下载证书",notes = "查询证书",response = ResponseBase.class)
 	void downloadFile(String id,HttpServletResponse response);
 	
+	@PostMapping("/uploadExcle")
+	@ApiOperation(value = "批量导入证书",notes = "批量导入证书",response = ResponseBase.class)
+	ResponseBase uploadExcle(MultipartFile file);
 	
+	@GetMapping("/delete")
+	@ApiOperation(value = "删除证书",notes = "删除证书",response = ResponseBase.class)
+	ResponseBase delete(String id);
 
 }

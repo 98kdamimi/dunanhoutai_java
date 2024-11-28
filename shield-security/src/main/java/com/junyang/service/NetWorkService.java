@@ -24,4 +24,8 @@ public interface NetWorkService{
 	@ApiOperation(value = "主链列表",notes = "主链列表",response = ResponseBase.class)
 	ResponseBase findAll();
 	
+	@GetMapping("/findNetWorkIdList")
+	@ApiOperation(value = "主链列表",notes = "主链列表",response = ResponseBase.class)
+	ResponseBase findNetWorkIdList();
+	
 }

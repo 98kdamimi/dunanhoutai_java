@@ -31,14 +31,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
 import com.junyang.entity.device.DeviceCertificateEntity;
+import com.junyang.poi.certificate.CertificatePoi;
 import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.CertificateService;
+import com.junyang.utils.ExcelUtils;
 import com.junyang.utils.FileUploadUtil;
 import com.junyang.utils.GenericityUtil;
 import com.junyang.utils.RedisUtil;
@@ -200,7 +204,7 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.ASC, "setTime"));
+					Sort.by(Sort.Direction.DESC, "setTime"));
 			query.with(pageRequest);
 			// 执行分页查询
 			List<DeviceCertificateEntity> list = mongoTemplate.find(query, DeviceCertificateEntity.class);
@@ -240,6 +244,47 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			throw new RuntimeException("文件下载失败", ex);
+		}
+	}
+
+	@Override
+	@SysLogAnnotation(module = "证书管理", type = "POST", remark = "批量导入证书")
+	public ResponseBase uploadExcle(MultipartFile file) {
+		try {
+			if(file != null) {
+				List<DeviceCertificateEntity> list = ExcelUtils.importData(file, DeviceCertificateEntity.class);
+				if(list != null && list.size() > 0) {
+					for (int i = 0; i < list.size(); i++) {
+						Query query = new Query();
+						if (list.get(i).getSerialNumber() != null && !list.get(i).getSerialNumber().isEmpty()) {
+							query.addCriteria(Criteria.where("serialNumber").is(list.get(i).getSerialNumber()));
+						}
+						List<DeviceCertificateEntity> numList = mongoTemplate.find(query, DeviceCertificateEntity.class);
+						if(numList != null && numList.size() > 0) {
+							continue;
+						}else {
+							GenericityUtil.setDate(list.get(i));
+							mongoTemplate.insert(list.get(i));
+						}
+					}
+				}
+			}
+			return setResultSuccess();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase delete(String id) {
+		try {
+	        Query query = new Query(Criteria.where("_id").is(id));
+	        mongoTemplate.remove(query, DeviceCertificateEntity.class);
+	        return setResultSuccess();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
 		}
 	}
 }

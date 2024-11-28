@@ -3,6 +3,7 @@ package com.junyang.service.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,13 +116,6 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 					if(deviceFile != null) {
 						uploadServiceImpl.fileUpload(deviceFile, FilePathEnums.APK.getIndex(),entity.getId().toString());
 					}
-				}
-				if(iosFile != null) {
-					
-				}else if(androidFile != null) {
-					
-				}else if(deviceFile != null) {
-					
 				}
 				return setResultSuccess();
 			} else {
@@ -331,26 +325,70 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	public ResponseBase onlineSoftware(Integer id) {
 		try {
 			VersionEntity entity = versionDao.selectById(id);
+			JSONObject jsonObject = new JSONObject();
 			if (entity != null) {
 				// 更新ios内容
 				VersionIosEntity ios = versionIosDao.findVersionId(entity.getId());
 				if (ios != null) {
-					ios.setVersion(this.strToList(ios.getIosVersion()));
-					entity.setIos(ios);
+//					ios.setVersion(this.strToList(ios.getIosVersion()));
+//					entity.setIos(ios);
+					JSONObject iosJson = new JSONObject();
+					iosJson.put("url", ios.getUrl());
+					iosJson.put("version", this.strToList(ios.getIosVersion()));
+					jsonObject.put("ios", iosJson);
 				}
 				// 更新安卓内容
 				VersionAndroidEntity androidEntity = versionAndroidDao.findVersionId(entity.getId());
 				if (androidEntity != null) {
+					JSONObject andeoidJson = new JSONObject();
 					VersionAndroidGoogleEntity androidGoogleEntity = androidGoogleDao
 							.findAndroid(androidEntity.getId());
 					if (androidGoogleEntity != null) {
-						androidGoogleEntity.setVersion(this.strToList(androidGoogleEntity.getGoogleVersion()));
-						androidEntity.setGoogle(androidGoogleEntity);
+//						androidGoogleEntity.setVersion(this.strToList(androidGoogleEntity.getGoogleVersion()));
+//						androidEntity.setGoogle(androidGoogleEntity);
+						JSONObject googleJson = new JSONObject();
+						googleJson.put("url", androidGoogleEntity.getUrl());
+						googleJson.put("version", this.strToList(androidGoogleEntity.getGoogleVersion()));
+						andeoidJson.put("google", googleJson);
 					}
-					androidEntity.setVersion(this.strToList(androidEntity.getAndroidVersion()));
-					entity.setAndroid(androidEntity);
+//					androidEntity.setVersion(this.strToList(androidEntity.getAndroidVersion()));
+//					entity.setAndroid(androidEntity);
+					andeoidJson.put("googlePlay", androidEntity.getGooglePlay());
+					andeoidJson.put("url", androidEntity.getUrl());
+					andeoidJson.put("version", this.strToList(androidEntity.getAndroidVersion()));
+					jsonObject.put("android", andeoidJson);
 				}
-				String jsonParam = JSON.toJSONString(entity);
+				//硬件信息
+				VersionDigtalshieEntity digtalshieEntity = versionDigtalshieDao.findVersionId(entity.getId());
+				if(digtalshieEntity != null) {
+					JSONObject digtalshieJson = new JSONObject();
+					List<VersionDigtalshieFirmwareEntity> list = 
+							VersionDigtalshieFirmwareDao.findVersionId(digtalshieEntity.getId());
+					List<JSONObject> listJson = new ArrayList<>();
+					if(list != null && list.size() > 0) {
+						for (int i = 0; i < list.size(); i++) {
+//							list.get(i).setVersion(this.strToList(list.get(i).getFirmwareVersion()));
+//							list.get(i).setChangelog(jsonObject);
+							JSONObject releaseChangelog = JSONObject.parseObject(list.get(i).getReleaseChangelog());
+							JSONObject firmwareJson = new JSONObject();
+							if(list.get(i).getReleaseState() == 0) {
+								firmwareJson.put("required", false);
+							}else {
+								firmwareJson.put("required", true);
+							}
+							firmwareJson.put("version", this.strToList(list.get(i).getFirmwareVersion()));
+							firmwareJson.put("url", list.get(i).getUrl());
+							firmwareJson.put("fingerprint", list.get(i).getFingerprint());
+							firmwareJson.put("changelog", releaseChangelog);
+							listJson.add(firmwareJson);
+						}
+//						digtalshieEntity.setFirmware(list);
+						digtalshieJson.put("firmware", listJson);
+					}
+//					entity.setDigtalshield(digtalshieEntity);
+					jsonObject.put("digtalshield", digtalshieJson);
+				}
+				String jsonParam = JSON.toJSONString(jsonObject);
 				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.ONLINE.getName(), jsonParam);
 				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 				if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
@@ -495,13 +533,65 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 				//获取上级
 				VersionDigtalshieEntity digtalshieEntity = versionDigtalshieDao.selectById(entity.getDigtalshieId());
 				if(digtalshieEntity != null) {
-					entity.setVersion(this.strToList(entity.getFirmwareVersion()));
-					List<VersionDigtalshieFirmwareEntity> list = new ArrayList<>();
-					list.add(entity);
-					digtalshieEntity.setFirmware(list);
-					VersionEntity versionEntity = new VersionEntity();
-					versionEntity.setDigtalshield(digtalshieEntity);
-					String jsonParam = JSON.toJSONString(versionEntity);
+					JSONObject digtalshieJson = new JSONObject();
+					List<JSONObject> firmwareList = new ArrayList<>();
+					JSONObject firmwareJson = new JSONObject();
+					JSONObject releaseChangelog = JSONObject.parseObject(entity.getReleaseChangelog());
+					firmwareJson.put("changelog", releaseChangelog);
+					firmwareJson.put("fingerprint", entity.getFingerprint());
+					firmwareJson.put("url", entity.getUrl());
+					firmwareJson.put("version", this.strToList(entity.getFirmwareVersion()));
+					if(entity.getReleaseState() == 0) {
+						firmwareJson.put("required", false);
+					}else {
+						firmwareJson.put("required", true);
+					}
+					firmwareList.add(firmwareJson);
+					digtalshieJson.put("firmware", firmwareList);
+//					entity.setVersion(this.strToList(entity.getFirmwareVersion()));
+//					entity.setChangelog(jsonObject);
+//					List<VersionDigtalshieFirmwareEntity> list = new ArrayList<>();
+//					list.add(entity);
+//					digtalshieEntity.setFirmware(list);
+					
+					VersionEntity versionEntity = versionDao.selectById(digtalshieEntity.getVersionId());
+					JSONObject jsonObject = new JSONObject();
+					if(versionEntity != null) {
+						// 更新ios内容
+						VersionIosEntity ios = versionIosDao.findVersionId(entity.getId());
+						if (ios != null) {
+//							ios.setVersion(this.strToList(ios.getIosVersion()));
+//							versionEntity.setIos(ios);
+							JSONObject iosJson = new JSONObject();
+							iosJson.put("url", ios.getUrl());
+							iosJson.put("version", this.strToList(ios.getIosVersion()));
+							jsonObject.put("ios", iosJson);
+						}
+						// 更新安卓内容
+						VersionAndroidEntity androidEntity = versionAndroidDao.findVersionId(entity.getId());
+						if (androidEntity != null) {
+							JSONObject androidJson = new JSONObject();
+							VersionAndroidGoogleEntity androidGoogleEntity = androidGoogleDao
+									.findAndroid(androidEntity.getId());
+							if (androidGoogleEntity != null) {
+								JSONObject gooleJson = new JSONObject();
+//								androidGoogleEntity.setVersion(this.strToList(androidGoogleEntity.getGoogleVersion()));
+//								androidEntity.setGoogle(androidGoogleEntity);
+								gooleJson.put("url", androidGoogleEntity.getUrl());
+								gooleJson.put("version", this.strToList(androidGoogleEntity.getGoogleVersion()));
+								androidJson.put("google", gooleJson);
+							}
+//							androidEntity.setVersion(this.strToList(androidEntity.getAndroidVersion()));
+//							versionEntity.setAndroid(androidEntity);
+							androidJson.put("googlePlay", androidEntity.getGooglePlay());
+							androidJson.put("url", androidEntity.getUrl());
+							androidJson.put("version", this.strToList(androidEntity.getAndroidVersion()));
+							jsonObject.put("android", androidJson);
+						}
+//						versionEntity.setDigtalshield(digtalshieEntity);
+						jsonObject.put("digtalshield", digtalshieJson);
+					}
+					String jsonParam = JSON.toJSONString(jsonObject);
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.ONLINE.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
@@ -532,6 +622,17 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 			}else {
 				return setResultError(Constants.ERROR);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase deleteMsg() {
+		try {
+			redisUtil.del(Constants.MSG_KEY);
+			return setResultSuccess();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();

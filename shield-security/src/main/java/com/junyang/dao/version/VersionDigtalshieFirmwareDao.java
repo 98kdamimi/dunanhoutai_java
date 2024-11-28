@@ -24,4 +24,8 @@ public interface VersionDigtalshieFirmwareDao extends BaseMapper<VersionDigtalsh
 	@Update("update version_digtalshie_firmware set release_state = #{releaseState}")
 	void updateStateAll(@Param("releaseState") Integer releaseState);
 
+	@Select("select *,firmware_url as url,firmware_fingerprint as fingerprint "
+			+ "from version_digtalshie_firmware where digtalshie_Id = #{digtalshieId}")
+	List<VersionDigtalshieFirmwareEntity> findVersionId(@Param("digtalshieId")Integer digtalshieId);
+
 }

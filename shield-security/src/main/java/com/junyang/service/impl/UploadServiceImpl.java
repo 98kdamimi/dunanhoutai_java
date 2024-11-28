@@ -112,7 +112,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.ASC, "setTime"));
+					Sort.by(Sort.Direction.DESC, "setTime"));
 			query.with(pageRequest);
 			// 执行分页查询
 			List<UploadFileEntity> list = mongoTemplate.find(query, UploadFileEntity.class);
@@ -133,6 +133,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 		return setResultSuccess(list);
 	}
 
+	
 
 
 }

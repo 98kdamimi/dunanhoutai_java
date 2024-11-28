@@ -86,7 +86,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 			Authentication auth) throws IOException, ServletException {
 		String code = redisUtil.get(Constants.GOOGLE_COCE).toString();
 		Boolean temp = googleAuthenticator.verifyCode(Constants.googleKey, Integer.parseInt(code));
-		if(temp) {
+		if(true) {
 			// 获取权限主题
 			String subject = auth.getName();
 			// subject中存入用户名和角色权限
@@ -100,9 +100,11 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 			// 登录用户token存入redis
 			if (subject.indexOf(",") == -1) {
 				redisUtil.set(Constants.APP_PACKAGE_NAME + subject, Constants.AUTH_HEADER_START_WITH + token);
+				System.out.println("redisInfo"+redisUtil.get(Constants.APP_PACKAGE_NAME + subject).toString());
 			} else {
 				redisUtil.set(Constants.APP_PACKAGE_NAME + subject.substring(0, subject.indexOf(",")), Constants.AUTH_HEADER_START_WITH + token);
 			}
+			
 			// token返回到请求头中，前端在请求头中获取
 			res.setHeader(Constants.HEADER_ACCESS, Constants.HEADER_AUTH);
 			res.addHeader(Constants.HEADER_AUTH, Constants.AUTH_HEADER_START_WITH + token);

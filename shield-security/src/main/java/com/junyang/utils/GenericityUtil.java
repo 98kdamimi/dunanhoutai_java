@@ -57,6 +57,14 @@ public class GenericityUtil {
         BeanUtils.setProperty(t, "gmtModified", format.format(date));
         return t;
     }
+    
+    public static <T> T setTokenDateStr(T t) throws IllegalAccessException, InvocationTargetException{
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        BeanUtils.setProperty(t, "createdAt", format.format(date));
+        BeanUtils.setProperty(t, "updatedAt", format.format(date));
+        return t;
+    }
 
     
     //分页

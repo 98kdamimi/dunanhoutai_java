@@ -81,10 +81,6 @@ public class WebLogAspect {
             String module = sysLogAnnotation.module();
             String type = sysLogAnnotation.type();
             String remark = sysLogAnnotation.remark();
-            // 打印注解中的信息
-            log.info("操作模块 : " + module);
-            log.info("操作类型 : " + type);
-            log.info("操作说明 : " + remark);
             entity.setModuleName(module);
             entity.setReqType(type);
             entity.setModuleInfo(remark);
