@@ -49,3 +49,19 @@ export function onlineHardware(id) {
         }
     })
 }
+
+//新消息 
+export function msgWarn() {
+    return request({
+        url: 'version/msgWarn',
+        method: 'get',
+    })
+}
+
+//删除消息
+export function deleteMsg() {
+    return request({
+        url: 'version/deleteMsg',
+        method: 'get',
+    })
+}

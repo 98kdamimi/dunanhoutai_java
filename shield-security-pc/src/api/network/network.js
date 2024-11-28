@@ -24,3 +24,10 @@ export function networkAll() {
         method: 'get',
     })
 }
+
+export function findNetWorkIdList() {
+    return request({
+        url: 'network/findNetWorkIdList',
+        method: 'get',
+    })
+}

@@ -14,7 +14,10 @@ export function dappUpdata(data) {
     return request({
         url: 'dapp/update',
         method: 'post',
-        data
+        headers: {
+            'Content-Type': 'multipart/form-data' //注意这里
+        },
+        data: data
     })
 }
 
@@ -37,5 +40,12 @@ export function dappOffline(id) {
         params: {
             'id': id
         }
+    })
+}
+
+export function findTypeList() {
+    return request({
+        url: 'dapp/findTypeList',
+        method: 'get'
     })
 }

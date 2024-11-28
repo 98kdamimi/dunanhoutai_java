@@ -58,13 +58,13 @@ export default {
         if (val) {
           if (typeof val === 'string') {
             this.type = 2
-            let arr = [{ name: this.baseUrl + val, url: this.baseUrl + val }]
+            let arr = [{ name:val, url: val }]
             this.echoList = arr
             return arr
           } else {
             this.filesList = val.map(item => {
               if (!item.raw&&!item.uid) {
-                item = { name: this.baseUrl + item.fileUrl, url: this.baseUrl + item.fileUrl, id: item.id };
+                item = { name: item.fileUrl, url:  item.fileUrl, id: item.id };
               } else {
                 item = item
               }

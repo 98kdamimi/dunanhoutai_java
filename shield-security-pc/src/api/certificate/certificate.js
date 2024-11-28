@@ -31,3 +31,25 @@ export function certificateDownload(id) {
         }
     })
 }
+
+export function certificateUploadExcle(data) {
+    return request({
+        url: 'certificate/uploadExcle',
+        method: 'post',
+        headers: {
+            'Content-Type': 'multipart/form-data' //注意这里
+        },
+        data: data
+    })
+}
+
+//删除证书
+export function certificateDelete(id) {
+    return request({
+        url: 'certificate/delete',
+        method: 'get',
+        params: {
+            'id': id
+        }
+    })
+}

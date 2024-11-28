@@ -51,21 +51,179 @@
           <el-table-column label="实现平台" align="center" key="impl" prop="impl"/>
           <el-table-column label="合约地址" align="center" key="address" prop="address"/>
           <el-table-column label="市场总值" align="center" key="marketCap" prop="marketCap"/>
+          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+            <template slot-scope="scope" >
+              <el-button size="mini" type="text"  @click="handleUpdate(scope.row)">编辑</el-button>
+            </template>
+          </el-table-column>
         </el-table>
         <pagination v-show="total > 0" :total="total" :page.sync="queryParams.pageNumber"
           :limit.sync="queryParams.pageSize" @pagination="getList" />
-
-        
       </div>
     </div>
+
+     <!-- 添加或修改用户配置对话框 -->
+     <el-dialog :title="title" :visible.sync="dialogOpen" width="70%" append-to-body>
+          <el-form ref="formData" :model="formData" :rules="rules" label-width="150px">
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="logo" prop="logoURI">
+                  <uploadImg v-model="logoURI" :limit="1"></uploadImg>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="名称" prop="name">
+                  <el-input v-model="formData.name" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="addToIndex" prop="addToIndex">
+                  <el-select v-model="formData.addToIndex"  placeholder="请选择"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in lableTypeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="合约地址" prop="address">
+                  <el-input v-model="formData.address" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="区块链的 ID" prop="chainId">
+                  <el-input v-model="formData.chainId" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="是否通过验证" prop="checked">
+                  <el-select v-model="formData.checked" placeholder="请选择"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in lableTypeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="CoinMarketCap标识" prop="cmcId">
+                  <el-input v-model="formData.cmcId" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="CoinGecko标识" prop="coingeckoId">
+                  <el-input v-model="formData.coingeckoId" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="代币的精度" prop="decimals">
+                  <el-input v-model="formData.decimals" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="实现方式" prop="impl">
+                  <el-input v-model="formData.impl" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="是否原生" prop="isNative">
+                  <el-select v-model="formData.isNative" placeholder="请选择"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in lableTypeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="市场总值" prop="marketCap">
+                  <el-input v-model="formData.marketCap" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="风险等级" prop="riskLevel">
+                  <el-input v-model="formData.riskLevel" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="安全保障" prop="security">
+                  <el-select v-model="formData.security" placeholder="请选择"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in lableTypeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="状态" prop="status">
+                  <el-select v-model="formData.status" placeholder="请选择状态"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in statusList"
+                      :key="item.id"
+                      :label="item.value"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="代币符号" prop="symbol">
+                  <el-input v-model="formData.symbol" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="是否验证" prop="verified">
+                  <el-select v-model="formData.verified" placeholder="请选择"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in lableTypeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="信息来源" prop="verified">
+                  <el-select v-model="formData.source" multiple placeholder="请选择"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in sourceList"
+                      :key="item.name"
+                      :label="item.name"
+                      :value="item.name">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="submitForm" v-debounce>确 定</el-button>
+            <el-button @click="cancel">取 消</el-button>
+          </div>
+        </el-dialog>
   </div>
 </template>
 
 <script>
-import { tokenList} from "@/api/token/token";
+import uploadImg from '@/components/uploadImg/uploadImg.vue'
+import { tokenList,findTokenSource,tokenUpdata} from "@/api/token/token";
 import { networkAll} from "@/api/network/network";
 export default {
   name: "typesOfPoints",
+  components: {
+      uploadImg
+  },
   data() {
     return {
       baseImageUrl: process.env.VUE_APP_IMAGE_API,
@@ -75,27 +233,58 @@ export default {
       dataList: null,
       // 是否显示弹出层
       dialogOpen: false,
+      formData:{},
+      title:"",
       // 查询参数
       queryParams: {
         pageNumber: 1,
         pageSize: 10,
       },
       networkList:[],
-     
+      logoURI:[],
+      sourceList:[],
+      statusList:[
+        {
+          "id":"LISTED",
+          "value":"LISTED"
+        },
+        {
+          "id":"DRAFT",
+          "value":"DRAFT"
+        },
+      ],
+      lableTypeList:[
+        {
+          "id":true,
+          "name":"是"
+        },
+        {
+          "id":false,
+          "name":"否"
+        }
+      ],
+      rules:{}
     };
   },
   watch: {
   },
   created() {
     this.getNetworkList()
+    this.getTokenSource()
     this.getList();
   },
   methods: {
+
+    //代币来源
+    getTokenSource(){
+      findTokenSource().then(res =>{
+        this.sourceList = res.data
+      })
+    },
    
     //网络列表
     getNetworkList(){
       networkAll().then(res =>{
-        console.log(res)
         this.networkList = res.data
       })
     },
@@ -111,7 +300,6 @@ export default {
     //重置
     resetQuery() {
       this.queryParams = {}
-      this.time = []
       this.getList();
     },
     /** 搜索按钮操作 */
@@ -119,7 +307,38 @@ export default {
       this.queryParams.pageNumber = 1;
       this.getList();
     },
-   
+
+    handleUpdate(row){
+      this.dialogOpen = true
+      this.formData = row 
+      this.logoURI = row.logoURI
+    },
+
+    cancel(){
+      this.dialogOpen = false
+      this.formData ={}
+      this.logoURI =[]
+    },
+    
+     /** 提交按钮 */
+     submitForm: function () {
+      this.$refs["formData"].validate(valid => {
+        if (valid) {
+          let fordata = new FormData()
+          if (this.logoURI && this.logoURI.length > 0 && this.logoURI[0].raw) {
+              this.logoURI.forEach((val, index) => {
+                fordata.append("file", val.raw);
+              });
+          }
+          fordata.append("dataStr", JSON.stringify(this.formData))
+          tokenUpdata(fordata).then(res => {
+            this.$modal.msgSuccess("新增成功");
+            this.dialogOpen = false;
+            this.getList();
+          });
+        }
+      });
+    },
 
   }
 };

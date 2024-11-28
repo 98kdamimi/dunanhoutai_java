@@ -2,48 +2,28 @@
   <div class="navbar">
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container"
       @toggleClick="toggleSideBar" />
-
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" v-if="!topNav" />
     <top-nav id="topmenu-container" class="topmenu-container" v-if="topNav" />
 
-    <!--<ImportFile class="import"></ImportFile>-->
-
     <div class="right-menu">
-      <!-- <template v-if="device!=='mobile'">
-        <search id="header-search" class="right-menu-item" />
-
-        <el-tooltip content="源码地址" effect="dark" placement="bottom">
-          <ruo-yi-git id="ruoyi-git" class="right-menu-item hover-effect" />
-        </el-tooltip>
-
-        <el-tooltip content="文档地址" effect="dark" placement="bottom">
-          <ruo-yi-doc id="ruoyi-doc" class="right-menu-item hover-effect" />
-        </el-tooltip>
-
-        <screenfull id="screenfull" class="right-menu-item hover-effect" />
-
-        <el-tooltip content="布局大小" effect="dark" placement="bottom">
-          <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip>
-
-      </template> -->
-
+      <div style="position: relative; display: inline-block;cursor: pointer;" @click="openMsg">
+          <img src="../../assets/images/xiaoxi.png" style="width: 40px;height: 40px;margin-right: 25px;">
+          <div style="position: absolute; top: 0; right: 12px; background-color: red; color: white; border-radius: 50%; width: 20px; height: 20px; text-align: center; line-height: 20px; font-size: 12px;">
+            {{ msgNum }}
+          </div>
+      </div>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <!-- <div class="avatar-wrapper">
-          <img :src="avatar" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
-        </div> -->
         <div class="avatar-wrapper">
           <span>欢迎用户：{{ userInfo.username }}</span>
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-          <!-- <router-link to="/user/profile">
+         <!-- <router-link to="/user/profile">
             <el-dropdown-item>个人中心</el-dropdown-item>
           </router-link>
           <el-dropdown-item @click.native="setting = true">
             <span>布局设置</span>
-          </el-dropdown-item> -->
+          </el-dropdown-item>  -->
           <!-- divided -->
           <el-dropdown-item @click.native="logout">
             <span>退出登录</span>
@@ -51,6 +31,41 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+
+    <el-dialog
+      title="版本更新提醒"
+      :visible.sync="dialogVisible"
+      width="30%">
+      <div>
+        <el-row>
+          <el-col :span="24">
+            <h2>您有新版本需要操作更新!!!</h2>
+          </el-col>
+        </el-row>
+        <el-row style="font-size: 16px;line-height: 15px;margin-bottom: 15px;">
+          <el-col :span="12">
+            <span>IOS新版本：{{ iosVersion }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span>安卓新版本：{{ androidVersion }}</span>
+          </el-col>
+        </el-row>
+        <el-row style="font-size: 16px;">
+          <el-col :span="12">
+            <span>google新版本：{{ googleVersion }}</span>
+          </el-col>
+          <el-col :span="12">
+            <span>设备新版本：{{ firmwareVersion }}</span>
+          </el-col>
+        </el-row>
+      </div>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="closeMsg">取 消</el-button>
+        <el-button type="primary" @click="toUpVersion">去更新</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -65,8 +80,7 @@ import Search from '@/components/HeaderSearch'
 import RuoYiGit from '@/components/RuoYi/Git'
 import RuoYiDoc from '@/components/RuoYi/Doc'
 import ImportFile from '@/components/ImportFile'
-
-
+import { msgWarn,deleteMsg} from "@/api/version/version";
 
 export default {
   components: {
@@ -83,6 +97,13 @@ export default {
   data() {
     return {
       userInfo: null,
+      msgNum:0,
+      dialogVisible: false,
+      iosVersion:"",
+      androidVersion:"",
+      googleVersion:"",
+      firmwareVersion:"",
+      timer: null   // 用于保存定时器ID
     }
   },
   computed: {
@@ -108,11 +129,58 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    // 组件销毁时清除定时器，防止内存泄漏
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+  },
   created() {
     this.userInfo = this.$store.state.user.userInfo;
-
+    this.getMsgWarn()
+    this.startMsgWarnTimer();
   },
   methods: {
+
+    startMsgWarnTimer() {
+      // 每隔 60 秒执行一次 getMsgWarn 方法
+      this.timer = setInterval(() => {
+        this.getMsgWarn();
+      }, 60000); // 60000 毫秒 = 60 秒
+    },
+
+    getMsgWarn(){
+      msgWarn().then(res =>{
+        if(res.data != null){
+          this.iosVersion = res.data.ios.version.join('.')
+          this.androidVersion = res.data.android.version.join('.')
+          this.googleVersion = res.data.android.google.version.join('.')
+          this.firmwareVersion = res.data.digtalshield.firmware[0].version.join('.')
+          this.msgNum = 1
+        }
+      })
+    },
+
+    closeMsg(){
+      deleteMsg().then(res =>{
+        this.msgNum = 0
+        this.dialogVisible = false
+      })
+    },
+
+    openMsg(){
+      if(this.msgNum > 0){
+        this.dialogVisible = true
+      }else{
+        this.$modal.msgError("没有新消息");
+      }
+    },
+
+    toUpVersion(){
+      this.closeMsg()
+      this.$router.push({ path:"version/software" }).catch(() => { });
+    },
+
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },

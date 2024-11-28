@@ -14,8 +14,10 @@
           </el-form>
           <el-row :gutter="10" class="mb8">
             <el-col :span="1.5">
-              <el-button type="primary" icon="el-icon-plus" @click="handleAdd"
-                v-hasPermi="['system:user:add']">导入证书</el-button>
+              <el-button type="primary" icon="el-icon-plus" @click="handleAdd">导入证书</el-button>
+            </el-col>
+            <el-col :span="1.5">
+              <el-button type="warning" icon="el-icon-plus" @click="handleOpen">批量导入</el-button>
             </el-col>
           </el-row>
         </div>
@@ -29,6 +31,7 @@
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="180"> 
             <template slot-scope="scope">
               <el-button type="text" @click="downloadFile(scope.row)">下载证书</el-button>
+              <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -64,11 +67,31 @@
         </el-dialog>
       </div>
     </div>
+
+    <el-dialog title="导入数据" :visible.sync="fileOpen" width="20%" @close="handleClose">
+      <el-upload class="upload-demo" action="#" :limit="1" :auto-upload="false" :show-file-list="true"
+        :on-change="handleChangeEchoEx"  :on-remove="handleRemoveEcho"
+        accept=".xlsx,.xls" :file-list="excleFileList">
+        <el-button size="small" type="primary">点击上传</el-button>
+        <div slot="tip" class="el-upload__tip">只能上传.xlsx文件</div>
+      </el-upload>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="fileOpen = false">取 消</el-button>
+        <el-button type="primary" @click="handleSubmit">确 定</el-button>
+      </span>
+    </el-dialog>
+
   </div>
 </template>
 
 <script>
-import { certificateList,certificateUpload,certificateDownload} from "@/api/certificate/certificate";
+import { 
+  certificateList,
+  certificateUpload,
+  certificateDownload,
+  certificateUploadExcle,
+  certificateDelete
+} from "@/api/certificate/certificate";
 export default {
   name: "certificate",
   data() {
@@ -83,6 +106,8 @@ export default {
       // 是否显示弹出层
       dialogOpen: false,
       formData: {},
+      fileOpen: false,
+      excleFileList:[],
       // 查询参数
       queryParams: {
         pageNumber: 1,
@@ -175,8 +200,63 @@ export default {
 				}).catch((error) => {
           
 				});
-          
     },
+
+      /** 删除按钮操作 */
+    handleDelete(row) {
+      this.$modal.confirm('是否确认删除？').then(function () {
+        return certificateDelete(row.id);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("删除成功");
+      }).catch(() => { });
+    },
+
+    //批量导入打开
+    handleOpen(){
+      this.fileOpen = true
+    },
+
+    //导入框关闭
+    handleClose(){
+      this.fileOpen = false
+      this.excleFileList = []
+    },
+
+    handleRemoveEchoEx(file, excleFileList) {
+      this.excleFileList = excleFileList;
+    },
+
+    handleChangeEchoEx(file, excleFileList) {
+        this.excleFileList = excleFileList;
+    },
+    //导入上传
+    handleSubmit() {
+      console.log(this.excleFileList)
+        if (!this.excleFileList.length) {
+          this.$message.error('请上传文件');
+          return
+        }
+        let formData = new FormData()
+        formData.append('file', this.excleFileList[0].raw)
+        const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(83, 83, 83, 0.7)'
+        });
+        certificateUploadExcle(formData).then(res => {
+          loading.close();
+          this.fileOpen = false
+          this.getList();
+          this.$message({
+            type: 'success',
+            message: '操作成功'
+          });
+        }).catch(error => {
+          loading.close();
+        })
+      },
 
     handleRemoveEcho(file, filesList) {
       this.fileList = filesList;

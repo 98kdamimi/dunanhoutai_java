@@ -10,6 +10,16 @@
               </el-date-picker>
             </el-form-item> -->
             <el-form-item label="" prop="messageTitleZh">
+              <el-select v-model="queryParams.type" placeholder="请选择类型">
+                    <el-option
+                      v-for="item in typeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="" prop="messageTitleZh">
               <el-select v-model="queryParams.status" placeholder="请选择状态">
                     <el-option
                       v-for="item in statusList"
@@ -18,6 +28,10 @@
                       :value="item.id">
                     </el-option>
               </el-select>
+            </el-form-item>
+            <el-form-item label="" prop="messageTitleZh">
+              <el-input v-model="queryParams.title" placeholder="请输入标题" clearable style="width: 240px"
+                @keyup.enter.native="handleQuery" />
             </el-form-item>
             <el-form-item>
               <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -34,15 +48,22 @@
 
         <el-table :data="dataList" max-height="600">
           <el-table-column label="序号" type="index" width="50" align="center" />
-          <el-table-column label="地址" align="path" prop="path" />
-          <el-table-column label="状态" align="status" prop="status" />
-          <el-table-column label="版本" align="version" prop="version" />
-          <el-table-column label="描述" :show-overflow-tooltip="true" align="remark" prop="remark" />
-          <el-table-column label="创建时间" align="createdAt" prop="createdAt" />
+          <el-table-column label="logo" align="center" width="180">
+            <template slot-scope="scope">
+              <div style="width: 90%; height: 80px; overflow: hidden; cursor: pointer;" >
+                <img :src="scope.row.logoURL" alt="图片" style="width: 100%; height: 100%; object-fit: contain;" />
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column label="名称" align="center" prop="name" />
+          <el-table-column label="标题" align="center" prop="subtitle" :show-overflow-tooltip="true"/>
+          <el-table-column label="地址" align="center" prop="url" :show-overflow-tooltip="true"/>
+          <el-table-column label="状态"  align="center" prop="status" />
+          <el-table-column label="创建时间" align="center" prop="createdAt" />
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
-              <el-button type="text" style="color: lawngreen;" v-if="scope.row.status == 'OFFLINE'" @click="online(scope.row)">上线</el-button>
-              <el-button type="text" style="color: red;" v-if="scope.row.status == 'ONLINE'" @click="offline(scope.row)">下线</el-button>
+              <el-button type="text" style="color: lawngreen;" v-if="scope.row.status == 'DRAFT'" @click="online(scope.row)">上线</el-button>
+              <el-button type="text" style="color: red;" v-if="scope.row.status == 'LISTED'" @click="offline(scope.row)">下线</el-button>
               <el-button type="text" @click="handleUpdate(scope.row)">编辑</el-button>
             </template>
           </el-table-column>
@@ -51,17 +72,56 @@
           :limit.sync="queryParams.pageSize" @pagination="getList" />
 
         <!-- 添加或修改用户配置对话框 -->
-        <el-dialog :title="title" :visible.sync="dialogOpen" width="600px" append-to-body>
+        <el-dialog :title="title" :visible.sync="dialogOpen" width="70%" append-to-body>
           <el-form ref="formData" :model="formData" :rules="rules" label-width="100px">
             <el-row>
               <el-col :span="24">
-                <el-form-item label="地址" prop="path">
-                  <el-input v-model="formData.path" placeholder="请输入中文标题" style="width: 85%;" />
+                <el-form-item label="logo" prop="logoURL">
+                  <uploadImg v-model="logoURL" :limit="1"></uploadImg>
                 </el-form-item>
               </el-col>
-              <el-col :span="24">
+              <el-col :span="12">
+                <el-form-item label="名称" prop="name">
+                  <el-input v-model="formData.name" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="标题" prop="subtitle">
+                  <el-input v-model="formData.subtitle" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="url地址" prop="url">
+                  <el-input v-model="formData.url" placeholder="请输入名称" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <!-- <el-col :span="24">
+                <el-form-item label="所属网络" prop="networkIds">
+                  <el-select v-model="formData.networkIds" placeholder="请选择网络"  style="width: 85%;" >
+                    <el-option
+                      v-for="item in networkList"
+                      :key="item.name"
+                      :label="item.name"
+                      :value="item.name">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col> -->
+              <el-col :span="12">
+                <el-form-item label="所属分类" prop="categoryIds">
+                  <el-select v-model="formData.categoryIds" multiple  placeholder="请选择分类"  style="width: 100%;" >
+                    <el-option
+                      v-for="item in typeList"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
                 <el-form-item label="状态" prop="status">
-                  <el-select v-model="formData.status" placeholder="请选择状态"  style="width: 85%;" >
+                  <el-select v-model="formData.status" placeholder="请选择状态"  style="width: 100%;" >
                     <el-option
                       v-for="item in statusList"
                       :key="item.id"
@@ -71,15 +131,102 @@
                   </el-select>
                 </el-form-item>
               </el-col>
-             
               <el-col :span="24">
-                <el-form-item label="版本" prop="version">
-                  <el-input v-model="formData.version" placeholder="请输入英文标题" style="width: 85%;" />
+                <el-divider content-position="center">不同语言标题</el-divider>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="ar" prop="ar">
+                  <el-input v-model="localization['ar']" placeholder="请输入内容" style="width: 100%;" />
                 </el-form-item>
               </el-col>
-              <el-col :span="24">
-                <el-form-item label="描述" prop="remark">
-                  <el-input type="textarea" :rows="4" v-model="formData.remark" placeholder="请输入英文内容" style="width: 85%;" />
+              <el-col :span="12">
+                <el-form-item label="bn" prop="bn">
+                  <el-input v-model="localization['bn']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="de" prop="de">
+                  <el-input v-model="localization['de']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="en-US" prop="en-US">
+                  <el-input v-model="localization['en-US']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="es" prop="es">
+                  <el-input v-model="localization['es']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="fil" prop="fil">
+                  <el-input v-model="localization['fil']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="fr-FR" prop="fr-FR">
+                  <el-input v-model="localization['fr-FR']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="hi-IN" prop="hi-IN">
+                  <el-input v-model="localization['hi-IN']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="it-IT" prop="it-IT">
+                  <el-input v-model="localization['it-IT']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="ja-JP" prop="ja-JP">
+                  <el-input v-model="localization['ja-JP']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="ko-KR" prop="ko-KR">
+                  <el-input v-model="localization['ko-KR']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="mn-MN" prop="mn-MN">
+                  <el-input v-model="localization['mn-MN']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="pt" prop="pt">
+                  <el-input v-model="localization['pt']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="ru" prop="ru">
+                  <el-input v-model="localization['ru']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="th-TH" prop="th-TH">
+                  <el-input v-model="localization['th-TH']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="uk-UA" prop="uk-UA">
+                  <el-input v-model="localization['uk-UA']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="vi" prop="vi">
+                  <el-input v-model="localization['vi']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="zh-CN" prop="zh-CN">
+                  <el-input v-model="localization['zh-CN']" placeholder="请输入内容" style="width: 100%;" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="zh-HK" prop="zh-HK">
+                  <el-input v-model="localization['zh-HK']" placeholder="请输入内容" style="width: 100%;" />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -95,9 +242,14 @@
 </template>
 
 <script>
-import { dappList,dappUpdata,dappOnline,dappOffline} from "@/api/dapp/dapp";
+import uploadImg from '@/components/uploadImg/uploadImg.vue'
+import { dappList,dappUpdata,dappOnline,dappOffline,findTypeList} from "@/api/dapp/dapp";
+import { findNetWorkIdList} from "@/api/network/network";
 export default {
   name: "typesOfPoints",
+  components: {
+      uploadImg
+  },
   data() {
     return {
       baseImageUrl: process.env.VUE_APP_IMAGE_API,
@@ -115,14 +267,39 @@ export default {
         pageNumber: 1,
         pageSize: 10,
       },
+      typeList:[],
+      networkList:[],
+      logoURL:[],
+      localization:{
+        "_id":"",
+        "ar": "",
+        "bn": "",
+        "de": "",
+        "en-US": "",
+        "es": "",
+        "fil": "",
+        "fr-FR": "",
+        "hi-IN": "",
+        "it-IT": "",
+        "ja-JP": "",
+        "ko-KR": "",
+        "mn-MN": "",
+        "pt": "",
+        "ru": "",
+        "th-TH": "",
+        "uk-UA": "",
+        "vi": "",
+        "zh-CN": "",
+        "zh-HK": ""
+      },
       statusList:[
         {
-          "id":"ONLINE",
-          "value":"ONLINE"
+          "id":"LISTED",
+          "value":"LISTED"
         },
         {
-          "id":"OFFLINE",
-          "value":"OFFLINE"
+          "id":"DRAFT",
+          "value":"DRAFT"
         },
       ],
       rules:{
@@ -133,7 +310,10 @@ export default {
   watch: {
   },
   created() {
+    this.getFindTypeList();
+    this.getNetworkList()
     this.getList();
+
   },
   methods: {
     changeTime(e) {
@@ -145,6 +325,20 @@ export default {
         this.queryParams.endTime = ''
       }
     },
+
+    getFindTypeList(){
+      findTypeList().then(res =>{
+        this.typeList =res.data
+      })
+    },
+
+    //网络列表
+    getNetworkList(){
+      findNetWorkIdList().then(res =>{
+        this.networkList = res.data
+      })
+    },
+
     getList() {
       this.loading = true;
       dappList(this.queryParams).then(res =>{
@@ -161,13 +355,11 @@ export default {
     // 表单重置
     reset() {
       this.formData = {};
-      this.time = []
-      this.fileList = []
+      this.logoURL = [];
       this.resetForm("form");
     },
     resetQuery() {
       this.queryParams = {}
-      this.time = []
       this.getList();
     },
     /** 搜索按钮操作 */
@@ -178,7 +370,9 @@ export default {
     /** 新增按钮操作 */
     handleUpdate(row) {
       this.reset();
-      this.formData = JSON.parse(JSON.stringify(row));
+      this.logoURL = row.logoURL
+      this.formData = row;
+      this.localization = row.localization
       this.dialogOpen = true;
       this.title = "编辑";
     },
@@ -187,9 +381,15 @@ export default {
     submitForm: function () {
       this.$refs["formData"].validate(valid => {
         if (valid) {
-          console.log(this.formData)
-          dappUpdata(this.formData).then(res => {
-            console.log(res)
+          let fordata = new FormData()
+          if (this.logoURL && this.logoURL.length > 0 && this.logoURL[0].raw) {
+              this.logoURL.forEach((val, index) => {
+                fordata.append("file", val.raw);
+              });
+          }
+          this.formData.localization = this.localization
+          fordata.append("dataStr", JSON.stringify(this.formData))
+          dappUpdata(fordata).then(res => {
             this.$modal.msgSuccess("新增成功");
             this.dialogOpen = false;
             this.getList();
