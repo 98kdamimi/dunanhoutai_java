@@ -39,7 +39,6 @@ import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
 import com.junyang.entity.device.DeviceCertificateEntity;
-import com.junyang.poi.certificate.CertificatePoi;
 import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.CertificateService;
 import com.junyang.utils.ExcelUtils;
@@ -287,4 +286,6 @@ public class CertificateServiceImpl extends BaseApiService implements Certificat
 			throw new RuntimeException();
 		}
 	}
+	
+	
 }

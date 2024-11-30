@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.junyang.base.ResponseBase;
-import com.junyang.entity.token.TokenEntity;
 import com.junyang.query.PublicQueryEntity;
 
 import io.swagger.annotations.Api;

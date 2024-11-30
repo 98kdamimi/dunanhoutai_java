@@ -63,7 +63,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 					new File(System.getProperty("java.io.tmpdir")));
 			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
 			// 构建 S3 中的完整路径（目录+文件名）
-			String fileName = FilePathEnums.getValue(typeId) + file.getOriginalFilename();
+			String fileName = FilePathEnums.getName(typeId) + file.getOriginalFilename();
 			// 创建上传请求
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
 			// 执行上传
@@ -85,6 +85,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 					entity.setTypeName(FilePathEnums.getValue(typeId));
 					entity.setFileCatalogue(FilePathEnums.getName(typeId));
 					entity.setDatabseId(dbId);
+					entity.setDatabseName(FilePathEnums.getValue(typeId));
 					GenericityUtil.setDate(entity);
 					mongoTemplate.insert(entity);
 				} catch (Exception e) {

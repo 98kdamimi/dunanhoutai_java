@@ -26,7 +26,6 @@ import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
-import com.junyang.entity.dapp.DappEntity;
 import com.junyang.entity.response.DicEntity;
 import com.junyang.entity.response.RpcResponseEntity;
 import com.junyang.entity.token.PlatformTokenEntity;
@@ -115,8 +114,6 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	@SysLogAnnotation(module = "代币管理", type = "POST", remark = "分页代币列表")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
-			//manager/token/list?chainId=1&impl=evm
-//			this.rpcList(HTTP_URL+HttpAddressEunms.TOKEN_LIST.getName()+"chainId="+entity.getChainId()+"&impl="+entity.getImpl());
 			Query query = new Query();
 			if(entity.getChainId() != null) {
 				query.addCriteria(Criteria.where("chainId").is(entity.getChainId()));
@@ -149,10 +146,19 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 			if(dataStr != null && dataStr.length() > 0) {
 				JSONObject jsonObject = JSONObject.parseObject(dataStr);
 				if(jsonObject != null) {
-					if(file != null) {
+					if(file != null) {//手动修改上传代币图标
 						String logoImg = this.fileUploadUtil(file, FilePathEnums.TOKENS.getIndex(), null);
 						if(logoImg!= null && logoImg.length() > 0) {
 							jsonObject.put("logoURI", logoImg);
+						}
+					}else {//默认第三方代币图标(将网络图片下载上传至AWS)
+						if(jsonObject.get("logoURI") != null && jsonObject.get("logoURI").toString().length() > 0) {
+							String logImg = jsonObject.get("logoURI").toString();
+							MultipartFile urlFile = FileUploadUtil.convertUrlToMultipartFile(logImg);
+							String logoImg = this.fileUploadUtil(urlFile, FilePathEnums.TOKENS.getIndex(), null);
+							if(logoImg!= null && logoImg.length() > 0) {
+								jsonObject.put("logoURI", logoImg);
+							}
 						}
 					}
 					String jsonParam = JSON.toJSONString(jsonObject);
@@ -212,6 +218,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "POST", remark = "第三方代币列表")
 	public ResponseBase findListThirdParty(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
@@ -219,7 +226,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.ASC, "last_updated"));
+					Sort.by(Sort.Direction.DESC, "last_updated"));
 			query.with(pageRequest);
 			// 执行分页查询
 			List<PlatformTokenEntity> list = mongoTemplate.find(query, PlatformTokenEntity.class);
@@ -234,6 +241,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "代币管理", type = "get", remark = "查询代币来源")
 	public ResponseBase findSource() {
 		List<DicEntity> list = SourceEnums.getList();
 		return setResultSuccess(list);
@@ -251,7 +259,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 					new File(System.getProperty("java.io.tmpdir")));
 			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
 			// 构建 S3 中的完整路径（目录+文件名）
-			String fileName = FilePathEnums.getValue(typeId) + file.getOriginalFilename();
+			String fileName = FilePathEnums.getName(typeId) + file.getOriginalFilename();
 			// 创建上传请求
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
 			// 执行上传
@@ -272,6 +280,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 					entity.setTypeId(typeId);
 					entity.setTypeName(FilePathEnums.getValue(typeId));
 					entity.setFileCatalogue(FilePathEnums.getName(typeId));
+					entity.setDatabseName(FilePathEnums.getValue(typeId));
 					entity.setDatabseId(dbId);
 					GenericityUtil.setDate(entity);
 					mongoTemplate.insert(entity);

@@ -1,14 +1,10 @@
 package com.junyang.service.impl;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
-
 import com.junyang.entity.system.SysUserEntity;
 import com.junyang.entity.system.SysUserPowerEntity;
-
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.Transactional;
@@ -325,9 +321,6 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 	}
 
 	
-	public static void main(String[] args) {
-		
-	}
 
 	
 

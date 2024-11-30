@@ -30,5 +30,7 @@ public interface CoingeckoService {
 	@PostMapping("/findCoingeckoToken")
 	@ApiOperation(value = "Coingecko平台代币列表",notes = "Coingecko平台代币列表",response = ResponseBase.class)
 	ResponseBase findCoingeckoToken(NetWorkEntity entity);
+	
+
 
 }

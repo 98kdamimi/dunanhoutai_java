@@ -1,22 +1,18 @@
 package com.junyang.service.impl;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
-import com.junyang.entity.network.NetWorkEntity;
 import com.junyang.entity.system.SysLogEntity;
 import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.LogService;
@@ -31,6 +27,7 @@ public class LogServiceImpl extends BaseApiService implements LogService{
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "日志管理", type = "post", remark = "获取日志列表")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		Query query = new Query();
 //		if(entity.getName() != null && entity.getName().length() > 0) {
@@ -40,7 +37,7 @@ public class LogServiceImpl extends BaseApiService implements LogService{
 		// 构建分页请求对象
 		int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 		PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-				Sort.by(Sort.Direction.ASC, "begTime"));
+				Sort.by(Sort.Direction.DESC, "begTime"));
 		query.with(pageRequest);
 		// 执行分页查询
 		List<SysLogEntity> list = mongoTemplate.find(query, SysLogEntity.class);

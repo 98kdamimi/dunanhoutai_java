@@ -9,7 +9,7 @@ public enum FilePathEnums {
 	BIN(1, "bin/","version_db","bin版本文件"), APP(2, "app/","version_db","线上json文件"), 
 	APK(3, "apk/","version_db","版本apk"), TOKENS(4, "tokens/","token_db","代币图标"), 
 	NFTS(5, "nfts/","token_db","代币NFT图标"), ASSETS(6, "assets/","token_db","币种图标"),
-	DAPP(6, "assets/","dapp_db","发现页");
+	DAPP(7, "dapp/","dapp_db","发现页");
 
 	private Integer index;
 

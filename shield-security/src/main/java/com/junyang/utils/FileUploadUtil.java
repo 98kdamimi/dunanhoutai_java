@@ -1,10 +1,16 @@
 package com.junyang.utils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.client.RestTemplate;
+import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.junyang.base.FileResponse;
@@ -19,7 +25,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -107,8 +112,7 @@ public class FileUploadUtil {
 		}
 		return fileResponse;
 	}
-	
-	
+
 	public static FileResponse uploadFile2(MultipartFile file, String folder, String fileFlode) {
 		FileResponse fileResponse = new FileResponse();
 		String url = "";
@@ -163,7 +167,6 @@ public class FileUploadUtil {
 		return fileResponse;
 	}
 
-	
 	public static FileResponse uploadFilesc(File file, String folder, String fileFlode) {
 		FileResponse fileResponse = new FileResponse();
 		String url = "";
@@ -232,13 +235,11 @@ public class FileUploadUtil {
 		}
 	}
 
-
 	/**
-	 * 存储文件123.jpg
-	 * 例如存储到 ” D:/wellBeing/headImg/ “文件夹下
+	 * 存储文件123.jpg 例如存储到 ” D:/wellBeing/headImg/ “文件夹下
 	 *
-	 * @param file       上传的文件
-	 * @param parentFolder  父文件夹地址 D:/wellBeing/
+	 * @param file         上传的文件
+	 * @param parentFolder 父文件夹地址 D:/wellBeing/
 	 * @param targetFolder 目标文件夹名称 headImg/
 	 * @return
 	 */
@@ -252,15 +253,15 @@ public class FileUploadUtil {
 				try {
 					// 获取文件名
 					fileName = file.getOriginalFilename();
-					if (fileName==null)
-						fileName= "";
+					if (fileName == null)
+						fileName = "";
 					// 获取文件的后缀名
 					int index = fileName.lastIndexOf(".");
 					String suffixName;
 					if (index > 0)
 						suffixName = fileName.substring(index);
 					else
-						suffixName=".unknow";
+						suffixName = ".unknow";
 
 					// 给新文件拼上时间毫秒，防止重名
 					long nowfileName = System.currentTimeMillis();
@@ -310,7 +311,6 @@ public class FileUploadUtil {
 		String path = folder + relativePath;
 		filedelete(path);
 	}
-
 
 //	/**
 //	 * 视频取帧
@@ -439,7 +439,8 @@ public class FileUploadUtil {
 	/**
 	 * 将文件转换成byte数组
 	 * 
-//	 * @param filePath
+	 * // * @param filePath
+	 * 
 	 * @return
 	 */
 	public static byte[] File2byte(File tradeFile) {
@@ -462,22 +463,52 @@ public class FileUploadUtil {
 		}
 		return buffer;
 	}
-	
-	//判断是否是excel格式文件
+
+	// 判断是否是excel格式文件
 	@SuppressWarnings("unused")
 	public static boolean isExcelFile(MultipartFile file) {
+		try {
+			Workbook workbook = WorkbookFactory.create(file.getInputStream());
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public static boolean isImage(MultipartFile file) {
+		String contentType = file.getContentType();
+		return contentType != null && contentType.startsWith("image/");
+	}
+
+	 // 将图片 URL 转换为 MultipartFile
+    public static MultipartFile convertUrlToMultipartFile(String imageUrl) throws IOException {
+        // 使用 RestTemplate 下载图片字节数组
+        RestTemplate restTemplate = new RestTemplate();
+        byte[] imageBytes = restTemplate.getForObject(imageUrl, byte[].class);
+
+        // 使用字节数组创建 DiskFileItem
+        FileItem fileItem = new DiskFileItem("file", "image/png", false, "Tether.png", imageBytes.length, null);
+        fileItem.getOutputStream().write(imageBytes);
+
+        // 创建 CommonsMultipartFile 对象
+        MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
+
+        return multipartFile;
+    }
+
+    
+    public static void main(String[] args) {
         try {
-            Workbook workbook = WorkbookFactory.create(file.getInputStream());
-            return true;
-        } catch (Exception e) {
-            return false;
+            String imageUrl = "https://assets.coingecko.com/coins/images/325/small/Tether.png?1696501661";
+            MultipartFile multipartFile = FileUploadUtil.convertUrlToMultipartFile(imageUrl);
+
+            // 输出文件信息
+            System.out.println("文件名: " + multipartFile.getOriginalFilename());
+            System.out.println("文件类型: " + multipartFile.getContentType());
+            System.out.println("文件大小: " + multipartFile.getSize() + " 字节");
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-	
-	public static boolean isImage(MultipartFile file) {
-	    String contentType = file.getContentType();
-	    return contentType != null && contentType.startsWith("image/");
-	}
-	
-
 }

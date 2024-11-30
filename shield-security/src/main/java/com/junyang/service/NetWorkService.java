@@ -28,4 +28,8 @@ public interface NetWorkService{
 	@ApiOperation(value = "主链列表",notes = "主链列表",response = ResponseBase.class)
 	ResponseBase findNetWorkIdList();
 	
+	@GetMapping("/findNetWorkById")
+	@ApiOperation(value = "主链列表",notes = "主链列表",response = ResponseBase.class)
+	ResponseBase findNetWorkById(String id);
+	
 }

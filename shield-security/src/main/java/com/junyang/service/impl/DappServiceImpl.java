@@ -1,9 +1,8 @@
 package com.junyang.service.impl;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +22,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
@@ -32,11 +30,11 @@ import com.junyang.constants.Constants;
 import com.junyang.entity.dapp.DappEntity;
 import com.junyang.entity.dapp.DappTypeEntity;
 import com.junyang.entity.response.RpcResponseEntity;
-import com.junyang.entity.token.TokenEntity;
 import com.junyang.entity.uploadefiel.UploadFileEntity;
 import com.junyang.enums.FilePathEnums;
 import com.junyang.enums.HttpAddressEunms;
 import com.junyang.enums.ReleaseStateEnums;
+import com.junyang.enums.TokenTypeLableEunms;
 import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.DappService;
 import com.junyang.utils.FileUploadUtil;
@@ -68,6 +66,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "GET", remark = "获取列表")
 	public ResponseBase rpcList() {
 		try {
+			this.typeRpcList();
 			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.DAPP_LIST.getName());
 			RpcResponseEntity responseEntity = JSONObject.parseObject(baseStr, RpcResponseEntity.class);
 			if (responseEntity.getData() != null && responseEntity.getData().toString().length() > 0) {
@@ -91,6 +90,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "GET", remark = "调用远程列表")
 	public ResponseBase typeRpcList() {
 		try {
 			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.DAPP_TYPE_LIST.getName());
@@ -115,9 +115,10 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 	}
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "GET", remark = "查询发现页类型")
 	public ResponseBase findTypeList() {
 		try {
-			this.typeRpcList();
+//			this.typeRpcList();
 			List<DappTypeEntity> list = mongoTemplate.findAll(DappTypeEntity.class);
 			return setResultSuccess(list);
 		} catch (Exception e) {
@@ -128,15 +129,23 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "post", remark = "查询发现页列表")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
-			this.rpcList();
+//			this.rpcList();
 			Query query = new Query();
 			if(entity.getStatus() != null && entity.getStatus().length() > 0) {
 				query.addCriteria(Criteria.where("status").is(entity.getStatus()));
 			}
 			if(entity.getType() != null && entity.getType().length() > 0) {
-				query.addCriteria(Criteria.where("categoryIds").in(entity.getType()));
+				DappTypeEntity typeEntity = mongoTemplate.findById(entity.getType(), DappTypeEntity.class);
+				if(typeEntity != null) {
+					if(TokenTypeLableEunms.TAG.getName().equals(typeEntity.getType())) {
+						query.addCriteria(Criteria.where("tagIds").in(entity.getType()));
+					}else {
+						query.addCriteria(Criteria.where("categoryIds").in(entity.getType()));
+					}
+				}
 			}
 			if(entity.getTitle() != null && entity.getTitle().length() > 0) {
 				query.addCriteria(Criteria.where("subtitle").regex(entity.getTitle()));
@@ -145,7 +154,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.ASC, "createdAt"));
+					Sort.by(Sort.Direction.DESC, "createdAt"));
 			query.with(pageRequest);
 			// 执行分页查询
 			List<DappEntity> list = mongoTemplate.find(query, DappEntity.class);
@@ -161,6 +170,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "post", remark = "发现页下线")
 	public ResponseBase Offline(String id) {
 		try {
 			DappEntity dappEntity = mongoTemplate.findById(id, DappEntity.class);
@@ -189,6 +199,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "post", remark = "发现页上线")
 	public ResponseBase online(String id) {
 		try {
 			DappEntity dappEntity = mongoTemplate.findById(id, DappEntity.class);
@@ -217,6 +228,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 
 
 	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "post", remark = "发现页更新")
 	public ResponseBase update(String dataStr,MultipartFile file) {
 		try {
 			if(dataStr != null && dataStr.length() > 0) {
@@ -249,6 +261,62 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 			throw new RuntimeException();
 		}
 	}
+
+	@Override
+	@SysLogAnnotation(module = "Dapp发现页配置管理", type = "post", remark = "发现页新增")
+	public ResponseBase add(String dataStr, MultipartFile file) {
+		try {
+			if(dataStr != null && dataStr.length() > 0) {
+				DappEntity dappEntity = JSONObject.parseObject(dataStr, DappEntity.class);
+				if(dappEntity!= null) {
+					if(file != null) {
+						String logUrl = this.fileUploadUtil(file, FilePathEnums.DAPP.getIndex(), null);
+						if(logUrl!= null && logUrl.length() > 0) {
+							dappEntity.setLogoURL(logUrl);
+						}
+					}
+					List<String> tagList = new ArrayList<>();
+					List<String> categoryList = new ArrayList<>();
+					if(dappEntity.getCategoryIds() != null && dappEntity.getCategoryIds().size() > 0) {
+						for (int i = 0; i < dappEntity.getCategoryIds().size(); i++) {
+							DappTypeEntity typeEntity = mongoTemplate.findById(dappEntity.getCategoryIds().get(i), DappTypeEntity.class);
+							if(typeEntity != null) {
+								if(TokenTypeLableEunms.TAG.getName().equals(typeEntity.getType())) {
+									tagList.add(typeEntity.getId());
+								}else {
+									categoryList.add(typeEntity.getId());
+								}
+							}
+						}
+					}
+					dappEntity.setTagIds(tagList);
+					dappEntity.setCategoryIds(categoryList);
+					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(dappEntity);
+					JSONObject localization = jsonObject.getJSONObject("localization");
+				    // 删除 _id 属性
+				    if (localization != null) {
+				      localization.remove("_id");
+				    }
+					String jsonParam = JSON.toJSONString(jsonObject);
+					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.DAPP_ADD.getName(), jsonParam);
+					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
+					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
+						GenericityUtil.setTokenDateStr(dappEntity);
+						mongoTemplate.save(dappEntity);
+					}
+					return setResultSuccess();
+				}else {
+					return setResultError(Constants.ERROR);
+				}
+			}else {
+				return setResultError(Constants.ERROR);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+	
 	
 	public String fileUploadUtil(MultipartFile file,Integer typeId, String dbId) {
 		try {
@@ -261,7 +329,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 					new File(System.getProperty("java.io.tmpdir")));
 			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
 			// 构建 S3 中的完整路径（目录+文件名）
-			String fileName = FilePathEnums.getValue(typeId) + file.getOriginalFilename();
+			String fileName = FilePathEnums.getName(typeId) + file.getOriginalFilename();
 			// 创建上传请求
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
 			// 执行上传
@@ -282,6 +350,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 					entity.setTypeId(typeId);
 					entity.setTypeName(FilePathEnums.getValue(typeId));
 					entity.setFileCatalogue(FilePathEnums.getName(typeId));
+					entity.setDatabseName(FilePathEnums.getValue(typeId));
 					entity.setDatabseId(dbId);
 					GenericityUtil.setDate(entity);
 					mongoTemplate.insert(entity);

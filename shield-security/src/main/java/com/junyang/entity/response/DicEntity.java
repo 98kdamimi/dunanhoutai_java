@@ -10,5 +10,7 @@ public class DicEntity {
 	private String name;
 	
 	private String value;
+	
+	private String lable;
 
 }

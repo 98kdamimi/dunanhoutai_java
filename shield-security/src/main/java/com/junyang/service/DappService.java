@@ -41,5 +41,9 @@ public interface DappService {
 	@PostMapping("/update")
 	@ApiOperation(value = "编辑",notes = "编辑",response = ResponseBase.class)
 	ResponseBase update(String dataStr,MultipartFile file);
+	
+	@PostMapping("/add")
+	@ApiOperation(value = "编辑",notes = "编辑",response = ResponseBase.class)
+	ResponseBase add(String dataStr,MultipartFile file);
 
 }
