@@ -14,7 +14,7 @@
                     <el-option
                       v-for="item in typeList"
                       :key="item.id"
-                      :label="item.name"
+                      :label="item.name+' —— '+item.type"
                       :value="item.id">
                     </el-option>
               </el-select>
@@ -38,15 +38,17 @@
               <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
             </el-form-item>
           </el-form>
-         <!-- <el-row :gutter="10" class="mb8">
+          <el-row :gutter="10" class="mb8">
             <el-col :span="1.5">
-              <el-button type="primary" plain icon="el-icon-plus" @click="handleAdd"
-                v-hasPermi="['system:user:add']">添加</el-button>
+              <el-button type="primary" icon="el-icon-refresh-left" @click="rpcRest">获取dapp</el-button>
             </el-col>
-          </el-row>-->
+            <el-col :span="1.5">
+              <el-button type="warning" icon="el-icon-plus" @click="handleAdd">添加</el-button>
+            </el-col>
+          </el-row>
         </div>
 
-        <el-table :data="dataList" max-height="600">
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="logo" align="center" width="180">
             <template slot-scope="scope">
@@ -95,9 +97,9 @@
                   <el-input v-model="formData.url" placeholder="请输入名称" style="width: 100%;" />
                 </el-form-item>
               </el-col>
-              <!-- <el-col :span="24">
+              <el-col :span="12">
                 <el-form-item label="所属网络" prop="networkIds">
-                  <el-select v-model="formData.networkIds" placeholder="请选择网络"  style="width: 85%;" >
+                  <el-select v-model="formData.networkIds" multiple filterable  placeholder="请选择网络"  style="width: 100%;" >
                     <el-option
                       v-for="item in networkList"
                       :key="item.name"
@@ -106,14 +108,14 @@
                     </el-option>
                   </el-select>
                 </el-form-item>
-              </el-col> -->
+              </el-col> 
               <el-col :span="12">
                 <el-form-item label="所属分类" prop="categoryIds">
                   <el-select v-model="formData.categoryIds" multiple  placeholder="请选择分类"  style="width: 100%;" >
                     <el-option
                       v-for="item in typeList"
                       :key="item.id"
-                      :label="item.name"
+                      :label="item.name+' —— '+item.type"
                       :value="item.id">
                     </el-option>
                   </el-select>
@@ -243,7 +245,7 @@
 
 <script>
 import uploadImg from '@/components/uploadImg/uploadImg.vue'
-import { dappList,dappUpdata,dappOnline,dappOffline,findTypeList} from "@/api/dapp/dapp";
+import { dappList,dappUpdata,dappOnline,dappOffline,findTypeList,dappAdd,dappRpcList} from "@/api/dapp/dapp";
 import { findNetWorkIdList} from "@/api/network/network";
 export default {
   name: "typesOfPoints",
@@ -267,6 +269,7 @@ export default {
         pageNumber: 1,
         pageSize: 10,
       },
+      loading :true,
       typeList:[],
       networkList:[],
       logoURL:[],
@@ -316,16 +319,15 @@ export default {
 
   },
   methods: {
-    changeTime(e) {
-      if (e) {
-        this.queryParams.begTime = e[0]
-        this.queryParams.endTime = e[1]
-      } else {
-        this.queryParams.begTime = ''
-        this.queryParams.endTime = ''
-      }
-    },
 
+    //获取远程更新
+    rpcRest(){
+      dappRpcList().then(res =>{
+        this.getFindTypeList()
+        this.getList()
+      })
+    },
+   
     getFindTypeList(){
       findTypeList().then(res =>{
         this.typeList =res.data
@@ -344,6 +346,7 @@ export default {
       dappList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
+        this.loading = false;
       })
       
     },
@@ -367,7 +370,7 @@ export default {
       this.queryParams.pageNumber = 1;
       this.getList();
     },
-    /** 新增按钮操作 */
+    /** 编辑按钮操作 */
     handleUpdate(row) {
       this.reset();
       this.logoURL = row.logoURL
@@ -375,6 +378,34 @@ export default {
       this.localization = row.localization
       this.dialogOpen = true;
       this.title = "编辑";
+    },
+    handleAdd(){
+      this.reset();
+      this.logoURL = []
+      this.localization ={
+        "_id":"",
+        "ar": "",
+        "bn": "",
+        "de": "",
+        "en-US": "",
+        "es": "",
+        "fil": "",
+        "fr-FR": "",
+        "hi-IN": "",
+        "it-IT": "",
+        "ja-JP": "",
+        "ko-KR": "",
+        "mn-MN": "",
+        "pt": "",
+        "ru": "",
+        "th-TH": "",
+        "uk-UA": "",
+        "vi": "",
+        "zh-CN": "",
+        "zh-HK": ""
+      }
+      this.dialogOpen = true;
+      this.title = "新增";
     },
    
     /** 提交按钮 */
@@ -389,11 +420,19 @@ export default {
           }
           this.formData.localization = this.localization
           fordata.append("dataStr", JSON.stringify(this.formData))
-          dappUpdata(fordata).then(res => {
-            this.$modal.msgSuccess("新增成功");
-            this.dialogOpen = false;
-            this.getList();
-          });
+          if(this.formData.id){
+            dappUpdata (fordata).then(res =>{
+              this.$modal.msgSuccess("新增成功");
+              this.dialogOpen = false;
+              this.getList();
+            })
+          }else{
+             dappAdd(fordata).then(res => {
+              this.$modal.msgSuccess("编辑成功");
+              this.dialogOpen = false;
+              this.getList();
+            });
+          }
         }
       });
     },

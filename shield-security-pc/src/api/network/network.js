@@ -31,3 +31,13 @@ export function findNetWorkIdList() {
         method: 'get',
     })
 }
+
+export function findNetWorkById(id) {
+    return request({
+        url: 'network/findNetWorkById',
+        method: 'get',
+        params: {
+            'id': id
+        }
+    })
+}

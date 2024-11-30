@@ -22,7 +22,7 @@
           </el-row>
         </div>
 
-        <el-table :data="dataList" max-height="600">
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="设备序列号" align="center" prop="serialNumber"/>
           <el-table-column label="证书名称" align="center" prop="fileName"/>
@@ -105,6 +105,7 @@ export default {
       title: "",
       // 是否显示弹出层
       dialogOpen: false,
+      loading:true,
       formData: {},
       fileOpen: false,
       excleFileList:[],
@@ -130,9 +131,11 @@ export default {
   methods: {
     //获取数据列表
     getList() {
+      this.loading = true
       certificateList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
+        this.loading = false
       })
     },
     

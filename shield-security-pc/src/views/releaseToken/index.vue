@@ -3,7 +3,7 @@
     <div class="app-container">
       <div class="conetntBox">
         <div style="display: flex; justify-content: flex-end;">
-          <el-button type="primary" plain icon="el-icon-refresh-left" @click="getToken">更新Token</el-button>
+          <el-button type="primary" icon="el-icon-refresh-left" @click="getToken">更新Token</el-button>
         </div>
         <el-table :data="dataList" max-height="600">
           <el-table-column label="序号" type="index" width="50" align="center" />

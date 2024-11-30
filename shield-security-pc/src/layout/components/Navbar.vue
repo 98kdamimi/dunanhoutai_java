@@ -177,8 +177,15 @@ export default {
     },
 
     toUpVersion(){
+      const currentPath = this.$route.path;
+      if (currentPath === '/version/software' || currentPath === '/version/hardware') {
+        window.location.reload();  // 刷新当前页面
+      } else {
+        // 正常跳转
+        this.$router.push({ path:"version/software" }).catch(() => { });
+      }
       this.closeMsg()
-      this.$router.push({ path:"version/software" }).catch(() => { });
+      this.dialogVisible = false
     },
 
     toggleSideBar() {

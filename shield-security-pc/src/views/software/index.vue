@@ -21,7 +21,7 @@
           </el-form>
         </div>
 
-        <el-table :data="dataList" max-height="600">
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="IOS版本" align="center">
             <template slot-scope="scope">
              {{ scope.row.ios.iosVersion }}
@@ -84,6 +84,7 @@ export default {
       total: 0,
       // 用户表格数据
       dataList: null,
+      loading:true,
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -125,6 +126,7 @@ export default {
       versionList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
+        this.loading = false
       })
       
     },

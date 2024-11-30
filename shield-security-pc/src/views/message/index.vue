@@ -26,7 +26,7 @@
           </el-row>
         </div>
 
-        <el-table :data="dataList" max-height="600">
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="中文消息标题" align="messageTitleZh" prop="messageTitleZh" />
           <el-table-column label="中文消息内容" align="messageContentZh" prop="messageContentZh" />
@@ -95,6 +95,7 @@ export default {
       title: "",
       // 是否显示弹出层
       dialogOpen: false,
+      loading:true,
       formData: {},
       // 查询参数
       queryParams: {
@@ -138,6 +139,7 @@ export default {
       messageList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
+        this.loading = false
       })
       
     },

@@ -21,7 +21,7 @@
           </el-form>
         </div>
 
-        <el-table :data="dataList" max-height="600">
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="设备版本" align="center" prop="releaseState">
             <template slot-scope="scope">
              {{ scope.row.firmwareVersion }}
@@ -74,6 +74,7 @@ export default {
       // 是否显示弹出层
       dialogOpen: false,
       formData: {},
+      loading:true,
       // 查询参数
       queryParams: {
         pageNumber: 1,
@@ -110,6 +111,7 @@ export default {
       hardwareFindList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
+        this.loading = false
       })
       
     },

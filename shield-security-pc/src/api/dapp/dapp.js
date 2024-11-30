@@ -49,3 +49,22 @@ export function findTypeList() {
         method: 'get'
     })
 }
+
+// 编辑发现页
+export function dappAdd(data) {
+    return request({
+        url: 'dapp/add',
+        method: 'post',
+        headers: {
+            'Content-Type': 'multipart/form-data' //注意这里
+        },
+        data: data
+    })
+}
+
+export function dappRpcList() {
+    return request({
+        url: 'dapp/rpcList',
+        method: 'get'
+    })
+}

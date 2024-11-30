@@ -27,7 +27,7 @@
           </el-row>
         </div>
 
-        <el-table :data="dataList" max-height="600">
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="资源" align="center" width="180">
             <template slot-scope="scope">
@@ -100,6 +100,7 @@ export default {
       dataList: null,
       // 弹出层标题
       title: "",
+      loading : true,
       // 是否显示弹出层
       dialogOpen: false,
       formData: {},
@@ -139,6 +140,7 @@ export default {
       uploadList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
+        this.loading = false
       })
     },
     //获取类型列表

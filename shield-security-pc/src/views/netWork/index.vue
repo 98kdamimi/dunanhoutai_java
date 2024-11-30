@@ -666,13 +666,15 @@ export default {
       this.coingeckoFormData.name = row.data.attributes.name
       this.coingeckoFormData.address = row.data.attributes.address
       this.coingeckoFormData.chainId = this.acctiveNetWork.chainId
+      this.coingeckoFormData.impl = this.acctiveNetWork.impl
       this.coingeckoFormData.coingeckoId = row.data.attributes.coingecko_coin_id
       this.coingeckoFormData.decimals = row.data.attributes.decimals
       this.coingeckoFormData.marketCap = row.data.attributes.market_cap_usd
       this.coingeckoFormData.symbol = row.data.attributes.symbol
-      this.coingeckoFormData.impl = row.data.impl
       this.coingeckoFormData.status = this.statusList[0].id
       this.coingeckoFormData.source = ["Coingecko"]
+      this.coingeckoFormData.riskLevel = 1
+      this.coingeckoFormData.addToIndex = this.lableTypeList[0].id
       this.coingeckoFormData.checked = this.lableTypeList[0].id
       this.coingeckoFormData.isNative = this.lableTypeList[0].id
       this.coingeckoFormData.security = this.lableTypeList[0].id
@@ -755,5 +757,11 @@ export default {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+.conetntBox {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>
