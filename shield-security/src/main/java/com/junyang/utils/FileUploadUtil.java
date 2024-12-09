@@ -3,13 +3,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.util.IOUtils;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -20,11 +27,13 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -482,19 +491,65 @@ public class FileUploadUtil {
 
 	 // 将图片 URL 转换为 MultipartFile
     public static MultipartFile convertUrlToMultipartFile(String imageUrl) throws IOException {
-        // 使用 RestTemplate 下载图片字节数组
-        RestTemplate restTemplate = new RestTemplate();
-        byte[] imageBytes = restTemplate.getForObject(imageUrl, byte[].class);
-
-        // 使用字节数组创建 DiskFileItem
-        FileItem fileItem = new DiskFileItem("file", "image/png", false, "Tether.png", imageBytes.length, null);
-        fileItem.getOutputStream().write(imageBytes);
-
-        // 创建 CommonsMultipartFile 对象
-        MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
-
-        return multipartFile;
+       try {
+    	   // 使用 RestTemplate 下载图片字节数组
+           RestTemplate restTemplate = new RestTemplate();
+           byte[] imageBytes = restTemplate.getForObject(imageUrl, byte[].class);
+           // 使用字节数组创建 DiskFileItem
+           String uuid = UUID.randomUUID().toString().replace("-", "");
+           FileItem fileItem = new DiskFileItem("file", "image/png", false, uuid+".png", imageBytes.length, null);
+           fileItem.getOutputStream().write(imageBytes);
+           // 创建 CommonsMultipartFile 对象
+           MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
+           return multipartFile;
+		} catch (Exception e) {
+			return null;
+		}
     }
+    
+    public static File saveHtmlToFile(String htmlContent, String fileName) throws IOException {
+        // 设置文件路径
+    	String name;
+    	if(fileName != null && fileName.length() > 0) {
+    		name = fileName;
+    	}else {
+    		name = UUID.randomUUID().toString().replace("-", "");
+    	}
+    	String fullHtmlContent = "<!DOCTYPE html>" +
+    	            "<html lang=\"zh-CN\">" +
+    	            "<head>" +
+    	            "<meta charset=\"UTF-8\">" +
+    	            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+    	            "<title>HTML File</title>" +
+    	            "</head>" +
+    	            "<body>" +
+    	            htmlContent +
+    	            "</body>" +
+    	            "</html>";
+        File file = new File(name+".html");
+        // 创建文件并写入内容，明确指定编码为 UTF-8
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+            writer.write(fullHtmlContent);
+        }
+        return file;  // 返回文件的本地路径
+    }
+    
+    public static MultipartFile getMultipartFile(File file) {
+        FileItem item = new DiskFileItemFactory().createItem("file"
+            , MediaType.MULTIPART_FORM_DATA_VALUE
+            , true
+            , file.getName());
+        try (InputStream input = new FileInputStream(file);
+            OutputStream os = item.getOutputStream()) {
+            // 流转移
+            IOUtils.copy(input, os);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid file: " + e, e);
+        }
+
+        return new CommonsMultipartFile(item);
+    }
+
 
     
     public static void main(String[] args) {

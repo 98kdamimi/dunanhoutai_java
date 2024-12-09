@@ -86,7 +86,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 			Authentication auth) throws IOException, ServletException {
 		String code = redisUtil.get(Constants.GOOGLE_COCE).toString();
 		Boolean temp = googleAuthenticator.verifyCode(Constants.googleKey, Integer.parseInt(code));
-		if(true) {
+		if(temp) {
 			// 获取权限主题
 			String subject = auth.getName();
 			// subject中存入用户名和角色权限

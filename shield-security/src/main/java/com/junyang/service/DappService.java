@@ -43,7 +43,7 @@ public interface DappService {
 	ResponseBase update(String dataStr,MultipartFile file);
 	
 	@PostMapping("/add")
-	@ApiOperation(value = "编辑",notes = "编辑",response = ResponseBase.class)
+	@ApiOperation(value = "新增",notes = "新增",response = ResponseBase.class)
 	ResponseBase add(String dataStr,MultipartFile file);
 
 }

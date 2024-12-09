@@ -73,6 +73,15 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 						Query query = new Query(Criteria.where("_id").is(list.get(i).getId()));
 						boolean exists = mongoTemplate.exists(query, TokenEntity.class, "token_db");
 						if (exists == false) {
+							if(list.get(i).getLogoURI() != null && list.get(i).getLogoURI().length() > 0) {
+								MultipartFile urlFile = FileUploadUtil.convertUrlToMultipartFile(list.get(i).getLogoURI());
+								if(urlFile != null) {
+									String logoImg = this.fileUploadUtil(urlFile, FilePathEnums.TOKENS.getIndex(), null);
+									if(logoImg!= null && logoImg.length() > 0) {
+										list.get(i).setLogoURI(logoImg);
+									}
+								}
+							}
 							mongoTemplate.insert(list.get(i));
 						}
 					}

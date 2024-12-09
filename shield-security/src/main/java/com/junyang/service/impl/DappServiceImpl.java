@@ -76,6 +76,15 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 						Query query = new Query(Criteria.where("_id").is(list.get(i).getId()));
 						boolean exists = mongoTemplate.exists(query, DappEntity.class, "dapp_db");
 						if (exists == false) {
+							if(list.get(i).getLogoURL() != null && list.get(i).getLogoURL().length() > 0) {
+								MultipartFile urlFile = FileUploadUtil.convertUrlToMultipartFile(list.get(i).getLogoURL());
+								if(urlFile != null) {
+									String logoImg = this.fileUploadUtil(urlFile, FilePathEnums.DAPP.getIndex(), null);
+									if(logoImg!= null && logoImg.length() > 0) {
+										list.get(i).setLogoURL(logoImg);
+									}
+								}
+							}
 							mongoTemplate.insert(list.get(i));
 						}
 					}
@@ -177,7 +186,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 			if(dappEntity != null) {
 				dappEntity.setStatus(ReleaseStateEnums.DOWN_LINE.getLable());
 				JSONObject jsonObject = (JSONObject) JSONObject.toJSON(dappEntity);
-				jsonObject.put("_id", dappEntity.getId());
+//				jsonObject.put("_id", dappEntity.getId());
 				String jsonParam = JSON.toJSONString(jsonObject);
 				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.DAPP_UPDATE.getName(), jsonParam);
 				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
@@ -206,7 +215,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 			if(dappEntity != null) {
 				dappEntity.setStatus(ReleaseStateEnums.TOP_LINE.getLable());
 				JSONObject jsonObject = (JSONObject) JSONObject.toJSON(dappEntity);
-				jsonObject.put("_id", dappEntity.getId());
+//				jsonObject.put("_id", dappEntity.getId());
 				String jsonParam = JSON.toJSONString(jsonObject);
 				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.DAPP_UPDATE.getName(), jsonParam);
 				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
@@ -242,8 +251,10 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 						}
 					}
 					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(dappEntity);
-					jsonObject.put("_id", dappEntity.getId());
+//					jsonObject.put("_id", dappEntity.getId());
+					jsonObject.remove("id");
 					String jsonParam = JSON.toJSONString(jsonObject);
+					System.out.println(jsonParam);
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.DAPP_UPDATE.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
@@ -301,8 +312,9 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.DAPP_ADD.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
-						GenericityUtil.setTokenDateStr(dappEntity);
-						mongoTemplate.save(dappEntity);
+//						GenericityUtil.setTokenDateStr(dappEntity);
+//						mongoTemplate.save(dappEntity);
+						this.rpcList();
 					}
 					return setResultSuccess();
 				}else {
@@ -330,6 +342,7 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
 			// 构建 S3 中的完整路径（目录+文件名）
 			String fileName = FilePathEnums.getName(typeId) + file.getOriginalFilename();
+			System.out.println(fileName);
 			// 创建上传请求
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
 			// 执行上传
