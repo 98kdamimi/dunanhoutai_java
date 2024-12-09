@@ -322,6 +322,7 @@ export default {
 
     //获取远程更新
     rpcRest(){
+      this.loading = true
       dappRpcList().then(res =>{
         this.getFindTypeList()
         this.getList()
