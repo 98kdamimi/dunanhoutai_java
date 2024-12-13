@@ -1,6 +1,9 @@
 package com.junyang.service.impl;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.github.pagehelper.PageInfo;
@@ -77,8 +81,8 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			}else if(AgreementTypeEnums.PRIVACY_AGREEMENT.getIndex().equals(entity.getTypeId())) {
 				fileName = AgreementTypeEnums.PRIVACY_AGREEMENT.getValue();
 			}
-			File file = FileUploadUtil.saveHtmlToFile(entity.getContentInfo(),fileName);
-			String url = this.fileUploadUtil(FileUploadUtil.getMultipartFile(file), 
+			MultipartFile file = FileUploadUtil.saveHtmlToFile(entity.getContentInfo(),fileName);
+			String url = this.fileUploadUtil(file, 
 					FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
 			entity.setHtmlSite(url);
 			ObjectId id = new ObjectId();
@@ -105,8 +109,8 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 				}else if(AgreementTypeEnums.PRIVACY_AGREEMENT.getIndex().equals(entity.getTypeId())) {
 					fileName = AgreementTypeEnums.PRIVACY_AGREEMENT.getValue();
 				}
-				File file = FileUploadUtil.saveHtmlToFile(entity.getContentInfo(),fileName);
-				String url = this.fileUploadUtil(FileUploadUtil.getMultipartFile(file), 
+				MultipartFile file = FileUploadUtil.saveHtmlToFile(entity.getContentInfo(),fileName);
+				String url = this.fileUploadUtil(file, 
 						FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
 				entity.setHtmlSite(url);
 				entity.setGmtModified(new Date());
@@ -148,58 +152,58 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 		}
 	}
 	
-	public String fileUploadUtil(MultipartFile file,Integer typeId, String dbId,String site) {
-		try {
-			// 检查文件是否为空或大小是否超过限制
-			if (file.isEmpty() || file.getSize() > 200 * 1024 * 1024) { // 假设最大文件大小为 200MB
-				return "文件为空或超过最大限制";
-			}
-			// 创建临时文件
-			File tempFile = File.createTempFile("upload-", file.getOriginalFilename(),
-					new File(System.getProperty("java.io.tmpdir")));
-			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
-			// 构建 S3 中的完整路径（目录+文件名）
-			String fileName = FilePathEnums.getName(typeId)+ site+"/" + file.getOriginalFilename();
-			 // 创建 ObjectMetadata 并设置文件的 Content-Type
-	        ObjectMetadata metadata = new ObjectMetadata();
-	        metadata.setContentType("text/html; charset=UTF-8"); // 明确设置字符编码
-	        // 创建上传请求
-			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
-			putObjectRequest.setMetadata(metadata);
-			// 执行上传
-			amazonS3.putObject(putObjectRequest);
-			String fileUrl = amazonS3.getUrl(bucketName, fileName).toString();
-			if(fileUrl != null && fileUrl.length() > 0) {
-				try {
-					UploadFileEntity entity = new UploadFileEntity();
-					entity.setDatabseName(FilePathEnums.getDatabaseName(typeId));
-					entity.setFilePath(fileUrl);
-					// 获取文件名
-					String oldFileName = file.getOriginalFilename();
-					// 获取文件的后缀名
-					String suffixName = oldFileName.substring(oldFileName.lastIndexOf(".")+1);
-					entity.setFileType(suffixName);
-					entity.setFileSize(FileUploadUtil.GetFileSize(file));
-					entity.setImageLable(FileUploadUtil.isImage(file));
-					entity.setTypeId(typeId);
-					entity.setTypeName(FilePathEnums.getValue(typeId));
-					entity.setFileCatalogue(FilePathEnums.getName(typeId));
-					entity.setDatabseName(FilePathEnums.getValue(typeId));
-					entity.setDatabseId(dbId);
-					GenericityUtil.setDate(entity);
-					mongoTemplate.insert(entity);
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw new RuntimeException();
-				}
-			}
-			return fileUrl;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public String fileUploadUtil(MultipartFile file,Integer typeId, String dbId,String site) {
+//		try {
+//			// 检查文件是否为空或大小是否超过限制
+//			if (file.isEmpty() || file.getSize() > 200 * 1024 * 1024) { // 假设最大文件大小为 200MB
+//				return "文件为空或超过最大限制";
+//			}
+//			// 创建临时文件
+//			File tempFile = File.createTempFile("upload-", file.getOriginalFilename(),
+//					new File(System.getProperty("java.io.tmpdir")));
+//			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
+//			// 构建 S3 中的完整路径（目录+文件名）
+//			String fileName = FilePathEnums.getName(typeId)+ site+"/" + file.getOriginalFilename();
+//			 // 创建 ObjectMetadata 并设置文件的 Content-Type
+//	        ObjectMetadata metadata = new ObjectMetadata();
+//	        metadata.setContentType("text/html; charset=UTF-8"); // 明确设置字符编码
+//	        // 创建上传请求
+//			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
+//			putObjectRequest.setMetadata(metadata);
+//			// 执行上传
+//			amazonS3.putObject(putObjectRequest);
+//			String fileUrl = amazonS3.getUrl(bucketName, fileName).toString();
+//			if(fileUrl != null && fileUrl.length() > 0) {
+//				try {
+//					UploadFileEntity entity = new UploadFileEntity();
+//					entity.setDatabseName(FilePathEnums.getDatabaseName(typeId));
+//					entity.setFilePath(fileUrl);
+//					// 获取文件名
+//					String oldFileName = file.getOriginalFilename();
+//					// 获取文件的后缀名
+//					String suffixName = oldFileName.substring(oldFileName.lastIndexOf(".")+1);
+//					entity.setFileType(suffixName);
+//					entity.setFileSize(FileUploadUtil.GetFileSize(file));
+//					entity.setImageLable(FileUploadUtil.isImage(file));
+//					entity.setTypeId(typeId);
+//					entity.setTypeName(FilePathEnums.getValue(typeId));
+//					entity.setFileCatalogue(FilePathEnums.getName(typeId));
+//					entity.setDatabseName(FilePathEnums.getValue(typeId));
+//					entity.setDatabseId(dbId);
+//					GenericityUtil.setDate(entity);
+//					mongoTemplate.insert(entity);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					throw new RuntimeException();
+//				}
+//			}
+//			return fileUrl;
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 	
 	@Override
 	public ResponseBase delete(String id) {
@@ -211,6 +215,79 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			e.printStackTrace();
 			throw new RuntimeException();
 		}
+	}
+	
+	public String fileUploadUtil(MultipartFile file, Integer typeId, String dbId, String site) throws IllegalAccessException, InvocationTargetException {
+	    try {
+	        // 文件检查
+	        if (file.isEmpty() || file.getSize() > 200 * 1024 * 1024) {
+	            return "文件为空或超过最大限制";
+	        }
+	        // 创建临时文件
+	        File tempFile = createTempFile(file);
+	        // 上传到 S3
+	        String fileName = FilePathEnums.getName(typeId) + site + "/" + file.getOriginalFilename();
+	        String fileUrl = uploadToS3(tempFile, fileName);
+	        if (fileUrl != null && !fileUrl.isEmpty()) {
+	        	UploadFileEntity entity = new UploadFileEntity();
+				entity.setDatabseName(FilePathEnums.getDatabaseName(typeId));
+				entity.setFilePath(fileUrl);
+				// 获取文件名
+				String oldFileName = file.getOriginalFilename();
+				// 获取文件的后缀名
+				String suffixName = oldFileName.substring(oldFileName.lastIndexOf(".")+1);
+				entity.setFileType(suffixName);
+				entity.setFileSize(FileUploadUtil.GetFileSize(file));
+				entity.setImageLable(FileUploadUtil.isImage(file));
+				entity.setTypeId(typeId);
+				entity.setTypeName(FilePathEnums.getValue(typeId));
+				entity.setFileCatalogue(FilePathEnums.getName(typeId));
+				entity.setDatabseName(FilePathEnums.getValue(typeId));
+				entity.setDatabseId(dbId);
+				GenericityUtil.setDate(entity);
+				mongoTemplate.insert(entity);
+	        }
+	        // 删除临时文件
+	        tempFile.delete();
+	        return fileUrl;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return "文件上传失败";
+	    }
+	}
+
+	private File createTempFile(MultipartFile file) throws IOException {
+	    // 创建临时文件
+	    File tempFile = File.createTempFile("upload-", file.getOriginalFilename(),
+	            new File(System.getProperty("java.io.tmpdir")));
+	    
+	    // 使用输入流将 MultipartFile 内容写入临时文件
+	    try (InputStream inputStream = file.getInputStream();
+	         FileOutputStream fos = new FileOutputStream(tempFile)) {
+	        byte[] buffer = new byte[1024];
+	        int bytesRead;
+	        while ((bytesRead = inputStream.read(buffer)) != -1) {
+	            fos.write(buffer, 0, bytesRead);
+	        }
+	    }
+	    return tempFile;
+	}
+
+	private String uploadToS3(File file, String fileName) {
+	    try {
+	        ObjectMetadata metadata = new ObjectMetadata();
+	        metadata.setContentType("text/html; charset=UTF-8");
+
+	        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, file);
+	        putObjectRequest.setMetadata(metadata);
+
+	        amazonS3.putObject(putObjectRequest);
+	        return amazonS3.getUrl(bucketName, fileName).toString();
+	        
+	    } catch (AmazonS3Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 
 }

@@ -76,8 +76,8 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			CustomUtils.sendJsonMessage(response, JsonData.buildError("token不合法"));
-//			CustomUtils.sendJsonMessage(response, JsonData.Error("系统异常稍后再试"));
+//			CustomUtils.sendJsonMessage(response, JsonData.buildError("token不合法"));
+			CustomUtils.sendJsonMessage(response, JsonData.Error("系统异常稍后再试"));
 		}
 
 	}
