@@ -116,7 +116,7 @@ public class WebLogAspect {
 			entity.setResData(resData);
 			entity.setId(UUID.randomUUID().toString());
 			entity.setEndTime(new Date());
-			mongoTemplate.insert(entity);
+//			mongoTemplate.insert(entity);
 		}
 		log.info("#####################请求结束####################");
 	}

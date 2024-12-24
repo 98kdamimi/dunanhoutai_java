@@ -29,4 +29,10 @@ public class CommonExceptionHandle extends BaseApiService{
     public ResponseBase BindException(BindException ex) {
     	return setResult(400, ex.getMessage(), null);
     }
+    
+    @ExceptionHandler({Exception.class})
+    @ResponseBody
+    public ResponseBase exceptionHandler(BindException ex) {
+    	return setResultError("系统异常，请稍后再试");
+    }
 }

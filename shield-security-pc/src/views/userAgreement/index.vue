@@ -60,6 +60,8 @@
 
 <script>
 import { agreementFindType,agreementAdd,agreementUpdate,agreementDelete} from "@/api/agreement/agreement";
+import {getLanguage} from "@/api/dic/dic";
+
 import editor from '@/components/Editor/index.vue'
 export default {
   name: "typesOfPoints",
@@ -85,20 +87,7 @@ export default {
         pageNumber: 1,
         pageSize: 10,
       },
-      languageList:[
-        {
-          "name":"zh-CN",
-        },
-        {
-          "name":"zh-HK",
-        },
-        {
-          "name":"fil",
-        },
-        {
-          "name":"pt-BR",
-        },
-      ],
+      languageList:[],
       // 表单校验
       rules: {
         languageType: [
@@ -113,9 +102,16 @@ export default {
   watch: {
   },
   created() {
+    this.getLanguageList()
     this.getList();
   },
   methods: {
+
+    getLanguageList(){
+      getLanguage().then(res =>{
+        this.languageList = res.data
+      })
+    },
    
     getList() {
       this.loading = true;

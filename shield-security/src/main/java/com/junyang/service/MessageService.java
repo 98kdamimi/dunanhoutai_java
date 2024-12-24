@@ -1,4 +1,5 @@
 package com.junyang.service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.junyang.base.ResponseBase;
@@ -24,4 +25,11 @@ public interface MessageService {
 	@ApiOperation(value = "消息列表",notes = "消息列表",response = ResponseBase.class)
 	ResponseBase findList(PublicQueryEntity entity);
 	
+	@GetMapping("/pushZh")
+	@ApiOperation(value = "发送中文消息",notes = "发送中文消息",response = ResponseBase.class)
+	ResponseBase pushZh(String id);
+	
+	@GetMapping("/pushEl")
+	@ApiOperation(value = "发送英文消息",notes = "发送英文消息",response = ResponseBase.class)
+	ResponseBase pushEl(String id);
 }

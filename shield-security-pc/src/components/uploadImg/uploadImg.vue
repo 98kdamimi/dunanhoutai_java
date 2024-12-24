@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 100%;">
     <el-upload v-if="type == 1" action="#" :file-list="filesList" list-type="picture-card" :auto-upload="false"
       :show-file-list="true" :on-change="handleChange" :on-preview="handlePictureCardPreview" :on-remove="handleRemove"
       :class="{ hide: this.filesList.length >= this.limit }">
@@ -189,7 +189,9 @@ export default {
 }
 </script>
 <style scoped>
+
 ::v-deep.hide .el-upload--picture-card {
   display: none;
 }
+
 </style>

@@ -11,15 +11,14 @@
         </el-row>
         <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
-          <el-table-column label="类型" align="center" prop="typeName" />
-          <el-table-column label="语言" align="center" prop="languageType" />
-          <el-table-column label="内容" align="center" prop="contentInfo" :show-overflow-tooltip="true"/>
-          <el-table-column label="访问地址" align="center" prop="htmlSite" width="660"/>
+          <el-table-column label="邮箱地址" align="center" prop="email" />
+          <el-table-column label="语言" align="center" prop="language" />
+          <el-table-column label="内容" align="center" prop="contentData" :show-overflow-tooltip="true"/>
           <el-table-column label="创建时间" align="setTime" prop="setTime" />
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template slot-scope="scope" v-if="scope.row.roleId !== 1">
-            <el-button size="mini" type="text"  @click="handleUpdate(scope.row)">编辑</el-button>
-            <el-button size="mini" type="text" icon="el-icon-delete"  @click="handleDelete(scope.row)">删除</el-button>
+            <el-button  type="text"  @click="handleUpdate(scope.row)">编辑</el-button>
+            <el-button  type="text" icon="el-icon-delete"  @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
         </el-table>
@@ -28,12 +27,11 @@
 
 
         <!-- 添加或修改用户配置对话框 -->
-        <el-dialog :title="title" :visible.sync="dialogOpen" width="60%" append-to-body>
+        <el-dialog :title="title" :visible.sync="dialogOpen" width="30%" append-to-body>
           <el-form ref="formData" :model="formData" :rules="rules" label-width="100px">
             <el-row>
-              <el-col :span="8">
-                <el-form-item label="语言" prop="languageType">
-                  <el-select v-model="formData.languageType" filterable  placeholder="请选择语言"  style="width: 100%;" >
+              <el-form-item label="语言" prop="language">
+                  <el-select v-model="formData.language" filterable  placeholder="请选择语言"  style="width: 90%;" >
                     <el-option
                       v-for="item in languageList"
                       :key="item.name"
@@ -42,10 +40,21 @@
                     </el-option>
                   </el-select>
                 </el-form-item>
-              </el-col>
             </el-row>
             <el-row>
-              <editor v-model="formData.contentInfo":min-height="340"/>
+              <el-form-item label="邮箱" prop="email">
+                <el-input v-model="formData.email" placeholder="请输入邮箱" style="width: 90%;"></el-input>
+              </el-form-item>
+            </el-row>
+            <el-row>
+              <el-form-item label="描述" prop="contentData">
+                <el-input
+                  type="textarea"
+                  :autosize="{ minRows: 5, maxRows: 4}"
+                  placeholder="请输入描述"
+                  v-model="formData.contentData" style="width: 90%;">
+                </el-input>
+              </el-form-item>
             </el-row>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -59,8 +68,10 @@
 </template>
 
 <script>
-import { agreementFindType,agreementAdd,agreementUpdate,agreementDelete} from "@/api/agreement/agreement";
+import { linkEmailGetList,linkEmailAdd,linkEmailUpdate,LinkEmailDelete} from "@/api/linkeamil/linkeamil";
+
 import {getLanguage} from "@/api/dic/dic";
+
 import editor from '@/components/Editor/index.vue'
 export default {
   name: "typesOfPoints",
@@ -69,7 +80,7 @@ export default {
   },
   data() {
     return {
-      typeId:2,
+      typeId:1,
       baseImageUrl: process.env.VUE_APP_IMAGE_API,
       // 总条数
       total: 0,
@@ -89,11 +100,19 @@ export default {
       languageList:[],
       // 表单校验
       rules: {
-        languageType: [
+        language: [
           { required: true, message: "请选择语言", trigger: "change" },
         ],
-        contentInfo: [
-          { required: true, message: "协议内容不能为空", trigger: "blur" },
+        contentData: [
+          { required: true, message: "描述不能为空", trigger: "blur" },
+        ],
+        email: [
+          { required: true, message: "邮箱不能为空", trigger: "blur" },
+          { 
+            pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 
+            message: "请输入有效的邮箱地址", 
+            trigger: "blur" 
+          }
         ],
       },
     };
@@ -114,7 +133,7 @@ export default {
    
     getList() {
       this.loading = true;
-      agreementFindType(this.typeId).then(res =>{
+      linkEmailGetList(this.queryParams).then(res =>{
         this.dataList = res.data.list
         this.total = res.data.total
         this.loading = false
@@ -124,6 +143,7 @@ export default {
     // 取消按钮
     cancel() {
       this.dialogOpen = false;
+      this.getList()
       this.reset();
     },
     // 表单重置
@@ -163,14 +183,13 @@ export default {
       this.$refs["formData"].validate(valid => {
         if (valid) {
           if(this.formData.id){
-            agreementUpdate(this.formData).then(res => {
+            linkEmailUpdate(this.formData).then(res => {
               this.$modal.msgSuccess("编辑成功");
               this.dialogOpen = false;
               this.getList();
             });
           }else{
-            this.formData.typeId = 2
-            agreementAdd(this.formData).then(res => {
+            linkEmailAdd(this.formData).then(res => {
               this.$modal.msgSuccess("新增成功");
               this.dialogOpen = false;
               this.getList();
@@ -183,7 +202,7 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       this.$modal.confirm('是否确认删除？').then(function () {
-        return agreementDelete(row.id);
+        return LinkEmailDelete(row.id);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");

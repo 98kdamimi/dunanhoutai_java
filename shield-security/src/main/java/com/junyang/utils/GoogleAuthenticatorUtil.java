@@ -41,18 +41,18 @@ public final class GoogleAuthenticatorUtil {
         return gAuth.createCredentials(userIdentifier);
     }
 
-    // 生成二维码URL，用于Google Authenticator
-    public static String getQRCodeUrl(String userIdentifier, String secretKey) {
-        String encodedKey = URLEncoder.encode(secretKey, StandardCharsets.UTF_8);
-        return String.format("otpauth://totp/%s?secret=%s&issuer=YourApp", userIdentifier, encodedKey);
-    }
+//    // 生成二维码URL，用于Google Authenticator
+//    public static String getQRCodeUrl(String userIdentifier, String secretKey) {
+//        String encodedKey = URLEncoder.encode(secretKey, StandardCharsets.UTF_8);
+//        return String.format("otpauth://totp/%s?secret=%s&issuer=YourApp", userIdentifier, encodedKey);
+//    }
 
-    // 生成二维码并将其转为Base64编码的字符串
-    public static String getQRCodeBase64(String secretKey, String userIdentifier) throws IOException, WriterException {
-        String url = getQRCodeUrl(userIdentifier, secretKey);
-        BufferedImage qrCodeImage = QRCodeGenerator.generateQRCodeImage(url);  // 使用自定义的二维码生成器
-        return convertImageToBase64(qrCodeImage);
-    }
+//    // 生成二维码并将其转为Base64编码的字符串
+//    public static String getQRCodeBase64(String secretKey, String userIdentifier) throws IOException, WriterException {
+//        String url = getQRCodeUrl(userIdentifier, secretKey);
+//        BufferedImage qrCodeImage = QRCodeGenerator.generateQRCodeImage(url);  // 使用自定义的二维码生成器
+//        return convertImageToBase64(qrCodeImage);
+//    }
 
     // 将图片转换为Base64编码的字符串
     private static String convertImageToBase64(BufferedImage image) throws IOException {

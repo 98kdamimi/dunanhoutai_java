@@ -1,6 +1,7 @@
 package com.junyang.service.impl;
 import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -305,5 +306,13 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 		}
 		return null;
 	}
+	
+	public static void main(String[] args) {
+        String appKey = "e319ff87a739c81ca6e26113";
+        String masterSecret = "b0eb573b78c193aa7d2acafc";
+        String authString = appKey + ":" + masterSecret;
+        String base64AuthString = Base64.getEncoder().encodeToString(authString.getBytes());
+        System.out.println("Authorization: Basic " + base64AuthString);
+    }
 	
 }

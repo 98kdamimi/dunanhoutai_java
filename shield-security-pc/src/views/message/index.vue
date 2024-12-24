@@ -35,8 +35,9 @@
           <el-table-column label="发送时间" align="setTime" prop="setTime" />
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template slot-scope="scope" v-if="scope.row.roleId !== 1">
-            <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)"
-              v-hasPermi="['system:role:remove']">删除</el-button>
+            <el-button size="mini" type="text"  @click="pushZh(scope.row)">发送中文消息</el-button>
+            <el-button size="mini" type="text"  @click="pushEl(scope.row)">发送英文消息</el-button>
+            <el-button size="mini" type="text" icon="el-icon-delete" @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
         </el-table>
@@ -81,7 +82,7 @@
 </template>
 
 <script>
-import { messageList,messageAdd,messageDelete} from "@/api/message/message";
+import { messageList,messageAdd,messageDelete,messagePushZh,messagePushEl} from "@/api/message/message";
 export default {
   name: "typesOfPoints",
   data() {
@@ -195,6 +196,25 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => { });
     },
+
+    //发送消息
+    pushZh(row){
+      this.$modal.confirm('是否确认发送？').then(function () {
+        return messagePushZh(row.id);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("发送成功");
+      }).catch(() => { });
+    },
+
+    pushEl(row){
+      this.$modal.confirm('是否确认发送？').then(function () {
+        return messagePushEl(row.id);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("发送成功");
+      }).catch(() => { });
+    }
 
   }
 };

@@ -507,7 +507,7 @@ public class FileUploadUtil {
 		}
     }
     
-    public static File saveHtmlToFile(String htmlContent, String fileName) throws IOException {
+    public static MultipartFile saveHtmlToFile(String htmlContent, String fileName) throws IOException {
         // 设置文件路径
     	String name;
     	if(fileName != null && fileName.length() > 0) {
@@ -526,12 +526,12 @@ public class FileUploadUtil {
     	            htmlContent +
     	            "</body>" +
     	            "</html>";
-        File file = new File(name+".html");
-        // 创建文件并写入内容，明确指定编码为 UTF-8
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
-            writer.write(fullHtmlContent);
-        }
-        return file;  // 返回文件的本地路径
+    	// 将 HTML 内容写入到内存中的 ByteArrayOutputStream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.write(fullHtmlContent.getBytes(StandardCharsets.UTF_8));
+        // 使用 ByteArrayMultipartFile 创建 MultipartFile
+        MultipartFile multipartFile = new ByteArrayMultipartFile(byteArrayOutputStream.toByteArray(), name + ".html", "text/html");
+        return multipartFile; // 返回 MultipartFile 类型，可以上传到 S3 或其他地方
     }
     
     public static MultipartFile getMultipartFile(File file) {

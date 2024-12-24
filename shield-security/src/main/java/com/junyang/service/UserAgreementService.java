@@ -27,7 +27,7 @@ public interface UserAgreementService {
 	ResponseBase findType(PublicQueryEntity entity);
 	
 	@PostMapping("/delete")
-	@ApiOperation(value = "查询协议",notes = "查询协议",response = ResponseBase.class)
+	@ApiOperation(value = "删除协议",notes = "删除协议",response = ResponseBase.class)
 	ResponseBase delete(String id);
 	
 	

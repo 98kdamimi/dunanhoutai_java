@@ -104,5 +104,9 @@ public interface Constants {
     public static final String googleKey = "QAXMNIOPHPEMRSSV";
     
     public static final String GOOGLE_COCE = "googleCoce";
+    
+    public static final String MSG_CONTENT_TYPE = "token";
+    
+    public static final String SEND_TYPE = "all";
 
 }

@@ -30,6 +30,7 @@ import com.junyang.constants.Constants;
 import com.junyang.entity.dapp.DappEntity;
 import com.junyang.entity.dapp.DappTypeEntity;
 import com.junyang.entity.response.RpcResponseEntity;
+import com.junyang.entity.system.UserAgreementEntity;
 import com.junyang.entity.uploadefiel.UploadFileEntity;
 import com.junyang.enums.FilePathEnums;
 import com.junyang.enums.HttpAddressEunms;
@@ -254,7 +255,6 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 //					jsonObject.put("_id", dappEntity.getId());
 					jsonObject.remove("id");
 					String jsonParam = JSON.toJSONString(jsonObject);
-					System.out.println(jsonParam);
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.DAPP_UPDATE.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
@@ -280,6 +280,16 @@ public class DappServiceImpl extends BaseApiService implements DappService {
 			if(dataStr != null && dataStr.length() > 0) {
 				DappEntity dappEntity = JSONObject.parseObject(dataStr, DappEntity.class);
 				if(dappEntity!= null) {
+					//判断url是否已存在
+					if(dappEntity.getUrl() != null && dappEntity.getUrl().length()> 0) {
+						Query query = new Query();
+						query.addCriteria(Criteria.where("url").is(dappEntity.getUrl()));
+						DappEntity entity = mongoTemplate.findOne(query, DappEntity.class);
+						if(entity != null) {
+							return setResultError("url已存在，无法创建");
+						}
+					}
+					
 					if(file != null) {
 						String logUrl = this.fileUploadUtil(file, FilePathEnums.DAPP.getIndex(), null);
 						if(logUrl!= null && logUrl.length() > 0) {

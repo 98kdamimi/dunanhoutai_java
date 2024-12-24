@@ -29,3 +29,24 @@ export function messageDelete(id) {
         }
     })
 }
+
+//发送消息
+export function messagePushZh(id) {
+    return request({
+        url: 'message/pushZh',
+        method: 'get',
+        params: {
+            'id': id
+        }
+    })
+}
+
+export function messagePushEl(id) {
+    return request({
+        url: 'message/pushEl',
+        method: 'get',
+        params: {
+            'id': id
+        }
+    })
+}
