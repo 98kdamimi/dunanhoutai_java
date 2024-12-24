@@ -202,59 +202,6 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 		}
 	}
 	
-//	public String fileUploadUtil(MultipartFile file,Integer typeId, String dbId,String site) {
-//		try {
-//			// 检查文件是否为空或大小是否超过限制
-//			if (file.isEmpty() || file.getSize() > 200 * 1024 * 1024) { // 假设最大文件大小为 200MB
-//				return "文件为空或超过最大限制";
-//			}
-//			// 创建临时文件
-//			File tempFile = File.createTempFile("upload-", file.getOriginalFilename(),
-//					new File(System.getProperty("java.io.tmpdir")));
-//			file.transferTo(tempFile); // 将 MultipartFile 保存为 File
-//			// 构建 S3 中的完整路径（目录+文件名）
-//			String fileName = FilePathEnums.getName(typeId)+ site+"/" + file.getOriginalFilename();
-//			 // 创建 ObjectMetadata 并设置文件的 Content-Type
-//	        ObjectMetadata metadata = new ObjectMetadata();
-//	        metadata.setContentType("text/html; charset=UTF-8"); // 明确设置字符编码
-//	        // 创建上传请求
-//			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, tempFile);
-//			putObjectRequest.setMetadata(metadata);
-//			// 执行上传
-//			amazonS3.putObject(putObjectRequest);
-//			String fileUrl = amazonS3.getUrl(bucketName, fileName).toString();
-//			if(fileUrl != null && fileUrl.length() > 0) {
-//				try {
-//					UploadFileEntity entity = new UploadFileEntity();
-//					entity.setDatabseName(FilePathEnums.getDatabaseName(typeId));
-//					entity.setFilePath(fileUrl);
-//					// 获取文件名
-//					String oldFileName = file.getOriginalFilename();
-//					// 获取文件的后缀名
-//					String suffixName = oldFileName.substring(oldFileName.lastIndexOf(".")+1);
-//					entity.setFileType(suffixName);
-//					entity.setFileSize(FileUploadUtil.GetFileSize(file));
-//					entity.setImageLable(FileUploadUtil.isImage(file));
-//					entity.setTypeId(typeId);
-//					entity.setTypeName(FilePathEnums.getValue(typeId));
-//					entity.setFileCatalogue(FilePathEnums.getName(typeId));
-//					entity.setDatabseName(FilePathEnums.getValue(typeId));
-//					entity.setDatabseId(dbId);
-//					GenericityUtil.setDate(entity);
-//					mongoTemplate.insert(entity);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//					throw new RuntimeException();
-//				}
-//			}
-//			return fileUrl;
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-	
 	@Override
 	public ResponseBase delete(String id) {
 		try {
