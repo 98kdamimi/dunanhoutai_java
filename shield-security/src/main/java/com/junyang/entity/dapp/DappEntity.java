@@ -40,7 +40,7 @@ public class DappEntity {
 	private String subtitle;
 	
 	@TableField("url")
-	@ApiModelProperty(name = "url", value = "url地址", required = false, dataType = "String")
+	@ApiModelProperty(name = "                  ", value = "url地址", required = false, dataType = "String")
 	private String url;
 	
 	@TableField("createdAt")

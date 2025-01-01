@@ -52,5 +52,9 @@ public class PublicQueryEntity extends PageQueryHelperEntity{
 	@TableField(exist = false)
 	@ApiModelProperty(name = "impl",value = "实现方法",required = true,dataType = "String")
     private String impl;
+	
+	@TableField(exist = false)
+	@ApiModelProperty(name = "version",value = "版本",required = true,dataType = "String")
+    private String version;
 
 }

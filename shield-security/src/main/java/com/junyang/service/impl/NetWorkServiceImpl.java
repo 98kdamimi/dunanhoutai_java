@@ -28,6 +28,7 @@ import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.network.NetWorkEntity;
 import com.junyang.entity.response.DicEntity;
+import com.junyang.entity.response.DicResEntity;
 import com.junyang.entity.uploadefiel.UploadFileEntity;
 import com.junyang.enums.FilePathEnums;
 import com.junyang.enums.HttpAddressEunms;
@@ -140,10 +141,11 @@ public class NetWorkServiceImpl extends BaseApiService implements NetWorkService
 			Query query = new Query();
 			query.addCriteria(Criteria.where("status").is(ReleaseStateEnums.TOP_LINE.getLable()));
 			List<NetWorkEntity> listAll = mongoTemplate.find(query, NetWorkEntity.class);
-			List<DicEntity> list = new ArrayList<DicEntity>();
+			List<DicResEntity> list = new ArrayList<DicResEntity>();
 			if(listAll != null && listAll.size() > 0) {
 				for (int i = 0; i < listAll.size(); i++) {
-					DicEntity dicEntity = new DicEntity();
+					DicResEntity dicEntity = new DicResEntity();
+					dicEntity.setId(listAll.get(i).getImpl()+"--"+listAll.get(i).getChainId());
 					dicEntity.setLable(listAll.get(i).getId());
 					dicEntity.setName(listAll.get(i).getChainId());
 					dicEntity.setValue("主链名称:"+listAll.get(i).getName()+

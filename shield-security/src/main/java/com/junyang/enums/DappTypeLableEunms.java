@@ -6,14 +6,14 @@ package com.junyang.enums;
  * @author coocaa
  *
  */
-public enum TokenTypeLableEunms {
+public enum DappTypeLableEunms {
 	TAG("tag"),
 	CATEGORY("category");
 	
 
 	private String name;
 
-	private TokenTypeLableEunms(String name) {
+	private DappTypeLableEunms(String name) {
 		this.name = name;
 	}
 

@@ -1,4 +1,4 @@
-package com.junyang.service;
+ package com.junyang.service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,5 +45,14 @@ public interface DappService {
 	@PostMapping("/add")
 	@ApiOperation(value = "新增",notes = "新增",response = ResponseBase.class)
 	ResponseBase add(String dataStr,MultipartFile file);
+	
+	@GetMapping("/rpcTop")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+	@ApiOperation(value = "获取第三方热门dapp",notes = "获取第三方热门dapp",response = ResponseBase.class)
+	ResponseBase rpcTop();
+	
+	@GetMapping("/rpcDapp")
+	@ApiOperation(value = "获取第三方dapp",notes = "获取第三方dapp",response = ResponseBase.class)
+	ResponseBase rpcDapp();
+
 
 }

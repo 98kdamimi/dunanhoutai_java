@@ -38,7 +38,7 @@ public class MessageServiceImpl extends BaseApiService implements MessageService
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	@Value("${msg_http_url}")
+	@Value("${http_url}")
 	private String HTTP_URL;
 
 	@Override

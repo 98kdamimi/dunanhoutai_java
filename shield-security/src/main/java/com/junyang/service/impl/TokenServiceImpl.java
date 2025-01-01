@@ -1,9 +1,13 @@
 package com.junyang.service.impl;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,17 +32,23 @@ import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
+import com.junyang.entity.dapp.DappEntity;
+import com.junyang.entity.device.DeviceCertificateEntity;
 import com.junyang.entity.response.DicEntity;
 import com.junyang.entity.response.RpcResponseEntity;
 import com.junyang.entity.token.PlatformTokenEntity;
+import com.junyang.entity.token.SwapTokenEntity;
 import com.junyang.entity.token.TokenEntity;
 import com.junyang.entity.uploadefiel.UploadFileEntity;
 import com.junyang.enums.FilePathEnums;
 import com.junyang.enums.HttpAddressEunms;
+import com.junyang.enums.ReleaseStateEnums;
 import com.junyang.enums.SourceEnums;
+import com.junyang.poi.statistics.SwapTokenPoi;
 import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.TokenService;
 import com.junyang.utils.CoinGeckoAPIUtil;
+import com.junyang.utils.ExcelUtils;
 import com.junyang.utils.FileUploadUtil;
 import com.junyang.utils.GenericityUtil;
 import com.junyang.utils.HttpUtil;
@@ -307,12 +318,77 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 		return null;
 	}
 	
-	public static void main(String[] args) {
-        String appKey = "e319ff87a739c81ca6e26113";
-        String masterSecret = "b0eb573b78c193aa7d2acafc";
-        String authString = appKey + ":" + masterSecret;
-        String base64AuthString = Base64.getEncoder().encodeToString(authString.getBytes());
-        System.out.println("Authorization: Basic " + base64AuthString);
-    }
+	@Override
+	public ResponseBase upload(MultipartFile file) {
+		try {
+			List<SwapTokenPoi> list = ExcelUtils.importData(file, SwapTokenPoi.class);
+			System.out.println(list.size());
+			Integer temp = 0;
+			List<Map<String, Object>> retList = new ArrayList<>();
+			if(list != null && list.size() > 0) {
+				for (int i = 0; i < list.size(); i++) {
+					String code = list.get(i).getCode();
+					String netWork = list.get(i).getNetwork();
+					String name = list.get(i).getName();
+					Query query = new Query();
+					if(code != null) {
+						query.addCriteria(Criteria.where("symbol").is(code));
+					}
+					if(netWork != null ) {
+						query.addCriteria(Criteria.where("chainId").is(netWork));
+					}
+					List<SwapTokenEntity> tokenList = mongoTemplate.find(query, SwapTokenEntity.class);
+					if(tokenList != null && tokenList.size() > 0) {
+						for (int j = 0; j < tokenList.size(); j++) {
+							if(name.equals(tokenList.get(j).getName())) {
+								Query queryTwo = new Query();
+								if(tokenList.get(j).getChainId() != null) {
+									queryTwo.addCriteria(Criteria.where("chainId").is(tokenList.get(j).getChainId()));
+								}
+								if(tokenList.get(j).getAddress()!= null) {
+									queryTwo.addCriteria(Criteria.where("address").is(tokenList.get(j).getAddress()));
+								}if(tokenList.get(j).getSymbol()!= null) {
+									queryTwo.addCriteria(Criteria.where("symbol").is(tokenList.get(j).getSymbol()));
+								}
+								Update update = new Update();
+								update.set("onramperId", list.get(i).getOnramperId());
+								update.set("onramperbuy", list.get(i).getSupportBuy());
+								update.set("onrampersell", list.get(i).getSupportSell());
+								mongoTemplate.findAndModify(queryTwo, update, SwapTokenEntity.class);
+								Map<String, Object> map = new HashMap<>();
+								map.put("token", JSON.toJSON(tokenList.get(j)));
+								map.put("onramperId", list.get(i).getOnramperId());
+								map.put("onramperbuy", list.get(i).getSupportBuy());
+								map.put("onrampersell", list.get(i).getSupportSell());
+								retList.add(map);
+								temp +=1;
+							}
+						}
+					}
+				}
+			}
+			System.out.println(temp);
+			return setResultSuccess(retList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase findSwapToken() {
+		try {
+			Query queryTwo = new Query(Criteria.where("_id").is("6720985fab5f02bb03951802"));
+			Update update = new Update();
+			update.set("onramperId", "bfg_bsc");
+			update.set("onramperbuy", "true");
+			update.set("onrampersell", "false");
+			mongoTemplate.findAndModify(queryTwo, update, SwapTokenEntity.class);
+	        return setResultSuccess();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
 	
 }

@@ -9,12 +9,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
-
-import com.junyang.enums.CoingeckoSiteEunms;
-
+import com.junyang.config.DappConfig;
 import lombok.var;
 
 public class HttpUtil {
@@ -299,4 +296,47 @@ public class HttpUtil {
 		}
 	}
 
+	public static String dappGet(String url) {
+        String result = "";
+        try {
+            HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+            // 设置通用请求属性
+            conn.setRequestProperty("accept", "*/*");
+            conn.setRequestProperty("connection", "Keep-Alive");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("X-API-KEY", DappConfig.DAPP_KEY);
+            conn.setRequestProperty("User-Agent", "PostmanRuntime/7.30.0"); // 模拟Postman的UA
+            conn.setRequestMethod("GET");
+            conn.connect();
+            // 检查 HTTP 响应状态码
+            int responseCode = conn.getResponseCode();
+            if (responseCode != HttpURLConnection.HTTP_OK) {
+                try (InputStream errorStream = conn.getErrorStream();
+                     BufferedReader reader = new BufferedReader(new InputStreamReader(errorStream, StandardCharsets.UTF_8))) {
+                    StringBuilder errorResponse = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        errorResponse.append(line);
+                    }
+                    throw new IOException("HTTP error: " + responseCode + ", " + errorResponse.toString());
+                }
+            }
+            // 读取正常响应
+            try (InputStream in = conn.getInputStream();
+                 BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                result = sb.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+	
+	
 }

@@ -42,5 +42,13 @@ public interface TokenService {
 	@GetMapping("/findSource")
 	@ApiOperation(value = "代币来源",notes = "代币来源",response = ResponseBase.class)
 	ResponseBase findSource();
+	
+	@PostMapping("/upload")
+//	@ApiOperation(value = "导入匹配",notes = "导入匹配",response = ResponseBase.class)
+	ResponseBase upload(MultipartFile file);
+	
+	@PostMapping("/findSwapToken")
+//	@ApiOperation(value = "导入匹配",notes = "导入匹配",response = ResponseBase.class)
+	ResponseBase findSwapToken();
 
 }

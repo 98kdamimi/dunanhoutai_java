@@ -11,11 +11,11 @@ import com.junyang.entity.response.DicEntity;
  *
  */
 public enum LanguageEnums {
-	ZH_CN(1, "zh-CN", "中文"), 
+	ZH_CN(1, "zh-CN", "cht"), 
 //	ZH_HK(2, "zh-HK", "繁体中文"),
 //	FIL(3, "fil", ""), 
 //	PT_BR(4, "pt-BR", ""),
-	EN_US(5, "en-US", "英语");
+	EN_US(5, "en-US", "en");
 
 	private Integer index;
 

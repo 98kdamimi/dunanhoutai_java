@@ -42,6 +42,8 @@ public interface Constants {
 	
 	int PAGESIZE =10;
 	
+	int DAPP_PAGESIZE =10;
+	
 	Integer OPERATE_COUNT = 0;
 	
 	int FIND_ONE =1;
