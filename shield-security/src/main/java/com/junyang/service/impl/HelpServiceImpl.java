@@ -48,7 +48,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.DESC, "createdAt"));
+					Sort.by(Sort.Direction.DESC, "setTime"));
 			query.with(pageRequest);
 			List<HelpEntity> list = mongoTemplate.find(query, HelpEntity.class);
 			// 获取总记录数

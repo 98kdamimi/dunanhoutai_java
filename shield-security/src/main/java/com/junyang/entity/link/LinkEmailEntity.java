@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.junyang.entity.message.MessageEntity;
 import com.junyang.query.PageQueryHelperEntity;
 
 import io.swagger.annotations.ApiModel;

@@ -23,7 +23,6 @@ import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
 import com.junyang.entity.AbbreviationEntity.AbbreviationEntity;
-import com.junyang.entity.help.HelpEntity;
 import com.junyang.entity.response.RpcResponseEntity;
 import com.junyang.enums.HttpAddressEunms;
 import com.junyang.service.AbbreviationService;
@@ -52,7 +51,7 @@ public class AbbreviationServiceImpl extends BaseApiService implements Abbreviat
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.DESC, "createdAt"));
+					Sort.by(Sort.Direction.DESC, "setTime"));
 			query.with(pageRequest);
 			List<AbbreviationEntity> list = mongoTemplate.find(query, AbbreviationEntity.class);
 			// 获取总记录数

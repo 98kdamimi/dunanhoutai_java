@@ -21,6 +21,14 @@ public class PublicQueryEntity extends PageQueryHelperEntity{
     private String endTime;
 	
 	@TableField(exist = false)
+	@ApiModelProperty(name = "begMonth",value = "查询条件开始月份",required = true,dataType = "String")
+    private String begMonth;
+	
+	@TableField(exist = false)
+	@ApiModelProperty(name = "endMonth",value = "查询条件结束月份",required = true,dataType = "String")
+    private String endMonth;
+	
+	@TableField(exist = false)
 	@ApiModelProperty(name = "serialNumber",value = "序列号",required = true,dataType = "String")
     private String serialNumber;
 	

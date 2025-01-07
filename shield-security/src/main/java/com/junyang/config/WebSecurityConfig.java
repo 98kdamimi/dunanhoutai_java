@@ -66,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/druid/**").permitAll()
                 .antMatchers("/sysApk/findLastVersion").permitAll()
                 .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/version/msgWarn").permitAll()
                 //swagger放行
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/images/**").permitAll()
