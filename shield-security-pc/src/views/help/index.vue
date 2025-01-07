@@ -248,9 +248,27 @@ export default {
 };
 </script>
 <style>
+.mainBox {
+  height: calc(100vh - 84px);
+  overflow-y: auto;
+  background-color: #efefef;
+
+}
+
 .flex_sb {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.conetntBox {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>

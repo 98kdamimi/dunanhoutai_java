@@ -5,7 +5,7 @@
         <div class="flex_sb">
           <el-form :model="queryParams"  size="small" :inline="true" label-width="68px">
             <el-form-item label="" prop="messageTitleZh">
-              <el-select v-model="queryParams.releaseState" placeholder="请选择状态">
+              <el-select v-model="queryParams.status" placeholder="请选择状态">
                     <el-option
                       v-for="item in statusList"
                       :key="item.id"
@@ -24,44 +24,51 @@
         <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="IOS版本" align="center">
             <template slot-scope="scope">
-             {{ scope.row.ios.iosVersion }}
+             {{ scope.row.software.ios.version }}
             </template>
           </el-table-column>
           <el-table-column label="IOS地址" align="center">
             <template slot-scope="scope">
-              {{ scope.row.ios.url }}
+              {{ scope.row.software.ios.url }}
             </template>
           </el-table-column>
           <el-table-column label="安卓版本" align="center">
             <template slot-scope="scope">
-              {{ scope.row.android.androidVersion }}
+              {{ scope.row.software.android.version }}
             </template>
           </el-table-column>
           <el-table-column label="安卓地址" align="center" >
             <template slot-scope="scope">
-              {{ scope.row.android.url }}
+              {{ scope.row.software.android.url }}
             </template>
           </el-table-column>
           <el-table-column label="谷歌版本" align="center">
             <template slot-scope="scope">
-              {{ scope.row.android.google.googleVersion }}
+              {{ scope.row.software.android.google.version }}
             </template>
           </el-table-column>
           <el-table-column label="谷歌地址" align="center" prop="releaseState">
             <template slot-scope="scope">
-              {{ scope.row.android.google.url }}
+              {{ scope.row.software.android.google.url }}
             </template>
           </el-table-column>
           <el-table-column label="发行状态" align="center" prop="releaseState">
             <template slot-scope="scope">
-              <span v-if="scope.row.releaseState == 1" style="color: red;">下线</span>
-              <span v-if="scope.row.releaseState == 2" style="color: green;">上线</span>
-              <span v-if="scope.row.releaseState == 0" style="color: blue;">待上线</span>
+              <span v-if="scope.row.software.onlineState == 1" style="color: red;">下线</span>
+              <span v-if="scope.row.software.onlineState == 2" style="color: green;">上线</span>
+              <span v-if="scope.row.software.onlineState == 0" style="color: blue;">待上线</span>
             </template>
           </el-table-column>
-          <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+          <el-table-column label="是否强制更新" align="center" prop="releaseState">
             <template slot-scope="scope">
-              <el-button type="primary" v-if="scope.row.releaseState == 0" @click="online(scope.row)">上线</el-button>
+              <span v-if="scope.row.forceUpdateLable == 1" style="color: red;">是</span>
+              <span v-else style="color: blue;">否</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="320">
+            <template slot-scope="scope">
+              <el-button type="primary" v-if="scope.row.software.onlineState == 0" @click="forceOnline(scope.row)">强制更新上线</el-button>
+              <el-button type="success" v-if="scope.row.software.onlineState == 0" @click="online(scope.row)">普通更新上线</el-button>
             </template>
           </el-table-column>
 
@@ -124,6 +131,7 @@ export default {
     getList() {
       this.loading = true;
       versionList(this.queryParams).then(res =>{
+        console.log(res)
         this.dataList = res.data.list
         this.total = res.data.total
         this.loading = false
@@ -164,7 +172,6 @@ export default {
     submitForm: function () {
       this.$refs["formData"].validate(valid => {
         if (valid) {
-          console.log(this.formData)
           dappUpdata(this.formData).then(res => {
             console.log(res)
             this.$modal.msgSuccess("新增成功");
@@ -175,10 +182,20 @@ export default {
       });
     },
 
-    //上线
+    //强制更新上线
+    forceOnline(row){
+      this.$modal.confirm('是否确认上线？').then(function () {
+        return versionOnline(row.id,1);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("上线成功");
+      }).catch(() => { });
+    },
+
+    //普通上线
     online(row){
       this.$modal.confirm('是否确认上线？').then(function () {
-        return versionOnline(row.id);
+        return versionOnline(row.id,2);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("上线成功");

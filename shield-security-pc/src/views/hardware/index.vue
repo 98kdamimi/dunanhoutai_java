@@ -5,7 +5,7 @@
         <div class="flex_sb">
           <el-form :model="queryParams"  size="small" :inline="true" label-width="68px">
             <el-form-item label="" prop="messageTitleZh">
-              <el-select v-model="queryParams.releaseState" placeholder="请选择状态">
+              <el-select v-model="queryParams.status" placeholder="请选择状态">
                     <el-option
                       v-for="item in statusList"
                       :key="item.id"
@@ -22,31 +22,37 @@
         </div>
 
         <el-table :data="dataList" max-height="600" v-loading="loading">
-          <el-table-column label="设备版本" align="center" prop="releaseState">
+          <el-table-column label="加载程序版本" align="center" prop="releaseState">
             <template slot-scope="scope">
-             {{ scope.row.firmwareVersion }}
+             {{ scope.row.hardware.bootloaders[0].version }}
             </template>
           </el-table-column>
-          <el-table-column label="下载地址" align="center" prop="releaseState">
+          <el-table-column label="加载程序下载地址" align="center" prop="releaseState">
             <template slot-scope="scope">
-              {{ scope.row.url }}
+              {{ scope.row.hardware.bootloaders[0].url }}
             </template>
           </el-table-column>
-          <el-table-column label="版本说明" align="center" prop="releaseState">
+          <el-table-column label="固件版本" align="center" prop="releaseState">
             <template slot-scope="scope">
-              {{ scope.row.explainContent }}
+              {{ scope.row.hardware.firmwares[0].version }}
             </template>
           </el-table-column>
+          <el-table-column label="固件下载地址" align="center" prop="releaseState">
+            <template slot-scope="scope">
+              {{ scope.row.hardware.firmwares[0].url }}
+            </template>
+          </el-table-column>
+       
           <el-table-column label="发行状态" align="center" prop="releaseState">
             <template slot-scope="scope">
-              <span v-if="scope.row.releaseState == 1" style="color: red;">下线</span>
-              <span v-if="scope.row.releaseState == 2" style="color: green;">上线</span>
-              <span v-if="scope.row.releaseState == 0" style="color: blue;">待上线</span>
+              <span v-if="scope.row.hardware.onlineState == 1" style="color: red;">下线</span>
+              <span v-if="scope.row.hardware.onlineState == 2" style="color: green;">上线</span>
+              <span v-if="scope.row.hardware.onlineState == 0" style="color: blue;">待上线</span>
             </template>
           </el-table-column>
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
-              <el-button type="primary" v-if="scope.row.releaseState == 0" @click="online(scope.row)">上线</el-button>
+              <el-button type="primary" v-if="scope.row.hardware.onlineState == 0" @click="online(scope.row)">上线</el-button>
             </template>
           </el-table-column>
 

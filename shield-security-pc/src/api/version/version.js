@@ -3,19 +3,20 @@ import request from '@/utils/request'
 // 版本管理列表
 export function versionList(data) {
     return request({
-        url: 'version/findList',
+        url: 'version/softwareList',
         method: 'post',
         data
     })
 }
 
 // 上线
-export function versionOnline(id) {
+export function versionOnline(id,forceUpdateLable) {
     return request({
         url: 'version/onlineSoftware',
-        method: 'post',
+        method: 'get',
         params: {
-            'id': id
+            'id': id,
+            "forceUpdateLable":forceUpdateLable
         }
     })
 }
@@ -33,7 +34,7 @@ export function versionOffline(id) {
 //硬件列表
 export function hardwareFindList(data) {
     return request({
-        url: 'version/hardwareFindList',
+        url: 'version/hardwareList',
         method: 'post',
         data
     })
@@ -43,7 +44,7 @@ export function hardwareFindList(data) {
 export function onlineHardware(id) {
     return request({
         url: 'version/onlineHardware',
-        method: 'post',
+        method: 'get',
         params: {
             'id': id
         }
