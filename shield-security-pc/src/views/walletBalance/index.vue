@@ -29,9 +29,14 @@
                 <el-table-column label="代币名称" prop="name"></el-table-column>
                 <el-table-column label="代币地址" prop="address"></el-table-column>
                 <el-table-column label="coingeckoId" prop="coingeckoId"></el-table-column>
+                <el-table-column label="代币数量"  align="center" prop="tokenNum">
+                  <template slot-scope="scope">
+                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.tokenNum }}</span>
+                  </template>
+                </el-table-column>
                 <el-table-column label="代币余额" align="center">
                   <template slot-scope="scope">
-                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.balance }}</span>
+                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.balance +"$"}}</span>
                   </template>
                 </el-table-column>
               </el-table>
@@ -39,7 +44,14 @@
           </el-table-column>
           <el-table-column label="所属网络" prop="network"></el-table-column>
           <el-table-column label="钱包地址" prop="walletAddress"></el-table-column>
-          <el-table-column label="更新时间" prop="updatedAt"></el-table-column>
+          <el-table-column label="钱包总额" prop="walletSum">
+            <template slot-scope="scope">
+              <span style="font-size: 18px;font-weight: bold;">{{ scope.row.walletSum +"$"}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="更新时间" prop="updatedAt">
+            
+          </el-table-column>
         </el-table>
         <pagination v-show="total > 0" :total="total" :page.sync="queryParams.pageNumber"
           :limit.sync="queryParams.pageSize" @pagination="getList" />
