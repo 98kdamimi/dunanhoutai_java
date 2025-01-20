@@ -24,6 +24,9 @@ public class TokenBalanceEntity {
 	@ApiModelProperty(name = "balance", value = "代币的余额", required = false, dataType = "String")
 	private String balance;
 	
+	@ApiModelProperty(name = "tokenNum", value = "代币数量", required = false, dataType = "Integer")
+	private Integer tokenNum;
+	
 	@ApiModelProperty(name = "tokenId", value = "代币的 MongoDB _id，用于唯一标识该代币", required = false, dataType = "String")
 	private String tokenId;
 	

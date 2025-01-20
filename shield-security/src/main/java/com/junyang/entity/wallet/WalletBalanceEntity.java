@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Document(collection = "walletbalance")
+@Document(collection = "walletbalances")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "钱包余额",description = "钱包余额")
 public class WalletBalanceEntity extends PageQueryHelperEntity{
@@ -29,6 +29,10 @@ public class WalletBalanceEntity extends PageQueryHelperEntity{
 	@TableField("walletAddress")
 	@ApiModelProperty(name = "walletAddress", value = "钱包地址", required = false, dataType = "String")
 	private String walletAddress;
+	
+	@TableField("walletSum")
+	@ApiModelProperty(name = "walletSum", value = "钱包总额", required = false, dataType = "String")
+	private String walletSum;
 	
 	@TableField("createdAt")
 	@ApiModelProperty(name = "createdAt", value = "创建时间", required = false, dataType = "String")

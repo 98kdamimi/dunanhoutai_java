@@ -1,4 +1,8 @@
 package com.junyang.service.impl;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,6 +151,19 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 		}
 	}
 	
-	
+	public static void main(String[] args) {
+        // Base64 字符串
+        String base64String = "Az8fMFAhc+F2fZek0OY+yxdwMRXehh0MCnchzehW/FVLpA6JoBNsskRfhNjbjcU+LNceYPTDnFClVOTXbcHv8NvtedAMCLKaLyLq7jwHgCOZ330rGvJ9YAjMIYxWMLiSQxBkX6BITXAaQv79x3+ySe6iivq4wcbJiB2nZnLAiUe6+0ydXZ7f1yOV9M6PEHTiubB1WQO56fGExSi+ToGHXnJW+EuriNhxz48PdPjOGW+nr2b30UhowrDagbRZfoLJF5IpE9cZ/PR91B8qYFxe0Y66hNvfi6VbeX5I6T9fGrAsm7nt6NZ2H/mSpesKWggplMpH5mJa2ElUjOzsQNnjEGA6uJ3DLHRNGUzO/mFCz1rfW6V+IGmUsk/1/2XPQN36zPKfHuR2PcO";
 
+        // 解码 Base64 字符串为字节数组
+        byte[] decodedBytes = Base64.getDecoder().decode(base64String);
+
+        // 假设解码内容是UTF-8编码的文本
+        try {
+            String decodedString = new String(decodedBytes, "UTF-8");
+            System.out.println("Decoded String: " + decodedString);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 }
