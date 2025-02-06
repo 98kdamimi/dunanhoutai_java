@@ -22,9 +22,17 @@ public class WalletBalanceEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "id", value = "主键", required = false, dataType = "String")
 	private String id;
 	
-	@TableField("network")
-	@ApiModelProperty(name = "network", value = "所属网络", required = false, dataType = "String")
-	private String network;
+	@TableField("accountId")
+	@ApiModelProperty(name = "accountId", value = "账户id", required = false, dataType = "String")
+	private String accountId;
+	
+	@TableField("networkId")
+	@ApiModelProperty(name = "networkId", value = "所属网络", required = false, dataType = "String")
+	private String networkId;
+	
+	@TableField("networkName")
+	@ApiModelProperty(name = "networkName", value = "所属网络", required = false, dataType = "String")
+	private String networkName;
 	
 	@TableField("walletAddress")
 	@ApiModelProperty(name = "walletAddress", value = "钱包地址", required = false, dataType = "String")

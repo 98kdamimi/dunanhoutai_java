@@ -26,23 +26,30 @@
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-table :data="props.row.tokenBalan" style="width: 100%">
+                <el-table-column label="logo" align="center" width="180">
+                  <template slot-scope="scope">
+                    <div style="width: 70%; height: 60px; overflow: hidden; cursor: pointer;" >
+                      <img :src="scope.row.logoURI" alt="图片" style="width: 100%; height: 100%; object-fit: contain;" />
+                    </div>
+                  </template>
+                </el-table-column>
                 <el-table-column label="代币名称" prop="name"></el-table-column>
                 <el-table-column label="代币地址" prop="address"></el-table-column>
                 <el-table-column label="coingeckoId" prop="coingeckoId"></el-table-column>
-                <el-table-column label="代币数量"  align="center" prop="tokenNum">
+                <el-table-column label="代币余额"  align="center" prop="tokenNum">
                   <template slot-scope="scope">
-                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.tokenNum }}</span>
+                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.balance }}</span>
                   </template>
                 </el-table-column>
-                <el-table-column label="代币余额" align="center">
+                <el-table-column label="代币USDT余额" align="center">
                   <template slot-scope="scope">
-                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.balance +"$"}}</span>
+                    <span style="font-size: 18px;font-weight: bold;">{{ scope.row.usdValue +"$"}}</span>
                   </template>
                 </el-table-column>
               </el-table>
             </template>
           </el-table-column>
-          <el-table-column label="所属网络" prop="network"></el-table-column>
+          <el-table-column label="所属网络" prop="networkName"></el-table-column>
           <el-table-column label="钱包地址" prop="walletAddress"></el-table-column>
           <el-table-column label="钱包总额" prop="walletSum">
             <template slot-scope="scope">
