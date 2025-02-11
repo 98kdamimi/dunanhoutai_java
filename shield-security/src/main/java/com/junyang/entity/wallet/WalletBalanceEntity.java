@@ -54,6 +54,12 @@ public class WalletBalanceEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "tokenBalan", value = "代币余额", required = false, dataType = "String")
 	private List<TokenBalanceEntity> tokenBalan;
 	
+	@ApiModelProperty(name = "network", value = "查询参数", required = false, dataType = "String")
+	private String network;
+	
+	@ApiModelProperty(name = "tokenName", value = "查询参数", required = false, dataType = "String")
+	private String tokenName;
+	
 	
 
 }
