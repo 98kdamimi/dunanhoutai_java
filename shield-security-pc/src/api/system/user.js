@@ -169,3 +169,25 @@ export function generateToken() {
         method: 'get',
     })
 }
+
+
+export function IssueGoogleSecretkey(userName) {
+    return request({
+        url: '/user/IssueGoogleSecretkey',
+        method: 'get',
+        params: {
+            'userName': userName,
+        }
+    })
+}
+
+export function upGoogleSecretkey(userId,googleSecretkey) {
+    return request({
+        url: '/user/upGoogleSecretkey',
+        method: 'get',
+        params: {
+            'userId': userId,
+            'googleSecretkey':googleSecretkey
+        }
+    })
+}

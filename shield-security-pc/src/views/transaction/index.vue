@@ -29,7 +29,7 @@
           <el-table-column label="交易数量" align="center" key="amount" prop="amount"/>
           <el-table-column label="交易类型" align="center" key="type" prop="type"/>
           <el-table-column label="交易方向" align="center" key="direction" prop="direction"/>
-          <el-table-column label="交易时间" align="center" key="timestamp" prop="timestamp"/>
+          <el-table-column label="交易时间" align="center" key="createdAt" prop="createdAt"/>
         </el-table>
         <pagination v-show="total > 0" :total="total" :page.sync="queryParams.pageNumber"
           :limit.sync="queryParams.pageSize" @pagination="getList" />

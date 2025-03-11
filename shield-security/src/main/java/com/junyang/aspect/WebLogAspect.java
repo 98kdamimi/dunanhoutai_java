@@ -58,9 +58,11 @@ public class WebLogAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         UsernamePasswordAuthenticationToken token = JWTAuthenticationFilter.getAuthentication(request);
-		String username = token.getName();
 		entity = new SysLogEntity();
-		entity.setUserName(username);
+		if(token != null) {
+	        String username = token.getName();
+			entity.setUserName(username);			
+		}
         // 记录请求开始
         log.info("##################### 请求开始 ####################");
         log.info("URL : " + request.getRequestURL().toString());

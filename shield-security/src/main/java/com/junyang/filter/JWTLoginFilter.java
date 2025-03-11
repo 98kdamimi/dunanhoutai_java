@@ -1,8 +1,11 @@
 package com.junyang.filter;
+
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.junyang.constants.Constants;
+import com.junyang.dao.system.SysUserDao;
 import com.junyang.entity.system.SysUserEntity;
+import com.junyang.enums.UserStateEnums;
 import com.junyang.exception.BaseException;
 import com.junyang.utils.CustomUtils;
 import com.junyang.utils.GoogleAuthenticatorUtil;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * jwt登录拦截器 登录controller方法不用自己写，直接访问/login就行
@@ -37,13 +41,16 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 	private AuthenticationManager authenticationManager;
 
 	private RedisUtil redisUtil;
-	
+
 	@Autowired
 	private GoogleAuthenticatorUtil googleAuthenticator;
 
-	public JWTLoginFilter(AuthenticationManager authenticationManager, RedisUtil redisUtil) {
+	private SysUserDao sysUserDao;
+
+	public JWTLoginFilter(AuthenticationManager authenticationManager, RedisUtil redisUtil, SysUserDao sysUserDao) {
 		this.authenticationManager = authenticationManager;
 		this.redisUtil = redisUtil;
+		this.sysUserDao = sysUserDao;
 	}
 
 	/**
@@ -58,11 +65,11 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 		try {
 			// 请求头反序列化获得User对象
 			SysUserEntity sysUserLoginDTO = new ObjectMapper().readValue(req.getInputStream(), SysUserEntity.class);
-			if(sysUserLoginDTO.getGoogleCode() != null) {
+			if (sysUserLoginDTO.getGoogleCode() != null) {
 				redisUtil.set(Constants.GOOGLE_COCE, sysUserLoginDTO.getGoogleCode());
 				return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 						sysUserLoginDTO.getUsername(), sysUserLoginDTO.getPassword(), new ArrayList<>()));
-			}else {
+			} else {
 				CustomUtils.sendJsonMessage(res, JsonData.Error("请输入谷歌验证码"));
 				return null;
 			}
@@ -85,35 +92,41 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 	protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain,
 			Authentication auth) throws IOException, ServletException {
 		String code = redisUtil.get(Constants.GOOGLE_COCE).toString();
-		Boolean temp = googleAuthenticator.verifyCode(Constants.googleKey, Integer.parseInt(code));
-		if(temp) {
-			// 获取权限主题
-			String subject = auth.getName();
-			// subject中存入用户名和角色权限
-			String token = Jwts.builder()
-					// 设置主题
-					.setSubject(subject)
-					// 设置到期时间
-					.setExpiration(new Date(System.currentTimeMillis() + Constants.REDIS_EXPIRE_TIME))
-					// 选择 加密算法和私钥
-					.signWith(SignatureAlgorithm.HS512, Constants.SIGNING_KEY).compact();
-			// 登录用户token存入redis
-			if (subject.indexOf(",") == -1) {
-				redisUtil.set(Constants.APP_PACKAGE_NAME + subject, Constants.AUTH_HEADER_START_WITH + token);
-				System.out.println("redisInfo"+redisUtil.get(Constants.APP_PACKAGE_NAME + subject).toString());
-			} else {
-				redisUtil.set(Constants.APP_PACKAGE_NAME + subject.substring(0, subject.indexOf(",")), Constants.AUTH_HEADER_START_WITH + token);
-			}
-			
-			// token返回到请求头中，前端在请求头中获取
-			res.setHeader(Constants.HEADER_ACCESS, Constants.HEADER_AUTH);
-			res.addHeader(Constants.HEADER_AUTH, Constants.AUTH_HEADER_START_WITH + token);
+		
+		// 获取权限主题
+		String subject = auth.getName();
+		SysUserEntity entity = sysUserDao.findByAcctiveState(subject, UserStateEnums.NORMAL.getIndex());
+		if(entity.getGoogleSecretkey() !=null && entity.getGoogleSecretkey().length()>0) {
+			Boolean temp = googleAuthenticator.verifyCode(entity.getGoogleSecretkey(), Integer.parseInt(code));
+			if(temp) {
+				// subject中存入用户名和角色权限
+				String token = Jwts.builder()
+						// 设置主题
+						.setSubject(subject)
+						// 设置到期时间
+						.setExpiration(new Date(System.currentTimeMillis() + Constants.REDIS_EXPIRE_TIME))
+						// 选择 加密算法和私钥
+						.signWith(SignatureAlgorithm.HS512, Constants.SIGNING_KEY).compact();
+				// 登录用户token存入redis
+				if (subject.indexOf(",") == -1) {
+					redisUtil.set(Constants.APP_PACKAGE_NAME + subject, Constants.AUTH_HEADER_START_WITH + token);
+				} else {
+					redisUtil.set(Constants.APP_PACKAGE_NAME + subject.substring(0, subject.indexOf(",")),
+							Constants.AUTH_HEADER_START_WITH + token);
+				}
 
-			CustomUtils.sendJsonMessage(res, JsonData.buildSuccess("登录成功"));
+				// token返回到请求头中，前端在请求头中获取
+				res.setHeader(Constants.HEADER_ACCESS, Constants.HEADER_AUTH);
+				res.addHeader(Constants.HEADER_AUTH, Constants.AUTH_HEADER_START_WITH + token);
+
+				CustomUtils.sendJsonMessage(res, JsonData.buildSuccess("登录成功"));
+			}else {
+				CustomUtils.sendJsonMessage(res, JsonData.Error("谷歌验证失败"));
+			}
 		}else {
 			CustomUtils.sendJsonMessage(res, JsonData.Error("谷歌验证失败"));
 		}
-		
+
 	}
 
 }

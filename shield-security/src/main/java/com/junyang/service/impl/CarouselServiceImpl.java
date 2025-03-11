@@ -121,6 +121,8 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 					}
 					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
 					String jsonParam = JSON.toJSONString(jsonObject);
+					System.out.println(HTTP_URL+HttpAddressEunms.CAROUSE_ADD.getName());
+					System.out.println(jsonParam);
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.CAROUSE_ADD.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
@@ -202,6 +204,8 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 					}
 					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
 					String jsonParam = JSON.toJSONString(jsonObject);
+					System.out.println(HTTP_URL+HttpAddressEunms.CAROUSE_UPDATE.getName());
+					System.out.println(jsonParam);
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.CAROUSE_UPDATE.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {

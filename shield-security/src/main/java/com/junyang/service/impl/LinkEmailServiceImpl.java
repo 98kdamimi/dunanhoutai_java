@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
@@ -23,17 +22,12 @@ import com.github.pagehelper.PageInfo;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
-import com.junyang.entity.carouse.CarouselEntity;
 import com.junyang.entity.link.LinkEmailEntity;
 import com.junyang.entity.response.RpcResponseEntity;
-import com.junyang.entity.system.UserAgreementEntity;
-import com.junyang.enums.FilePathEnums;
 import com.junyang.enums.HttpAddressEunms;
 import com.junyang.service.LinkEmailService;
 import com.junyang.utils.GenericityUtil;
 import com.junyang.utils.HttpUtil;
-
-import io.swagger.annotations.Authorization;
 
 @RestController
 @CrossOrigin

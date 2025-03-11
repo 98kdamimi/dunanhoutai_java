@@ -47,6 +47,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 			throws IOException, ServletException {
 		try {
 			UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
+			System.out.println(authentication);
 			String header = request.getHeader(Constants.HEADER_AUTH);
 			String requestURI = request.getRequestURI();
 			// 没有token
@@ -118,7 +119,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 				}
 				return null;
 			} catch (ExpiredJwtException e) {
-				throw new RuntimeException();
+				e.printStackTrace();
 			}
 		}
 		return null;

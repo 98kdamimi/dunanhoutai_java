@@ -34,13 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
    @Autowired
-    RedisUtil redisUtil;
+   RedisUtil redisUtil;
 
    @Autowired
    AuthenticationLogout authenticationLogout;
 
    @Autowired
-    private SysUserDao sysUserMapper;
+   private SysUserDao sysUserMapper;
 
    private HttpServletResponse response;
 
@@ -86,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        .accessDeniedHandler(new TokenAccessDeniedHandler())   //权限不足时的逻辑处理
 		        //添加拦截器
                 .and()
-                .addFilter(new JWTLoginFilter(authenticationManager(),redisUtil))
+                .addFilter(new JWTLoginFilter(authenticationManager(),redisUtil,sysUserMapper))
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(),redisUtil));
     }
 

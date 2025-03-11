@@ -55,6 +55,14 @@ public interface SysUserService {
 	@GetMapping("/generateToken")
 	@ApiOperation(value = "发版token",notes="发版token",response=ResponseBase.class)
     ResponseBase generateToken();
+	
+	@GetMapping("/upGoogleSecretkey")
+	@ApiOperation(value = "修改谷歌验证密钥",notes="修改谷歌验证密钥",response=ResponseBase.class)
+    ResponseBase upGoogleSecretkey(Integer userId,String googleSecretkey);
+	
+	@GetMapping("/IssueGoogleSecretkey")
+	@ApiOperation(value = "签发谷歌验证密钥",notes="签发谷歌验证密钥",response=ResponseBase.class)
+    ResponseBase IssueGoogleSecretkey(String userName);
 
 
 }

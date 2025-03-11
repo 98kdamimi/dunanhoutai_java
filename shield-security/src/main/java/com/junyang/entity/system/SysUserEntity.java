@@ -72,6 +72,10 @@ public class SysUserEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "loginTime",value = "登录时间",required = true,dataType = "String")
     private Date loginTime;
 	
+	@TableField("google_secretkey")
+	@ApiModelProperty(name = "googleSecretkey",value = "谷歌密钥",required = true,dataType = "String")
+    private String googleSecretkey;
+	
 	@TableField(exist = false)
 	@ApiModelProperty(name = "userStateNmae",value = "用户状态名称",required = false,dataType = "Integer")
     private String userStateNmae;

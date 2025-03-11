@@ -1,6 +1,4 @@
 package com.junyang.service.impl;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.Date;

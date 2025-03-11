@@ -18,24 +18,27 @@
               <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
             </el-form-item>
           </el-form>
-          <span style="font-size: 24px;margin-right: 30px;font-weight: bold">代币总额：${{ numAll }}</span>
+          <span style="font-size: 24px;margin-right: 30px;font-weight: bold">钱包总额：${{ numAll }}</span>
         </div>
 
         <el-table :data="dataList" style="width: 100%" :row-key="row => row.id"  max-height="650">
-          <el-table-column label="代币名称" align="center" prop="_id"></el-table-column>
-          <el-table-column label="代币简称" align="center" prop="symbol"></el-table-column>
+          <el-table-column label="账户id" align="center" prop="accountId"></el-table-column>
+          <el-table-column label="钱包地址" align="center" prop="walletAddress"></el-table-column>
+          <el-table-column label="所属网络" align="center" prop="networkName"></el-table-column>
+          <el-table-column label="代币名称" align="center" prop="name"></el-table-column>
           <el-table-column label="合约地址" align="center" prop="address">
             <template slot-scope="scope" >
               <span v-if="scope.row.address ">{{"$"+ scope.row.address }}</span>
               <span v-else>/</span>
             </template>
           </el-table-column>
-          <el-table-column label="代币数量" align="center" prop="totalBalance"></el-table-column>
-          <el-table-column label="代币金额" align="center" prop="totalUsdValue">
+          <el-table-column label="代币数量" align="center" prop="balance"></el-table-column>
+          <el-table-column label="代币金额" align="center" prop="usdValue">
             <template slot-scope="scope">
-              <span>{{"$"+ scope.row.totalUsdValue }}</span>
+              <span>{{"$"+ scope.row.usdValue }}</span>
             </template>
           </el-table-column>
+          <el-table-column label="更新时间" align="center" prop="updatedAt"></el-table-column>
         </el-table>
         <pagination v-show="total > 0" :total="total" :page.sync="queryParams.pageNumber"
           :limit.sync="queryParams.pageSize" @pagination="getList" />
@@ -45,7 +48,7 @@
 </template>
 
 <script>
-import { getTotalUsdValueByName,walletInfoNunAll} from "@/api/walletBalance/walletBalance";
+import { walletInfoList,walletInfoNunAll} from "@/api/walletBalance/walletBalance";
 
 export default {
   name: "typesOfPoints",
@@ -69,6 +72,7 @@ export default {
   watch: {
   },
   created() {
+   
     this.getList();
   },
   methods: {
@@ -81,7 +85,7 @@ export default {
 
     getList() {
       this.loading = true;
-      getTotalUsdValueByName(this.queryParams).then(res => {
+      walletInfoList(this.queryParams).then(res => {
         this.dataList = res.data.list
         this.total = res.data.total
         this.loading = false
@@ -101,7 +105,20 @@ export default {
       this.getList();
     },
 
-   
+    formatDate(isoString) {
+      const date = new Date(isoString);
+      const formattedDate = new Intl.DateTimeFormat("zh-CN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZone: "Asia/Shanghai"
+      }).format(date);
+      return formattedDate;
+    }
+
   }
 };
 </script>

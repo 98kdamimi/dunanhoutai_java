@@ -26,6 +26,7 @@ import com.junyang.enums.UserStateEnums;
 import com.junyang.filter.JWTAuthenticationFilter;
 import com.junyang.service.SysUserService;
 import com.junyang.utils.FileUploadUtil;
+import com.junyang.utils.GoogleAuthenticatorUtil;
 import com.junyang.utils.RedisUtil;
 
 import io.jsonwebtoken.Jwts;
@@ -314,6 +315,33 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 			map.put("token", Constants.AUTH_HEADER_START_WITH + token);
 			list.add(map);
 			return setResultSuccess(list, Constants.SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase upGoogleSecretkey(Integer userId,String googleSecretkey) {
+		try {
+			SysUserEntity userEntity = sysUserDao.selectById(userId);
+			if(userEntity != null) {
+				userEntity.setGoogleSecretkey(googleSecretkey);
+				sysUserDao.updateById(userEntity);
+				return setResultSuccess();
+			}
+			return setResultError(Constants.ERROR);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase IssueGoogleSecretkey(String userName) {
+		try {
+			String key = GoogleAuthenticatorUtil.createKey(userName).getKey();
+			return setResultSuccess(key, Constants.SUCCESS);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();

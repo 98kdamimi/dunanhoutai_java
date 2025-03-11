@@ -7,10 +7,11 @@
 
     <div class="right-menu">
       <div style="position: relative; display: inline-block;cursor: pointer;" @click="openMsg">
-          <img src="../../assets/images/xiaoxi.png" style="width: 40px;height: 40px;margin-right: 25px;">
-          <div style="position: absolute; top: 0; right: 12px; background-color: red; color: white; border-radius: 50%; width: 20px; height: 20px; text-align: center; line-height: 20px; font-size: 12px;">
-            {{ msgNum }}
-          </div>
+        <img src="../../assets/images/xiaoxi.png" style="width: 40px;height: 40px;margin-right: 25px;">
+        <div
+          style="position: absolute; top: 0; right: 12px; background-color: red; color: white; border-radius: 50%; width: 20px; height: 20px; text-align: center; line-height: 20px; font-size: 12px;">
+          {{ msgNum }}
+        </div>
       </div>
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
@@ -18,13 +19,18 @@
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown">
-         <!-- <router-link to="/user/profile">
+          <!-- <router-link to="/user/profile">
             <el-dropdown-item>个人中心</el-dropdown-item>
           </router-link>
           <el-dropdown-item @click.native="setting = true">
             <span>布局设置</span>
           </el-dropdown-item>  -->
           <!-- divided -->
+          <el-dropdown-item>
+            <div @click="openUpGuge()">
+              <span>修改谷歌密钥</span>
+            </div>
+          </el-dropdown-item>
           <el-dropdown-item @click.native="logout">
             <span>退出登录</span>
           </el-dropdown-item>
@@ -32,10 +38,7 @@
       </el-dropdown>
     </div>
 
-    <el-dialog
-      title="版本更新提醒"
-      :visible.sync="dialogVisible"
-      width="30%">
+    <el-dialog title="版本更新提醒" :visible.sync="dialogVisible" width="30%">
       <div>
         <el-row>
           <el-col :span="24">
@@ -66,6 +69,32 @@
       </span>
     </el-dialog>
 
+
+    <el-dialog title="修改谷歌密钥" :visible.sync="gugeDialogVisible" width="30%">
+      <el-form ref="gugeData" :model="gugeData" label-width="100px">
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="原谷歌密钥" prop="googleSecretkey">
+              <el-input v-model="userInfo.googleSecretkey" style="width: 85%;" readonly />
+              <a href="#" style="margin-left: 20px;color: cornflowerblue;" @click="lodCopy(userInfo.googleSecretkey)">复制</a>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="新谷歌密钥" prop="googleSecretkey">
+              <el-input v-model="googleSecretkey" style="width: 85%;" readonly />
+              <a href="#" style="margin-left: 20px;color: cornflowerblue;" @click="newCopy(googleSecretkey)">复制</a>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="gugeSubmitForm" v-debounce>确 定</el-button>
+        <el-button @click="gugeCancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -80,7 +109,9 @@ import Search from '@/components/HeaderSearch'
 import RuoYiGit from '@/components/RuoYi/Git'
 import RuoYiDoc from '@/components/RuoYi/Doc'
 import ImportFile from '@/components/ImportFile'
-import { msgWarn,deleteMsg} from "@/api/version/version";
+import { msgWarn, deleteMsg } from "@/api/version/version";
+import { IssueGoogleSecretkey, upGoogleSecretkey } from "@/api/system/user";
+
 
 export default {
   components: {
@@ -97,12 +128,15 @@ export default {
   data() {
     return {
       userInfo: null,
-      msgNum:0,
+      msgNum: 0,
       dialogVisible: false,
-      iosVersion:"",
-      androidVersion:"",
-      googleVersion:"",
-      firmwareVersion:"",
+      gugeDialogVisible: false,
+      gugeData: {},
+      googleSecretkey: "",
+      iosVersion: "",
+      androidVersion: "",
+      googleVersion: "",
+      firmwareVersion: "",
       timer: null   // 用于保存定时器ID
     }
   },
@@ -149,9 +183,9 @@ export default {
       }, 60000); // 60000 毫秒 = 60 秒
     },
 
-    getMsgWarn(){
-      msgWarn().then(res =>{
-        if(res.data != null){
+    getMsgWarn() {
+      msgWarn().then(res => {
+        if (res.data != null) {
           this.iosVersion = res.data.ios.version.join('.')
           this.androidVersion = res.data.android.version.join('.')
           this.googleVersion = res.data.android.google.version.join('.')
@@ -161,28 +195,28 @@ export default {
       })
     },
 
-    closeMsg(){
-      deleteMsg().then(res =>{
+    closeMsg() {
+      deleteMsg().then(res => {
         this.msgNum = 0
         this.dialogVisible = false
       })
     },
 
-    openMsg(){
-      if(this.msgNum > 0){
+    openMsg() {
+      if (this.msgNum > 0) {
         this.dialogVisible = true
-      }else{
+      } else {
         this.$modal.msgError("没有新消息");
       }
     },
 
-    toUpVersion(){
+    toUpVersion() {
       const currentPath = this.$route.path;
       if (currentPath === '/version/software' || currentPath === '/version/hardware') {
         window.location.reload();  // 刷新当前页面
       } else {
         // 正常跳转
-        this.$router.push({ path:"version/software" }).catch(() => { });
+        this.$router.push({ path: "version/software" }).catch(() => { });
       }
       this.closeMsg()
       this.dialogVisible = false
@@ -201,7 +235,51 @@ export default {
           location.href = '/index';
         })
       }).catch(() => { });
+    },
+
+    openUpGuge() {
+      IssueGoogleSecretkey(this.userInfo.acctive).then(res => {
+        this.googleSecretkey = res.data
+      })
+      this.gugeDialogVisible = true
+    },
+
+    gugeSubmitForm() {
+      this.$modal.confirm('是否确认修改谷歌密钥？').then(() => {
+        return upGoogleSecretkey(this.userInfo.id, this.googleSecretkey);
+      }).then(() => {
+        this.gugeDialogVisible = false
+        this.$modal.msgSuccess("修改成功");
+      }).catch(() => {
+        // 这里可以捕获到错误并处理
+      });
+    },
+
+    gugeCancel() {
+      this.gugeDialogVisible = false
+    },
+
+    lodCopy(data){
+      try {
+        // 使用 Clipboard API 进行复制
+        navigator.clipboard.writeText(data);
+        this.$modal.msgSuccess("复制成功");
+      } catch (err) {
+        this.$modal.msgError("复制失败");
+      }
+    },
+
+    newCopy(data){
+      try {
+        // 使用 Clipboard API 进行复制
+        navigator.clipboard.writeText(data);
+        this.$modal.msgSuccess("复制成功");
+      } catch (err) {
+        this.$modal.msgError("复制失败");
+      }
     }
+
+
   }
 }
 </script>

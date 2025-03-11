@@ -1,4 +1,6 @@
 package com.junyang.entity.transaction;
+import java.util.Date;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.junyang.query.PageQueryHelperEntity;
@@ -71,9 +73,9 @@ public class TransactionEntity extends PageQueryHelperEntity{
 	
 	@TableField("createdAt")
 	@ApiModelProperty(name = "createdAt", value = "记录创建时间", required = false, dataType = "String")
-	private String createdAt;
+	private Date createdAt;
 	
 	@TableField("updatedAt")
 	@ApiModelProperty(name = "updatedAt", value = "更新时间", required = false, dataType = "String")
-	private String updatedAt;
+	private Date updatedAt;
 }
