@@ -18,7 +18,8 @@
               <span v-else>能量</span>
             </template>
           </el-table-column>
-          <el-table-column label="每日上限" align="center" prop="maxNum" />
+          <el-table-column label="每笔能量" align="center" prop="everyTrxNum" />
+          <el-table-column label="每日上限" align="center" prop="maxTrxNum" />
           <el-table-column label="有效时长" align="center" prop="invalidationTime">
             <template slot-scope="scope">
               {{ scope.row.invalidationTime / 60000 }} 分钟
@@ -57,8 +58,13 @@
               </el-form-item>
             </el-row>
             <el-row>
-              <el-form-item label="能量上限" prop="maxNum">
-                <el-input v-model="formData.maxNum" type="number" placeholder="请输入能量上限" style="width: 90%;"></el-input>
+              <el-form-item label="每笔委托能量" prop="everyTrxNum">
+                <el-input v-model="formData.everyTrxNum" type="number" placeholder="请输入每笔委托能量" style="width: 90%;"></el-input>
+              </el-form-item>
+            </el-row>
+            <el-row>
+              <el-form-item label="能量上限" prop="maxTrxNum">
+                <el-input v-model="formData.maxTrxNum" type="number" placeholder="请输入能量上限" style="width: 90%;"></el-input>
               </el-form-item>
             </el-row>
             <el-row>

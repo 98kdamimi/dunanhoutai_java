@@ -89,6 +89,10 @@ public class WalletBalanceInfoEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "symbol", value = "实现方式", required = false, dataType = "String")
 	private String symbol;
 	
+	@TableField("instanceId")
+	@ApiModelProperty(name = "instanceId", value = "实例id", required = false, dataType = "String")
+	private String instanceId;
+	
 	@TableField("createdAt")
 	@ApiModelProperty(name = "createdAt", value = "创建时间", required = false, dataType = "String")
 	private Date createdAt;

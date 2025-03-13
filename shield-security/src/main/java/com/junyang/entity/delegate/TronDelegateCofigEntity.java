@@ -21,16 +21,20 @@ public class TronDelegateCofigEntity {
 	@ApiModelProperty(name = "freeNum", value = "每日免费次数", required = false, dataType = "String")
 	private Integer freeNum = 3;
 	
-	@TableField("maxNum")
-	@ApiModelProperty(name = "maxNum", value = "每日委托量上限", required = false, dataType = "Double")
-	private Double maxNum;
+	@TableField("maxTrxNum")
+	@ApiModelProperty(name = "maxTrxNum", value = "每日委托量上限", required = false, dataType = "Double")
+	private Double maxTrxNum;
+	
+	@TableField("everyTrxNum")
+	@ApiModelProperty(name = "everyTrxNum", value = "每笔委托数量", required = false, dataType = "Double")
+	private Double everyTrxNum;
 	
 	@TableField("invalidationTime")
 	@ApiModelProperty(name = "invalidationTime", value = "失效时长", required = false, dataType = "String")
 	private Integer invalidationTime =50000;
 	
 	@TableField("energyType")
-	@ApiModelProperty(name = "energyType", value = "能量类型", required = false, dataType = "String")
+	@ApiModelProperty(name = "energyType", value = "委托类型", required = false, dataType = "String")
 	private String energyType ="BANDWIDTH";
 	 
 	@TableField("createdAt")

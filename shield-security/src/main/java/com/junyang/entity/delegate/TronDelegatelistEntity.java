@@ -30,6 +30,10 @@ public class TronDelegatelistEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "amount", value = "委托数量", required = false, dataType = "String")
 	private String amount;
 	
+	@TableField("resourceAmount")
+	@ApiModelProperty(name = "resourceAmount", value = "委托资源量", required = false, dataType = "String")
+	private String resourceAmount;
+	
 	@TableField("resourceType")
 	@ApiModelProperty(name = "resourceType", value = "委托类型", required = false, dataType = "String")
 	private String resourceType;
@@ -50,9 +54,17 @@ public class TronDelegatelistEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "updatedAt", value = "修改时间", required = false, dataType = "String")
 	private String updatedAt;
 	
-	@TableField("resourceAmount")
-	@ApiModelProperty(name = "resourceAmount", value = "委托资源量", required = false, dataType = "String")
-	private String resourceAmount;
+	@TableField("revocationTrxAmount")
+	@ApiModelProperty(name = "revocationTrxAmount", value = "撤销trx数量", required = false, dataType = "String")
+	private String revocationTrxAmount;
+	
+	@TableField("revocationAmount")
+	@ApiModelProperty(name = "revocationAmount", value = "撤销委托资源量", required = false, dataType = "String")
+	private String revocationAmount;
+	
+	@TableField("resourceState")
+	@ApiModelProperty(name = "resourceState", value = "委托状态", required = false, dataType = "String")
+	private Integer resourceState;
 	
 	@TableField("timestamp")
 	@ApiModelProperty(name = "timestamp", value = "修改时间", required = false, dataType = "String")
