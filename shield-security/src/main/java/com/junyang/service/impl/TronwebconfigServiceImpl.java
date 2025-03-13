@@ -11,27 +11,26 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
-import com.junyang.entity.delegate.TronDelegateCofigEntity;
-import com.junyang.service.TronDelegateConfigService;
+import com.junyang.entity.delegate.TronwebconfigEntity;
+import com.junyang.service.TronwebconfigService;
 import com.junyang.utils.GenericityUtil;
 
 @RestController
 @Transactional
 @CrossOrigin
-public class TronDelegateConfigServiceImpl extends BaseApiService implements TronDelegateConfigService{
+public class TronwebconfigServiceImpl  extends BaseApiService implements TronwebconfigService{
+
 	
 	@Autowired
 	@Qualifier("secondaryMongoTemplate") // 次数据源
 	private MongoTemplate secondaryMongoTemplate;
 	
 	@Override
-	public ResponseBase add(@RequestBody TronDelegateCofigEntity entity) {
+	public ResponseBase add(@RequestBody TronwebconfigEntity entity) {
 		try {
-			if(entity.getInvalidationTime() != null) {
-				entity.setInvalidationTime(entity.getInvalidationTime()*60000);
-			}
 			GenericityUtil.setTokenDateStr(entity);
 			secondaryMongoTemplate.save(entity);
 			return setResultSuccess();
@@ -43,7 +42,7 @@ public class TronDelegateConfigServiceImpl extends BaseApiService implements Tro
 
 	@Override
 	public ResponseBase find() {
-		List<TronDelegateCofigEntity> list = secondaryMongoTemplate.findAll(TronDelegateCofigEntity.class);
+		List<TronwebconfigEntity> list = secondaryMongoTemplate.findAll(TronwebconfigEntity.class);
 		return setResultSuccess(list);
 	}
 
@@ -51,7 +50,7 @@ public class TronDelegateConfigServiceImpl extends BaseApiService implements Tro
 	public ResponseBase delete(String id) {
 		try {
 			Query query = new Query(Criteria.where("_id").is(id));
-			secondaryMongoTemplate.remove(query, TronDelegateCofigEntity.class);
+			secondaryMongoTemplate.remove(query, TronwebconfigEntity.class);
 			return setResultSuccess();
 		} catch (Exception e) {
 			e.printStackTrace();

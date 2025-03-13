@@ -5,18 +5,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.junyang.base.ResponseBase;
-import com.junyang.entity.delegate.TronDelegateCofigEntity;
+import com.junyang.entity.delegate.TronwebconfigEntity;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@RequestMapping("/delegateConfig")
-@Api(value = "委托配置",tags = "委托配置")
-public interface TronDelegateConfigService {
+@RequestMapping("/tronWebconfig")
+@Api(value = "tronweb配置",tags = "tronweb配置")
+public interface TronwebconfigService {
 	
 	@PostMapping("/add")
 	@ApiOperation(value = "新增配置",notes = "新增配置",response = ResponseBase.class)
-	ResponseBase add(TronDelegateCofigEntity entity);
+	ResponseBase add(TronwebconfigEntity entity);
 	
 	@GetMapping("/find")
 	@ApiOperation(value = "查询",notes = "新增配置",response = ResponseBase.class)
