@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSON;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.delegate.TronDelegateCofigEntity;
@@ -29,6 +31,10 @@ public class TronDelegateConfigServiceImpl extends BaseApiService implements Tro
 	@Override
 	public ResponseBase add(@RequestBody TronDelegateCofigEntity entity) {
 		try {
+			List<TronDelegateCofigEntity> cofigEntity = secondaryMongoTemplate.findAll(TronDelegateCofigEntity.class);
+			if(cofigEntity != null && cofigEntity.size() > 0) {
+				return setResultError("配置已存在");
+			}
 			if(entity.getInvalidationTime() != null) {
 				entity.setInvalidationTime(entity.getInvalidationTime()*60000);
 			}

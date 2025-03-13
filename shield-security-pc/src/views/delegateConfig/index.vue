@@ -4,7 +4,7 @@
       <div class="conetntBox">
         <el-row style="margin-bottom: 20px;">
           <el-col :span="24" style="text-align: right;">
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd" v-if="this.addState">
+            <el-button type="primary" icon="el-icon-plus" @click="handleAdd" v-show="this.addState">
               添加
             </el-button>
           </el-col>
@@ -106,10 +106,10 @@ export default {
       loading: true,
       formData: {},
       energyTypeList:[
-        {
-          "name":"带宽",
-          "value":"BANDWIDTH"
-        },
+        // {
+        //   "name":"带宽",
+        //   "value":"BANDWIDTH"
+        // },
         {
           "name":"能量",
           "value":"ENERGY"
@@ -203,6 +203,7 @@ export default {
         return deleteDelegateConfig(row.id);
       }).then(() => {
         this.getList();
+        window.location.reload(); // 刷新当前页面
         this.$modal.msgSuccess("删除成功");
       }).catch(() => { });
     },
