@@ -19,6 +19,11 @@
               <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
             </el-form-item>
           </el-form>
+          <el-row :gutter="10" class="mb8">
+            <el-col :span="1.5">
+              <el-button type="primary" icon="el-icon-plus" @click="handleAdd">发布</el-button>
+            </el-col>
+          </el-row>
         </div>
 
         <el-table :data="dataList" max-height="600" v-loading="loading">
@@ -77,11 +82,59 @@
           :limit.sync="queryParams.pageSize" @pagination="getList" />
       </div>
     </div>
+      <!-- 添加或修改用户配置对话框 -->
+      <el-dialog :title="title" :visible.sync="dialogOpen" width="700px" append-to-body>
+          <el-form ref="formData" :model="formData" :rules="rules" label-width="140px">
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="IOS版本号" prop="iosVersion">
+                  <el-input v-model="formData.iosVersion" placeholder="请输入IOS版本号"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="IOS下载地址" prop="iosUrl">
+                  <el-input v-model="formData.iosUrl" placeholder="请输入IOS地址"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="googlePlay地址" prop="googlePlayUrl">
+                  <el-input v-model="formData.googlePlayUrl" placeholder="请输入googlePlay地址"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="安卓版本号" prop="androidVersion">
+                  <el-input v-model="formData.androidVersion" placeholder="请输入安卓版本号"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="安卓apk上传" prop="fileList">
+                  <el-upload class="upload-demo" action="#" :limit="1" :auto-upload="false" :show-file-list="true"
+                    :on-change="handleChangeEcho" :on-preview="handlePictureCardPreviewEcho" :on-remove="handleRemoveEcho"
+                    accept=".apk" :file-list="fileList">
+                    <el-button size="small" type="primary">点击上传</el-button>
+                  </el-upload>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="cancel">取 消</el-button>
+            <el-button type="primary" @click="submitForm" v-debounce>确 定</el-button>
+          </div>
+        </el-dialog>
   </div>
 </template>
 
 <script>
-import { versionList,versionOffline,versionOnline} from "@/api/version/version";
+import { versionList,versionOffline,versionOnline,releaseVersion} from "@/api/version/version";
 export default {
   name: "typesOfPoints",
   data() {
@@ -96,7 +149,13 @@ export default {
       title: "",
       // 是否显示弹出层
       dialogOpen: false,
-      formData: {},
+      formData: {
+        iosVersion:"",
+        iosUrl:"",
+        androidVersion:"",
+        googlePlayUrl:""
+      },
+      fileList:[],
       // 查询参数
       queryParams: {
         pageNumber: 1,
@@ -117,7 +176,28 @@ export default {
         },
       ],
       rules:{
-
+        iosVersion: [
+          { required: true, message: "请填写ios版本号", trigger: "change" },
+          {
+            pattern: /^\d+\.\d+\.\d+$/,  // 版本号的正则表达式
+            message: "版本号格式不正确",
+            trigger: "blur"  // 当输入框失去焦点时触发验证
+          }
+        ],
+        iosUrl: [
+          { required: true, message: "请填写ios下载地址", trigger: "change" },
+        ],
+        androidVersion: [
+          { required: true, message: "请填写安卓版本号", trigger: "change" },
+          {
+            pattern: /^\d+\.\d+\.\d+$/,  // 版本号的正则表达式
+            message: "版本号格式不正确",
+            trigger: "blur"  // 当输入框失去焦点时触发验证
+          }
+        ],
+        googlePlayUrl: [
+          { required: true, message: "请填写谷歌下载地址", trigger: "change" },
+        ],
       }
     };
   },
@@ -160,27 +240,7 @@ export default {
       this.queryParams.pageNumber = 1;
       this.getList();
     },
-    /** 新增按钮操作 */
-    handleUpdate(row) {
-      this.reset();
-      this.formData = JSON.parse(JSON.stringify(row));
-      this.dialogOpen = true;
-      this.title = "编辑";
-    },
    
-    /** 提交按钮 */
-    submitForm: function () {
-      this.$refs["formData"].validate(valid => {
-        if (valid) {
-          dappUpdata(this.formData).then(res => {
-            console.log(res)
-            this.$modal.msgSuccess("新增成功");
-            this.dialogOpen = false;
-            this.getList();
-          });
-        }
-      });
-    },
 
     //强制更新上线
     forceOnline(row){
@@ -221,6 +281,59 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => { });
     },
+
+     /** 新增按钮操作 */
+     handleAdd(row) {
+      this.reset();
+      this.dialogOpen = true;
+      this.title = "上传资源";
+    },
+
+        /** 提交按钮 */
+    submitForm: function () {
+      const loadingOpen = this.$loading({
+          lock: true,
+          text: '资源上传中，请稍后.....',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+      this.$refs["formData"].validate(valid => {
+        if (valid) {
+          let dataaInfo = new FormData()
+          if(this.fileList.length>0){
+            this.fileList.forEach((val, index) => {
+              dataaInfo.append("file", val.raw);
+            });
+          }else{
+            loadingOpen.close()
+            this.$message.error('请上传文件');
+            return
+          }
+          dataaInfo.append("dataStr",JSON.stringify(this.formData))
+          releaseVersion(dataaInfo).then(res => {
+            this.$modal.msgSuccess("上传成功");
+            loadingOpen.close()
+            this.dialogOpen = false;
+            this.getList();
+          }).catch(error => {
+            // 错误时关闭 loading
+            this.$message.error('上传失败');
+            loadingOpen.close();
+          });
+        }
+      });
+    },
+
+    handleRemoveEcho(file, filesList) {
+      this.fileList = filesList;
+    },
+    handlePictureCardPreviewEcho(file) {
+
+    },
+    handleChangeEcho(file, filesList) {
+      this.fileList = filesList;
+    },
+
 
   }
 };

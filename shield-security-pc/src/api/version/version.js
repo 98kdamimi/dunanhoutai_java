@@ -66,3 +66,29 @@ export function deleteMsg() {
         method: 'get',
     })
 }
+
+// 软件版本发布
+export function releaseVersion(data) {
+    return request({
+        url: 'version/sysAdd',
+        method: 'post',
+        headers: {
+            'Content-Type': 'multipart/form-data' //注意这里
+        },
+        data: data,
+        timeout: 50000  // 设置超时时间为 5000ms（5秒）
+    })
+}
+
+//硬件版本发布
+export function releaseHardwareVersion(data) {
+    return request({
+        url: 'version/sysHardwareAdd',
+        method: 'post',
+        headers: {
+            'Content-Type': 'multipart/form-data' //注意这里
+        },
+        data: data,
+        timeout: 50000  // 设置超时时间为 5000ms（5秒）
+    })
+}

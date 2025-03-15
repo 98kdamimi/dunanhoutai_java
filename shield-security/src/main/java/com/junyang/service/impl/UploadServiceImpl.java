@@ -93,7 +93,7 @@ public class UploadServiceImpl extends BaseApiService implements UploadService {
 					throw new RuntimeException();
 				}
 			}
-			return setResultSuccess(fileUrl);
+			return setResultSuccess(fileUrl, Constants.SUCCESS);
 
 		} catch (IOException e) {
 			e.printStackTrace();

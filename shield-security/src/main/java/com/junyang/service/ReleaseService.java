@@ -3,7 +3,10 @@ package com.junyang.service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.junyang.base.ResponseBase;
+import com.junyang.entity.release.RekeaseAddQueryEntity;
 import com.junyang.entity.version.ReleaseEntity;
 import com.junyang.query.PublicQueryEntity;
 
@@ -17,6 +20,14 @@ public interface ReleaseService {
 	@PostMapping("/add")
 	@ApiOperation(value = "发版接口",notes = "发版接口",response = ResponseBase.class)
 	ResponseBase add(ReleaseEntity entity);
+	
+	@PostMapping("/sysAdd")
+	@ApiOperation(value = "管理端软件版本发布",notes = "管理端软件版本发布",response = ResponseBase.class)
+	ResponseBase sysAdd(String dataStr,MultipartFile file);
+	
+	@PostMapping("/sysHardwareAdd")
+	@ApiOperation(value = "管理端软件版本发布",notes = "管理端软件版本发布",response = ResponseBase.class)
+	ResponseBase sysHardwareAdd(String dataStr,MultipartFile bootloaderFile,MultipartFile firmwareFile);
 	
 	@PostMapping("/softwareList")
 	@ApiOperation(value = "软件版本列表",notes = "软件版本列表",response = ResponseBase.class)
