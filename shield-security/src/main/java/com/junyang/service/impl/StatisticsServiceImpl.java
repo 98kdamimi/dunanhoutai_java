@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.instance.InstanceEntity;
@@ -42,6 +44,7 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
+	@SysLogAnnotation(module = "统计", type = "GET", remark = "注册数量统计查询")
 	public ResponseBase equipment() {
 		AccountStatisticsEntity statisticsEntity = new AccountStatisticsEntity();
 		// 获取今日新增量
@@ -67,6 +70,7 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 	}
 
 	@Override
+	@SysLogAnnotation(module = "统计", type = "POST", remark = "注册数量统计图表")
 	public ResponseBase equipmentChar(@RequestBody PublicQueryEntity entity) {
 		try {
 			//设置默认
@@ -119,6 +123,7 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 	}
 
 	@Override
+	@SysLogAnnotation(module = "统计", type = "GET", remark = "账号数量统计")
 	public ResponseBase account() {
 		AccountStatisticsEntity statisticsEntity = new AccountStatisticsEntity();
 		// 获取今日新增量
@@ -145,6 +150,7 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 	}
 
 	@Override
+	@SysLogAnnotation(module = "统计", type = "POST", remark = "账号统计图表")
 	public ResponseBase accountChar(@RequestBody PublicQueryEntity entity) {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

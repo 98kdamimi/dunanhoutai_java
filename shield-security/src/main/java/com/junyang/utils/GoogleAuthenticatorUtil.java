@@ -68,7 +68,7 @@ public final class GoogleAuthenticatorUtil {
     }
     
     public static void main(String[] args) throws IOException, WriterException {
-    	String key = GoogleAuthenticatorUtil.createKey("15621349306").getKey();
+    	String key = GoogleAuthenticatorUtil.createKey("putongyongh").getKey();
     	System.out.println(key);
     	System.out.println(GoogleAuthenticatorUtil.verifyCode("QAXMNIOPHPEMRSSV", 551108));
     	

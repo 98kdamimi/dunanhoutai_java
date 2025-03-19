@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -40,6 +41,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "帮助菜单管理", type = "POST", remark = "帮助菜单列表查询")
 	public ResponseBase getList(@RequestBody HelpEntity entity) {
 		try {
 			Query query = new Query();
@@ -64,6 +66,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "帮助菜单管理", type = "GET", remark = "帮助菜单删除")
 	public ResponseBase delete(String id) {
 		try {
 			if(id != null && id.length() > 0) {
@@ -86,6 +89,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "帮助菜单管理", type = "POST", remark = "帮助菜单新增")
 	public ResponseBase add(@RequestBody HelpEntity entity) {
 		try {
 			if(entity != null) {
@@ -106,6 +110,7 @@ public class HelpServiceImpl extends BaseApiService implements HelpService{
 	}
 
 	@Override
+	@SysLogAnnotation(module = "帮助菜单管理", type = "POST", remark = "帮助菜单编辑")
 	public ResponseBase update(@RequestBody HelpEntity entity) {
 		try {
 			if(entity != null) {

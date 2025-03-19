@@ -31,6 +31,11 @@
               <span>修改谷歌密钥</span>
             </div>
           </el-dropdown-item>
+          <el-dropdown-item>
+            <div @click="openUpPassword()">
+              <span>修改密码</span>
+            </div>
+          </el-dropdown-item>
           <el-dropdown-item @click.native="logout">
             <span>退出登录</span>
           </el-dropdown-item>
@@ -75,7 +80,7 @@
         <el-row>
           <el-col :span="24">
             <el-form-item label="原谷歌密钥" prop="googleSecretkey">
-              <el-input v-model="userInfo.googleSecretkey" style="width: 85%;" readonly />
+              <el-input v-model="userInfo.googleSecretkey" style="width: 85%;" readonly ref="copyLodKey"/>
               <a href="#" style="margin-left: 20px;color: cornflowerblue;" @click="lodCopy(userInfo.googleSecretkey)">复制</a>
             </el-form-item>
           </el-col>
@@ -83,17 +88,48 @@
         <el-row>
           <el-col :span="24">
             <el-form-item label="新谷歌密钥" prop="googleSecretkey">
-              <el-input v-model="googleSecretkey" style="width: 85%;" readonly />
-              <a href="#" style="margin-left: 20px;color: cornflowerblue;" @click="newCopy(googleSecretkey)">复制</a>
+              <el-input v-model="googleSecretkey" style="width: 85%;" readonly ref="copyNewKey"/>
+              <a href="#" style="margin-left: 20px; color: cornflowerblue;" @click="newCopy">复制</a>
             </el-form-item>
           </el-col>
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="gugeSubmitForm" v-debounce>确 定</el-button>
         <el-button @click="gugeCancel">取 消</el-button>
+        <el-button type="primary" @click="gugeSubmitForm" v-debounce>确 定</el-button>
       </div>
     </el-dialog>
+
+    <el-dialog title="修改密码" :visible.sync="passwordDialogVisible" width="30%">
+      <el-form ref="passwordData" :model="passwordData" :rules="passwordRules" label-width="100px">
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="原密码" prop="oldPassword">
+              <el-input v-model="passwordData.oldPassword" style="width: 85%;" type="password"  />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="新密码" prop="newPassword">
+              <el-input v-model="passwordData.newPassword" style="width: 85%;" type="password"  />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="确认新密码" prop="confirmPassword">
+              <el-input v-model="passwordData.confirmPassword" style="width: 85%;" type="password"  />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="passwordCancel">取 消</el-button>
+        <el-button type="primary" @click="passwordSubmitForm" v-debounce>确 定</el-button>
+      </div>
+    </el-dialog>
+
 
   </div>
 </template>
@@ -110,7 +146,8 @@ import RuoYiGit from '@/components/RuoYi/Git'
 import RuoYiDoc from '@/components/RuoYi/Doc'
 import ImportFile from '@/components/ImportFile'
 import { msgWarn, deleteMsg } from "@/api/version/version";
-import { IssueGoogleSecretkey, upGoogleSecretkey } from "@/api/system/user";
+import Clipboard from "clipboard";
+import { IssueGoogleSecretkey, upGoogleSecretkey,verifyPwd,resetPwd } from "@/api/system/user";
 
 
 export default {
@@ -131,13 +168,28 @@ export default {
       msgNum: 0,
       dialogVisible: false,
       gugeDialogVisible: false,
+      passwordDialogVisible:false,
       gugeData: {},
+      passwordData:{},
       googleSecretkey: "",
       iosVersion: "",
       androidVersion: "",
       googleVersion: "",
       firmwareVersion: "",
-      timer: null   // 用于保存定时器ID
+      timer: null,
+      passwordRules: {
+        oldPassword: [
+          { required: true, message: "请输入原密码", trigger: "blur" },
+          { validator: this.validateOldPassword, trigger: "blur" }
+        ],
+        newPassword: [
+          { required: true, message: "请输入新密码", trigger: "blur" }
+        ],
+        confirmPassword: [
+          { required: true, message: "请确认新密码", trigger: "blur" },
+          { validator: this.validateConfirmPassword, trigger: "blur" }
+        ]
+      }
     }
   },
   computed: {
@@ -260,24 +312,84 @@ export default {
     },
 
     lodCopy(data){
-      try {
-        // 使用 Clipboard API 进行复制
-        navigator.clipboard.writeText(data);
-        this.$modal.msgSuccess("复制成功");
-      } catch (err) {
-        this.$modal.msgError("复制失败");
-      }
+      const clipboard = new Clipboard(this.$refs.copyLodKey.$el, {
+        text: () => this.userInfo.googleSecretkey
+      });
+      clipboard.on("success", () => {
+        this.$modal.msgSuccess("复制成功！");
+      });
+
+      clipboard.on("error", () => {
+        this.$modal.msgError("复制失败，请手动复制！");
+      });
+
+      clipboard.onClick({ currentTarget: this.$refs.copyLodKey.$el });
+      // try {
+      //   // 使用 Clipboard API 进行复制
+      //   navigator.clipboard.writeText(data);
+      //   this.$modal.msgSuccess("复制成功");
+      // } catch (err) {
+      //   this.$modal.msgError("复制失败");
+      // }
     },
 
     newCopy(data){
-      try {
-        // 使用 Clipboard API 进行复制
-        navigator.clipboard.writeText(data);
-        this.$modal.msgSuccess("复制成功");
-      } catch (err) {
-        this.$modal.msgError("复制失败");
+      const clipboard = new Clipboard(this.$refs.copyNewKey.$el, {
+        text: () => this.googleSecretkey
+      });
+      clipboard.on("success", () => {
+        this.$modal.msgSuccess("复制成功！");
+      });
+
+      clipboard.on("error", () => {
+        this.$modal.msgError("复制失败，请手动复制！");
+      });
+
+      clipboard.onClick({ currentTarget: this.$refs.copyNewKey.$el });
+      // try {
+      //   // 使用 Clipboard API 进行复制
+      //   navigator.clipboard.writeText(data);
+      //   this.$modal.msgSuccess("复制成功");
+      // } catch (err) {
+      //   this.$modal.msgError("复制失败");
+      // }
+    },
+
+    openUpPassword(){
+      this.passwordData={}
+      this.passwordDialogVisible = true
+    },
+    passwordSubmitForm(){
+      this.$modal.confirm('是否确认修改密码？').then(() => {
+        return resetPwd(this.userInfo.id, this.passwordData.newPassword);
+      }).then(() => {
+        this.passwordDialogVisible = false
+        this.$modal.msgSuccess("修改成功");
+      }).catch(() => {
+        // 这里可以捕获到错误并处理
+      });
+    },
+    passwordCancel(){
+      this.passwordDialogVisible = false
+    },
+
+    validateOldPassword(rule, value, callback){
+      verifyPwd(this.userInfo.id,value).then(res => {
+        if(res.rtncode != 200){
+          callback(new Error(res.msg));
+        }else{
+          callback();
+        }
+      })
+    },
+
+    validateConfirmPassword(rule, value, callback) {
+      if (value !== this.passwordData.newPassword) {
+        callback(new Error("两次输入的新密码不一致"));
+      } else {
+        callback();
       }
-    }
+    },
 
 
   }

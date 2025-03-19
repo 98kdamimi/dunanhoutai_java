@@ -15,3 +15,11 @@ export function findInfoAppUser(data) {
         data
     })
 }
+
+export function findWalletList(data) {
+    return request({
+        url: 'appUser/findWalletList',
+        method: 'post',
+        data
+    })
+}

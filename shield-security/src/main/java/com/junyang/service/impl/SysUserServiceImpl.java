@@ -88,6 +88,10 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 					password = default_password;
 					entity.setPassword(DigestUtils.md5DigestAsHex((password).getBytes()));
 				}
+				System.out.println(entity.getGoogleSecretkey());
+				if(entity.getGoogleSecretkey() == null || entity.getGoogleSecretkey().isEmpty()) {
+					entity.setGoogleSecretkey(Constants.user_googleKey);
+				}
 				if (file != null) {
 					FileResponse res = FileUploadUtil.uploadFile(file, filePath, ImageTypeEnums.TOUXIANG.getName());
 					if (Constants.HTTP_RES_CODE_200.equals(res.getCode())) {
@@ -271,7 +275,7 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 			if (entity != null && entity.getPassword().equals(DigestUtils.md5DigestAsHex((password).getBytes()))) {
 				return setResultSuccess(1, "校验通过");
 			} else {
-				return setResultSuccess(0, "校验不通过");
+				return setResultError(0, "原密码不正确");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

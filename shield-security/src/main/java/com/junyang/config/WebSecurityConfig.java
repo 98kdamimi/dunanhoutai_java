@@ -1,7 +1,9 @@
 package com.junyang.config;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,7 +33,10 @@ import com.junyang.utils.RedisUtil;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
      //身份认证时需要使用，注入我们实现了这个接口的类
-    private UserDetailsService userDetailsService;
+   private UserDetailsService userDetailsService;
+   
+   @Value("${DEFAULT_IP}")
+   private String DEFAULT_IP;
 
    @Autowired
    RedisUtil redisUtil;
@@ -41,9 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Autowired
    private SysUserDao sysUserMapper;
+   
+   @Autowired
+   private MongoTemplate mongoTemplate; 
 
    private HttpServletResponse response;
-
 
     public WebSecurityConfig(UserDetailsService userDetailsService, SysUserDao sysUserMapper,HttpServletResponse response) {
         this.userDetailsService = userDetailsService;
@@ -86,7 +93,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		        .accessDeniedHandler(new TokenAccessDeniedHandler())   //权限不足时的逻辑处理
 		        //添加拦截器
                 .and()
-                .addFilter(new JWTLoginFilter(authenticationManager(),redisUtil,sysUserMapper))
+                .addFilter(new JWTLoginFilter(authenticationManager(),redisUtil,sysUserMapper,mongoTemplate, DEFAULT_IP))
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(),redisUtil));
     }
 

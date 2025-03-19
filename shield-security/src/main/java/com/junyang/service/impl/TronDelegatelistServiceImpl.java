@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.delegate.TronDelegatelistEntity;
@@ -30,6 +31,7 @@ public class TronDelegatelistServiceImpl extends BaseApiService implements TronD
 	private MongoTemplate secondaryMongoTemplate;
 	
 	@Override
+	@SysLogAnnotation(module = "委托记录管理", type = "POST", remark = "委托记录列表查询")
 	public ResponseBase findList(@RequestBody TronDelegatelistEntity entity) {
 		try {
 			Query query = new Query();
@@ -45,7 +47,7 @@ public class TronDelegatelistServiceImpl extends BaseApiService implements TronD
 			long totalCount = secondaryMongoTemplate.count(query, TronDelegatelistEntity.class);// 总条数
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.DESC, "setTime"));
+					Sort.by(Sort.Direction.DESC, "timestamp"));
 			query.with(pageRequest);
 			List<TronDelegatelistEntity> list = secondaryMongoTemplate.find(query, TronDelegatelistEntity.class);
 			PageInfo<TronDelegatelistEntity> info = new PageInfo<>(list);

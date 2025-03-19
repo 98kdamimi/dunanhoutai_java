@@ -8,7 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RequestMapping("/walletBalanceInfo")
-@Api(value = "联系方式",tags = "联系方式")
+@Api(value = "钱包管理",tags = "钱包管理")
 public interface WalletBalanceInfoService {
 	
 	@PostMapping("/getList")

@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -42,6 +43,7 @@ public class AppConfigServiceImpl extends BaseApiService implements AppConfigSer
 	private String HTTP_URL;
 
 	@Override
+	@SysLogAnnotation(module = "app网络管理", type = "POST", remark = "新增app网络管理")
 	public ResponseBase add(@RequestBody AppconfigEntity entity) {
 		try {
 			Query queryVer = new Query();
@@ -51,11 +53,9 @@ public class AppConfigServiceImpl extends BaseApiService implements AppConfigSer
 				return setResultError("此版本已存在!!!");
 			}
 			if (entity.getNetworkIds() != null && !entity.getNetworkIds().isEmpty()) {
-				System.out.println(entity.getNetworkIds());
 				Query query = new Query();
 				query.addCriteria(Criteria.where("id").in(entity.getNetworkIds()));
 				List<NetWorkEntity> list = mongoTemplate.find(query, NetWorkEntity.class);
-				System.out.println(JSON.toJSON(list));
 				if(list != null && list.size() > 0) {
 					JSONObject obj = new JSONObject();
 					obj.put("networks", list);
@@ -83,6 +83,7 @@ public class AppConfigServiceImpl extends BaseApiService implements AppConfigSer
 	}
 
 	@Override
+	@SysLogAnnotation(module = "app网络管理", type = "POST", remark = "编辑app网络管理")
 	public ResponseBase update(@RequestBody AppconfigEntity entity) {
 		try {
 			AppconfigEntity appconfigEntity = mongoTemplate.findById(entity.getId(), AppconfigEntity.class);
@@ -127,6 +128,7 @@ public class AppConfigServiceImpl extends BaseApiService implements AppConfigSer
 	}
 
 	@Override
+	@SysLogAnnotation(module = "app网络管理", type = "POST", remark = "app网络管理列表查询")
 	public ResponseBase findList(@RequestBody PublicQueryEntity entity) {
 		try {
 			this.getRpc();

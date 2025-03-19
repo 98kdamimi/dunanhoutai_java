@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -44,6 +45,7 @@ public class WalletBalanceInfoServiceImpl extends BaseApiService implements Wall
 	private MongoTemplate secondaryMongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "钱包管理", type = "POST", remark = "钱包余额查询")
 	public ResponseBase getList(@RequestBody WalletBalanceInfoEntity entity) {
 		try {
 			Query query = new Query();
@@ -76,6 +78,7 @@ public class WalletBalanceInfoServiceImpl extends BaseApiService implements Wall
 
 	@SuppressWarnings({ "rawtypes" })
 	@Override
+	@SysLogAnnotation(module = "钱包管理", type = "POST", remark = "账户总额查询")
 	public ResponseBase getNumAll(@RequestBody WalletBalanceInfoEntity entity) {
 		try {
 
@@ -120,7 +123,8 @@ public class WalletBalanceInfoServiceImpl extends BaseApiService implements Wall
 			throw new RuntimeException();
 		}
 	}
-
+	
+	@SysLogAnnotation(module = "钱包管理", type = "POST", remark = "代币余额查询统计")
 	public ResponseBase getTotalUsdValueByName(@RequestBody WalletBalanceInfoEntity entity) {
 		try {
 			// 1. 创建查询条件

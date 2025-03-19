@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.junyang.service.AppUserService;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.appuser.AppUserEntity;
 import com.junyang.entity.appuser.AppUserLogEntity;
+import com.junyang.entity.wallet.WalletBalanceInfoEntity;
 
 @RestController
 @Transactional
@@ -31,6 +33,7 @@ public class AppUserServiceImpl extends BaseApiService implements AppUserService
 	private MongoTemplate secondaryMongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "app用户登录日志管理", type = "POST", remark = "app用户登录日志列表查询")
 	public ResponseBase findList(@RequestBody AppUserEntity entity) {
 		try {
 			Query query = new Query();
@@ -53,6 +56,7 @@ public class AppUserServiceImpl extends BaseApiService implements AppUserService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "app用户登录日志管理", type = "POST", remark = "app用户登录日志详情列表查询")
 	public ResponseBase findInfoList(@RequestBody AppUserLogEntity entity) {
 		try {
 			Query query = new Query();
@@ -69,6 +73,28 @@ public class AppUserServiceImpl extends BaseApiService implements AppUserService
 			query.with(pageRequest);
 			List<AppUserLogEntity> list = secondaryMongoTemplate.find(query, AppUserLogEntity.class);
 			PageInfo<AppUserLogEntity> info = new PageInfo<>(list);
+			info.setTotal(totalCount);
+			return setResultSuccess(info);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase findWalletList(@RequestBody AppUserLogEntity entity) {
+		try {
+			Query query = new Query();
+			if(entity.getInstanceId() != null && entity.getInstanceId().length() > 0) {
+				query.addCriteria(Criteria.where("instanceId").is(entity.getInstanceId()));
+			}
+			long totalCount = secondaryMongoTemplate.count(query, WalletBalanceInfoEntity.class);// 总条数
+			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
+			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
+					Sort.by(Sort.Direction.DESC, "updatedAt"));
+			query.with(pageRequest);
+			List<WalletBalanceInfoEntity> list = secondaryMongoTemplate.find(query, WalletBalanceInfoEntity.class);
+			PageInfo<WalletBalanceInfoEntity> info = new PageInfo<>(list);
 			info.setTotal(totalCount);
 			return setResultSuccess(info);
 		} catch (Exception e) {

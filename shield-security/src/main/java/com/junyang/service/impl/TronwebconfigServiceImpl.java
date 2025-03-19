@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.delegate.TronwebconfigEntity;
@@ -29,6 +30,7 @@ public class TronwebconfigServiceImpl  extends BaseApiService implements Tronweb
 	private MongoTemplate secondaryMongoTemplate;
 	
 	@Override
+	@SysLogAnnotation(module = "tronweb配置管理", type = "POST", remark = "tronweb配置新增")
 	public ResponseBase add(@RequestBody TronwebconfigEntity entity) {
 		try {
 			GenericityUtil.setTokenDateStr(entity);
@@ -41,12 +43,14 @@ public class TronwebconfigServiceImpl  extends BaseApiService implements Tronweb
 	}
 
 	@Override
+	@SysLogAnnotation(module = "tronweb配置管理", type = "GET", remark = "tronweb配置查询")
 	public ResponseBase find() {
 		List<TronwebconfigEntity> list = secondaryMongoTemplate.findAll(TronwebconfigEntity.class);
 		return setResultSuccess(list);
 	}
 
 	@Override
+	@SysLogAnnotation(module = "tronweb配置管理", type = "GET", remark = "tronweb配置删除")
 	public ResponseBase delete(String id) {
 		try {
 			Query query = new Query(Criteria.where("_id").is(id));

@@ -36,6 +36,10 @@ public class AppUserLogEntity extends PageQueryHelperEntity{
 	@TableField("ipAddress")
 	@ApiModelProperty(name = "ipAddress", value = "归属地", required = false, dataType = "String")
 	private String ipAddress;
+	
+	@TableField("instanceId")
+	@ApiModelProperty(name = "instanceId", value = "实例id", required = false, dataType = "String")
+	private String instanceId;
 
 	@TableField("createdAt")
 	@ApiModelProperty(name = "createdAt", value = "创建时间", required = false, dataType = "String")

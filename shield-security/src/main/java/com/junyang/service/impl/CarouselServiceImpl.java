@@ -24,6 +24,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -59,6 +60,7 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "轮播图管理", type = "POST", remark = "轮播图列表查询")
 	public ResponseBase getList(@RequestBody CarouselEntity entity) {
 		try {
 			Query query = new Query();
@@ -86,6 +88,7 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 	}
 
 	@Override
+	@SysLogAnnotation(module = "轮播图管理", type = "GET", remark = "轮播图删除")
 	public ResponseBase delete(String id) {
 		try {
 			if(id != null && id.length() > 0) {
@@ -108,6 +111,7 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 	}
 
 	@Override
+	@SysLogAnnotation(module = "轮播图管理", type = "POST", remark = "轮播图新增")
 	public ResponseBase add(String dataStr,MultipartFile file) {
 		try {
 			if(dataStr != null && dataStr.length() > 0) {
@@ -191,6 +195,7 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 	}
 
 	@Override
+	@SysLogAnnotation(module = "轮播图管理", type = "POST", remark = "轮播图编辑")
 	public ResponseBase update(String dataStr, MultipartFile file) {
 		try {
 			if(dataStr != null && dataStr.length() > 0) {
@@ -204,8 +209,6 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 					}
 					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
 					String jsonParam = JSON.toJSONString(jsonObject);
-					System.out.println(HTTP_URL+HttpAddressEunms.CAROUSE_UPDATE.getName());
-					System.out.println(jsonParam);
 					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.CAROUSE_UPDATE.getName(), jsonParam);
 					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {

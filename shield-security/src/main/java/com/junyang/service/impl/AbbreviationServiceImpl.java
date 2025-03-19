@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -41,6 +42,7 @@ public class AbbreviationServiceImpl extends BaseApiService implements Abbreviat
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "联系方式管理", type = "POST", remark = "联系方式列表查询")
 	public ResponseBase getList(@RequestBody AbbreviationEntity entity) {
 		try {
 			Query query = new Query();
@@ -65,6 +67,7 @@ public class AbbreviationServiceImpl extends BaseApiService implements Abbreviat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "联系方式管理", type = "POST", remark = "删除联系方式")
 	public ResponseBase delete(String id) {
 		try {
 			if(id != null && id.length() > 0) {
@@ -87,6 +90,7 @@ public class AbbreviationServiceImpl extends BaseApiService implements Abbreviat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "联系方式管理", type = "POST", remark = "新增联系方式")
 	public ResponseBase add(@RequestBody AbbreviationEntity entity) {
 		try {
 			if(entity != null) {
@@ -107,6 +111,7 @@ public class AbbreviationServiceImpl extends BaseApiService implements Abbreviat
 	}
 
 	@Override
+	@SysLogAnnotation(module = "联系方式管理", type = "POST", remark = "编辑联系方式")
 	public ResponseBase update(@RequestBody AbbreviationEntity entity) {
 		try {
 			if(entity != null) {

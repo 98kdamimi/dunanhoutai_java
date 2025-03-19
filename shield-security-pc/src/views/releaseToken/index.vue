@@ -8,11 +8,11 @@
         <el-table :data="dataList" max-height="600">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="token信息" align="center" key="token" prop="token"/>
-          <el-table-column width=120>
+          <!-- <el-table-column width=120>
             <template slot-scope="scope">
               <el-button size="mini" icon="el-icon-document-checked" type="primary"  @click = "copyToken(scope.row.token)">复制 Token</el-button>
             </template>
-          </el-table-column>
+          </el-table-column> -->
         </el-table>
       </div>
     </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import Clipboard from "clipboard";
 import { generateToken} from "@/api/system/user";
 export default {
   name: "typesOfPoints",

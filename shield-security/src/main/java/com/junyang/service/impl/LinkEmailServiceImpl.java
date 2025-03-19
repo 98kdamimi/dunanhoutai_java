@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
@@ -42,6 +43,7 @@ public class LinkEmailServiceImpl extends BaseApiService implements LinkEmailSer
 	private MongoTemplate mongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "联系邮箱管理", type = "POST", remark = "联系邮箱新增")
 	public ResponseBase add(@RequestBody LinkEmailEntity entity) {
 		try {
 			Query query = new Query();
@@ -75,6 +77,7 @@ public class LinkEmailServiceImpl extends BaseApiService implements LinkEmailSer
 	}
 
 	@Override
+	@SysLogAnnotation(module = "联系邮箱管理", type = "GET", remark = "联系邮箱删除")
 	public ResponseBase delete(String id) {
 		try {
 			if(id != null && id.length() > 0) {
@@ -97,6 +100,7 @@ public class LinkEmailServiceImpl extends BaseApiService implements LinkEmailSer
 	}
 
 	@Override
+	@SysLogAnnotation(module = "联系邮箱管理", type = "POST", remark = "联系邮箱列表查询")
 	public ResponseBase findList(@RequestBody LinkEmailEntity entity) {
 		Query query = new Query();
 		if(entity.getLanguage() != null && entity.getLanguage().length() > 0) {
@@ -139,6 +143,7 @@ public class LinkEmailServiceImpl extends BaseApiService implements LinkEmailSer
 	}
 
 	@Override
+	@SysLogAnnotation(module = "联系邮箱管理", type = "POST", remark = "联系邮箱列表编辑")
 	public ResponseBase update(@RequestBody LinkEmailEntity entity) {
 		try {
 			if(entity != null && entity.getId() != null) {

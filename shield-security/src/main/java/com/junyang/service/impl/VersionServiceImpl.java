@@ -498,7 +498,7 @@ public class VersionServiceImpl extends BaseApiService implements VersionService
 	}
 
 	@Override
-	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "新版本提示")
+//	@SysLogAnnotation(module = "应用及硬件版本管理", type = "POST", remark = "新版本提示")
 	public ResponseBase msgWarn() {
 		Object obj = redisUtil.get(Constants.MSG_KEY);
 		if(obj != null) {

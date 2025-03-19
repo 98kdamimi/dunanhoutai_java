@@ -122,7 +122,7 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 				String fileName = null;
 				if(AgreementTypeEnums.USER_AGREEMENT.getIndex().equals(entity.getTypeId())) {//用户协议
 					fileName = AgreementTypeEnums.USER_AGREEMENT.getValue();
-				}else if(AgreementTypeEnums.PRIVACY_AGREEMENT.getIndex().equals(entity.getTypeId())) {
+				}else if(AgreementTypeEnums.PRIVACY_AGREEMENT.getIndex().equals(entity.getTypeId())) {//隐私协议
 					fileName = AgreementTypeEnums.PRIVACY_AGREEMENT.getValue();
 				}
 				MultipartFile file = FileUploadUtil.saveHtmlToFile(entity.getContentInfo(),fileName);

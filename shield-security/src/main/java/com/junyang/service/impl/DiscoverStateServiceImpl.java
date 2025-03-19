@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.dapp.DiscoverLableStateEntity;
@@ -28,6 +29,7 @@ public class DiscoverStateServiceImpl extends BaseApiService implements Discover
 	private MongoTemplate secondaryMongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "发现页标签控制", type = "GET", remark = "发现页标签查询")
 	public ResponseBase getList() {
 		try {
 			List<DiscoverLableStateEntity> list = secondaryMongoTemplate.findAll(DiscoverLableStateEntity.class);
@@ -48,6 +50,7 @@ public class DiscoverStateServiceImpl extends BaseApiService implements Discover
 	}
 
 	@Override
+	@SysLogAnnotation(module = "发现页标签控制", type = "GET", remark = "发现页标签状态修改")
 	public ResponseBase update(boolean states) {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -33,7 +33,7 @@
           <el-table-column label="操作内容" align="center" prop="moduleInfo" />
           <el-table-column label="请求方式" align="center" prop="reqType" />
           <el-table-column label="接口地址" align="center" prop="reqUrl" />
-          <el-table-column label="ip地址i" align="center" prop="ipUrl" />
+          <el-table-column label="ip地址" align="center" prop="ipUrl" />
           <el-table-column label="请求参数" align="center" prop="reqParamet" />
           <el-table-column label="响应结果" align="center" prop="resData" :show-overflow-tooltip="true"/>
           <el-table-column label="请求开始时间" align="center" prop="begTime" />

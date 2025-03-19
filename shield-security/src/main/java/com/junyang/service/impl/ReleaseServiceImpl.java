@@ -64,6 +64,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 	private RedisUtil redisUtil;
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "POST", remark = "版本发布")
 	public ResponseBase add(@RequestBody ReleaseEntity entity) {
 		try {
 			entity.getHardware().setOnlineState(ReleaseStateEnums.WAIT_LINE.getIndex());
@@ -80,6 +81,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "POST", remark = "软件版本列表查询")
 	public ResponseBase softwareList(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
@@ -105,6 +107,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "GET", remark = "软件版本上线")
 	public ResponseBase onlineSoftware(String id, Integer forceUpdateLable) {
 		try {
 			ReleaseEntity entity = mongoTemplate.findById(id, ReleaseEntity.class);
@@ -147,6 +150,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "POST", remark = "硬件版本列表查询")
 	public ResponseBase hardwareList(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
@@ -172,6 +176,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "GET", remark = "硬件版本上线")
 	public ResponseBase onlineHardware(String id) {
 		try {
 			ReleaseEntity entity = mongoTemplate.findById(id, ReleaseEntity.class);
@@ -232,6 +237,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 	}
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "POST", remark = "软件版本发布")
 	public ResponseBase sysAdd(String dataStr, MultipartFile file) {
 		try {
 			if(dataStr.isEmpty()) {
@@ -281,6 +287,7 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 
 
 	@Override
+	@SysLogAnnotation(module = "版本管理管理", type = "POST", remark = "硬件版本发布")
 	public ResponseBase sysHardwareAdd(String dataStr,MultipartFile bootloaderFile,MultipartFile firmwareFile) {
 		try {
 			if(dataStr != null && dataStr.length() > 0) {

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.response.DicEntity;
@@ -32,6 +33,7 @@ public class TradingServiceImpl  extends BaseApiService implements TradingServic
 	private MongoTemplate secondaryMongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "交易标签状态管理", type = "GET", remark = "交易标签状态列表查询")
 	public ResponseBase getList() {
 		try {
 			List<TradingEntity> list = secondaryMongoTemplate.findAll(TradingEntity.class);
@@ -57,6 +59,7 @@ public class TradingServiceImpl  extends BaseApiService implements TradingServic
 	}
 
 	@Override
+	@SysLogAnnotation(module = "交易标签状态管理", type = "GET", remark = "交易标签状态修改")
 	public ResponseBase update(String id, boolean states) {
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

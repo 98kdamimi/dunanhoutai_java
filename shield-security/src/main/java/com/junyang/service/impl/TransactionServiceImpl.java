@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
 import com.junyang.entity.transaction.TransactionEntity;
@@ -30,6 +31,7 @@ public class TransactionServiceImpl extends BaseApiService implements Transactio
 	private MongoTemplate secondaryMongoTemplate;
 
 	@Override
+	@SysLogAnnotation(module = "流水记录管理", type = "GET", remark = "流水记录列表查询")
 	public ResponseBase findList(@RequestBody TransactionEntity entity) {
 		try {
 			Query query = new Query();
