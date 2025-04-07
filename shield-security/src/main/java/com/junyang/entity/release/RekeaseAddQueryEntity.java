@@ -19,5 +19,10 @@ public class RekeaseAddQueryEntity {
 	private String androidUrl;
 		
 	private String googlePlayUrl;
+	
+	private String enUS;
+	
+	private String zhCN;
+
 
 }

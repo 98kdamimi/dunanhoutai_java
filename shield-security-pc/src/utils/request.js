@@ -5,6 +5,7 @@ import {
     Message,
     Loading
 } from 'element-ui'
+import { baseURL } from './config'
 import store from '@/store'
 import {
     getToken

@@ -117,10 +117,12 @@ public class MessageServiceImpl extends BaseApiService implements MessageService
 				JSONObject jsonObject = (JSONObject) JSONObject.toJSON(messageEntity);
 				String jsonParam = JSON.toJSONString(jsonObject);
 				String res = HttpUtil.sendPostRequest(HTTP_URL + HttpAddressEunms.MESSAGE_PUSH.getName(), jsonParam);
+				System.out.println(res);
 				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 				if (rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
 					return setResultSuccess();
 				}
+				System.out.println("********************************************");
 				return setResultError("发送失败");
 			} else {
 				return setResultError(Constants.ERROR);

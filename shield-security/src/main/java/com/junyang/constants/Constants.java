@@ -112,5 +112,11 @@ public interface Constants {
     public static final String MSG_CONTENT_TYPE = "token";
     
     public static final String SEND_TYPE = "all";
+    
+    public static final String LIMIT = "100";
+    
+    public static final String PAGE = "1";
+    
+    public static final int SIZE = 100;
 
 }

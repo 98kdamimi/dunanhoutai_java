@@ -33,7 +33,7 @@ public class InstanceEntity extends PageQueryHelperEntity{
 	
 	@TableField("notificationConfig")
 	@ApiModelProperty(name = "notificationConfig", value = "配置", required = false, dataType = "String")
-	private JSONObject notificationConfig;
+	private NotificationConfigEntity notificationConfig;
 	
 	@TableField("accounts")
 	@ApiModelProperty(name = "accounts", value = "账户", required = false, dataType = "String")

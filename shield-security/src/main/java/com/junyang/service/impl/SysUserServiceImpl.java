@@ -352,9 +352,10 @@ public class SysUserServiceImpl extends BaseApiService implements SysUserService
 		}
 	}
 
-	
-
-	
+	public static void main(String[] args) {
+		String temp = "oQ77ANx15QPCOwCT";
+		System.out.println(DigestUtils.md5DigestAsHex((temp).getBytes()));
+	}
 
 
 }

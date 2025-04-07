@@ -72,6 +72,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 		try {
 			 // 获取客户端 IP
 	        String ipAddress = getClientIp(req);
+	        System.out.println("******************"+ipAddress);
 	        // 查询 IP 是否在白名单
 	        boolean isAllowed = false;
 	        Query query = new Query(Criteria.where("ipSite").is(ipAddress));

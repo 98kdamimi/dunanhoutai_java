@@ -19,8 +19,10 @@ public interface AppUserService {
 	@PostMapping("/findInfoList")
 	ResponseBase findInfoList(AppUserLogEntity entity);
 	
-	
 	@PostMapping("/findWalletList")
 	ResponseBase findWalletList(AppUserLogEntity entity);
+	
+	@PostMapping("/findWalletAll")
+	ResponseBase findWalletAll(AppUserLogEntity entity);
 
 }

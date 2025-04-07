@@ -33,6 +33,7 @@ import com.junyang.entity.version.HardwareEntity.Firmware;
 import com.junyang.entity.version.ReleaseEntity;
 import com.junyang.entity.version.SoftwareEntity;
 import com.junyang.entity.version.SoftwareEntity.Android;
+import com.junyang.entity.version.SoftwareEntity.Changelog;
 import com.junyang.entity.version.SoftwareEntity.Google;
 import com.junyang.entity.version.SoftwareEntity.IOS;
 import com.junyang.enums.FilePathEnums;
@@ -261,11 +262,31 @@ public class ReleaseServiceImpl extends BaseApiService implements ReleaseService
 					android.setVersion(strToList(entity.getAndroidVersion()));
 					android.setGooglePlay(entity.getGooglePlayUrl());
 					android.setGoogle(google);
+					//安卓更新日志
+					List<Changelog> androidChangelogs = new ArrayList<>();
+					Changelog androidChangelog = new Changelog();
+					JSONObject androidObject = new JSONObject();
+					androidObject.put("en-US", entity.getEnUS());
+					androidObject.put("zh-CN", entity.getZhCN());
+					androidChangelog.setLocale(androidObject);
+					androidChangelog.setVersion(strToList(entity.getAndroidVersion()));
+					androidChangelogs.add(androidChangelog);
+					android.setChangelog(androidChangelogs);
 					softwareEntity.setAndroid(android);
 					// ios信息
 					IOS ios = new IOS();
 					ios.setUrl(entity.getIosUrl());
 					ios.setVersion(strToList(entity.getIosVersion()));
+					//苹果更新日志
+					List<Changelog> iosChangelogs = new ArrayList<>();
+					Changelog iosChangelog = new Changelog();
+					JSONObject iosObject = new JSONObject();
+					iosObject.put("en-US", entity.getEnUS());
+					iosObject.put("zh-CN", entity.getZhCN());
+					iosChangelog.setLocale(iosObject);
+					iosChangelog.setVersion(strToList(entity.getIosVersion()));
+					iosChangelogs.add(iosChangelog);
+					ios.setChangelog(iosChangelogs);
 					softwareEntity.setIos(ios);
 
 					ReleaseEntity releaseEntity = new ReleaseEntity();

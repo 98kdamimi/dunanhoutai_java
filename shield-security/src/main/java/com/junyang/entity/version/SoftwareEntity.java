@@ -35,6 +35,7 @@ public class SoftwareEntity {
 		private String googlePlay;
 		private String url;
 		private List<Integer> version;
+		private List<Changelog> changelog;
 	}
 
 	@Data
@@ -48,6 +49,7 @@ public class SoftwareEntity {
 		private List<Integer> forceUpdateVersion;
 		private String url;
 		private List<Integer> version;
+		private List<Changelog> changelog;
 	}
 
 	@Data

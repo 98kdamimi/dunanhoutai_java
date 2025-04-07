@@ -23,3 +23,11 @@ export function findWalletList(data) {
         data
     })
 }
+
+export function findWalletAll(data) {
+    return request({
+        url: 'appUser/findWalletAll',
+        method: 'post',
+        data
+    })
+}

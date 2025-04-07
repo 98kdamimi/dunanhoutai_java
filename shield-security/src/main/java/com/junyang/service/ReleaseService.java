@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.junyang.base.ResponseBase;
-import com.junyang.entity.release.RekeaseAddQueryEntity;
 import com.junyang.entity.version.ReleaseEntity;
 import com.junyang.query.PublicQueryEntity;
 
@@ -26,7 +25,7 @@ public interface ReleaseService {
 	ResponseBase sysAdd(String dataStr,MultipartFile file);
 	
 	@PostMapping("/sysHardwareAdd")
-	@ApiOperation(value = "管理端软件版本发布",notes = "管理端软件版本发布",response = ResponseBase.class)
+	@ApiOperation(value = "管理端硬件版本发布",notes = "管理端软件版本发布",response = ResponseBase.class)
 	ResponseBase sysHardwareAdd(String dataStr,MultipartFile bootloaderFile,MultipartFile firmwareFile);
 	
 	@PostMapping("/softwareList")

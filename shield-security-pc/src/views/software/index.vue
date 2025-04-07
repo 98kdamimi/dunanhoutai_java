@@ -57,6 +57,11 @@
               {{ scope.row.software.android.google.url }}
             </template>
           </el-table-column>
+          <el-table-column label="更新内容" align="center" :show-overflow-tooltip="true">
+            <template slot-scope="scope">
+              {{ scope.row.software.ios.changelog[0].locale["zh-CN"] }}
+            </template>
+          </el-table-column>
           <el-table-column label="发行状态" align="center" prop="releaseState">
             <template slot-scope="scope">
               <span v-if="scope.row.software.onlineState == 1" style="color: red;">下线</span>
@@ -121,6 +126,20 @@
                     accept=".apk" :file-list="fileList">
                     <el-button size="small" type="primary">点击上传</el-button>
                   </el-upload>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="更新内容/中文" prop="zhCN">
+                  <el-input type="textarea" :rows="2" v-model="formData.zhCN" placeholder="请输入更新内容"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-form-item label="更新内容/英文" prop="enUS">
+                  <el-input type="textarea" :rows="2" v-model="formData.enUS" placeholder="请输入请输入更新内容"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -198,6 +217,12 @@ export default {
         googlePlayUrl: [
           { required: true, message: "请填写谷歌下载地址", trigger: "change" },
         ],
+        // zhCN: [
+        //   { required: true, message: "请填写中文更新内容", trigger: "change" },
+        // ],
+        // enUS: [
+        //   { required: true, message: "请填写英文更新内容", trigger: "change" },
+        // ],
       }
     };
   },

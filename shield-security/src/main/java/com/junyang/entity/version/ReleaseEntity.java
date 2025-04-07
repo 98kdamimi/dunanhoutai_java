@@ -2,11 +2,9 @@ package com.junyang.entity.version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.junyang.query.PageQueryHelperEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 @Document(collection = "version_db")

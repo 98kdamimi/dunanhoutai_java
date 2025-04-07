@@ -7,12 +7,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 import com.junyang.config.DappConfig;
 import lombok.var;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HttpUtil {
 
@@ -338,5 +344,105 @@ public class HttpUtil {
         return result;
     }
 	
+	public static String sendWebHookGetRequest(String urlString, String apiKey,Map<String, String> params) {
+		 StringBuilder response = new StringBuilder();
+	        try {
+	            // 构建 URL 并附加参数
+	        	StringBuilder urlWithParams = new StringBuilder(urlString);
+	        	if (params != null && !params.isEmpty()) {
+	                urlWithParams.append("?");
+	                for (Map.Entry<String, String> entry : params.entrySet()) {
+	                    urlWithParams.append(URLEncoder.encode(entry.getKey(), "UTF-8"))
+	                                 .append("=")
+	                                 .append(URLEncoder.encode(entry.getValue(), "UTF-8"))
+	                                 .append("&");
+	                }
+	                urlWithParams.deleteCharAt(urlWithParams.length() - 1); // 移除最后的'&'
+	            }
+	            URL url = new URL(urlWithParams.toString());
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	            connection.setRequestMethod("GET");
+	            connection.setRequestProperty("Ok-Access-Key", apiKey);
+
+	            int responseCode = connection.getResponseCode();
+	            if (responseCode == HttpURLConnection.HTTP_OK) {
+	                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+	                String inputLine;
+	                while ((inputLine = in.readLine()) != null) {
+	                    response.append(inputLine);
+	                }
+	                in.close();
+	            } else {
+	                return "GET request failed: " + responseCode;
+	            }
+	            connection.disconnect();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return "Error: " + e.getMessage();
+	        }
+	        return response.toString();
+    }
 	
+	
+	public static String sendWebHookPostRequest(String url, String apiKey, String jsonParam) {
+		StringBuilder result = new StringBuilder();
+		HttpURLConnection conn = null;
+
+		try {
+			// 打开连接
+			conn = (HttpURLConnection) new URL(url).openConnection();
+
+			// 设置请求属性
+			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Ok-Access-Key", apiKey);
+			conn.setDoOutput(true);
+
+			// 将 JSON 数据写入请求体
+			try (OutputStream os = conn.getOutputStream()) {
+				os.write(jsonParam.getBytes(StandardCharsets.UTF_8));
+			}
+
+			// 读取响应
+			try (var in = conn.getInputStream();
+					var reader = new java.io.BufferedReader(
+							new java.io.InputStreamReader(in, StandardCharsets.UTF_8))) {
+				String line;
+				while ((line = reader.readLine()) != null) {
+					result.append(line);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				conn.disconnect();
+			}
+		}
+
+		return result.toString();
+	}
+	
+	 public static void main(String[] args) {
+	        OkHttpClient client = new OkHttpClient();
+	        String apiUrl = "https://tonapi.io/v1/wallet/create";  // 这里是示例 API，实际 API 可能不同
+
+	        Request request = new Request.Builder()
+	                .url(apiUrl)
+	                .get()
+	                .addHeader("Content-Type", "application/json")
+	                .build();
+
+	        try (Response response = client.newCall(request).execute()) {
+	            if (response.isSuccessful() && response.body() != null) {
+	                System.out.println("TON Wallet Address: " + response.body().string());
+	            } else {
+	                System.out.println("Failed to create wallet: " + response.code());
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+
 }

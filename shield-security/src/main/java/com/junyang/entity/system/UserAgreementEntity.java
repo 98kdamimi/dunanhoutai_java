@@ -36,6 +36,10 @@ public class UserAgreementEntity {
 	@ApiModelProperty(name = "htmlSite", value = "访问地址", required = false, dataType = "String")
 	private String htmlSite;
 	
+	@TableField("htmlSiteBlock")
+	@ApiModelProperty(name = "htmlSiteBlock", value = "访问地址", required = false, dataType = "String")
+	private String htmlSiteBlock;
+	
 	@TableField("set_time")
 	@ApiModelProperty(name = "setTime",value = "创建时间",required = false,dataType = "Date")
     private Date setTime;

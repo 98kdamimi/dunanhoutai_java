@@ -21,26 +21,23 @@ router.beforeEach((to, from, next) => {
             NProgress.done()
         } else {
             if (store.getters.roles.length === 0) {
-                // console.log("1111111111");
-                // isRelogin.show = true
-                // 判断当前用户是否已拉取完user_info信息
                 store.dispatch('GetInfo').then(() => {
-                    if (to.path !== '/login') {
-                        let roleFlag = auth.hasRole('admin') || auth.hasRole('mshengban') || auth.hasRole('guanli') || auth.hasRole('root')
-                        if (!roleFlag) {
-                            Message({
-                                message: '您没有登录权限，请联系管理员',
-                                type: 'error',
-                                duration: 5 * 1000
-                            })
-                            store.commit('SET_TOKEN', '')
-                            store.commit('SET_ROLES', [])
-                            store.commit('SET_PERMISSIONS', [])
-                            removeToken()
-                            NProgress.done()
-                            return
-                        }
-                    }
+                    // if (to.path !== '/login') {
+                    //     let roleFlag = auth.hasRole('admin') || auth.hasRole('mshengban') || auth.hasRole('guanli') || auth.hasRole('root')
+                    //     if (!roleFlag) {
+                    //         Message({
+                    //             message: '您没有登录权限，请联系管理员',
+                    //             type: 'error',
+                    //             duration: 5 * 1000
+                    //         })
+                    //         store.commit('SET_TOKEN', '')
+                    //         store.commit('SET_ROLES', [])
+                    //         store.commit('SET_PERMISSIONS', [])
+                    //         removeToken()
+                    //         NProgress.done()
+                    //         return
+                    //     }
+                    // }
                     // isRelogin.show = false
                     store.dispatch('GenerateRoutes').then(accessRoutes => {
                         // 根据roles权限生成可访问的路由表

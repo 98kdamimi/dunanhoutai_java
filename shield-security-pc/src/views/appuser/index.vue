@@ -25,6 +25,7 @@
             <template slot-scope="scope">
               <el-button type="text" @click="findInfoList(scope.row)">访问记录</el-button>
               <el-button type="text" @click="findWalletList(scope.row)">代币明细</el-button>
+              <el-button type="text" @click="findWalletAll(scope.row)">钱包余额</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -59,7 +60,7 @@
     
     <el-dialog title="代币明细" :visible.sync="walletDialog" width="70%" append-to-body>
       <div class="flex_sb">
-          <el-form :model="queryParams" size="small" :inline="true" label-width="68px">
+          <!-- <el-form :model="queryParams" size="small" :inline="true" label-width="68px">
             <el-form-item label="" prop="content">
               <el-input v-model="infoQueryParams.content" placeholder="请输入归属地"></el-input>
             </el-form-item>
@@ -67,7 +68,7 @@
               <el-button type="primary" icon="el-icon-search" size="mini" @click="infoHandleQuery">搜索</el-button>
               <el-button icon="el-icon-refresh" size="mini" @click="infoResetQuery">重置</el-button>
             </el-form-item>
-          </el-form>
+          </el-form> -->
         </div>
         <el-table :data="walletDataList" style="width: 100%" :row-key="row => row.id"  max-height="650">
           <el-table-column label="账户id" align="center" prop="accountId"></el-table-column>
@@ -86,16 +87,42 @@
               <span>{{"$"+ scope.row.usdValue }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="更新时间" align="center" prop="updatedAt"></el-table-column>
+          <!-- <el-table-column label="更新时间" align="center" prop="updatedAt"></el-table-column> -->
         </el-table>
         <pagination v-show="walletTotal > 0" :total="walletTotal" :page.sync="walletQueryParams.pageNumber"
-          :limit.sync="walletQueryParams.pageSize" @pagination="findWalletList" />
+          :limit.sync="walletQueryParams.pageSize" @pagination="getWalletList" />
+    </el-dialog>
+
+    <el-dialog title="钱包余额" :visible.sync="walletAllDialog" width="70%" append-to-body>
+      <div class="flex_sb">
+          <!-- <el-form :model="queryParams" size="small" :inline="true" label-width="68px">
+            <el-form-item label="" prop="content">
+              <el-input v-model="infoQueryParams.content" placeholder="请输入归属地"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-search" size="mini" @click="infoHandleQuery">搜索</el-button>
+              <el-button icon="el-icon-refresh" size="mini" @click="infoResetQuery">重置</el-button>
+            </el-form-item>
+          </el-form> -->
+        </div>
+        <el-table :data="walletDataAllList" style="width: 100%" :row-key="row => row.id"  max-height="650">
+          <!-- <el-table-column label="账户id" align="center" prop="accountId"></el-table-column> -->
+          <el-table-column label="钱包地址" align="center" prop="walletAddress"></el-table-column>
+          <el-table-column label="钱包余额" align="center" prop="totalUsdValue">
+            <template slot-scope="scope">
+              <span>{{"$"+ scope.row.totalUsdValue }}</span>
+            </template>
+          </el-table-column>
+          <!-- <el-table-column label="更新时间" align="center" prop="updatedAt"></el-table-column> -->
+        </el-table>
+        <pagination v-show="walletAllTotal > 0" :total="walletTotal" :page.sync="walletAllQueryParams.pageNumber"
+          :limit.sync="walletAllQueryParams.pageSize" @pagination="getWalletAllList" />
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { findAppUser,findInfoAppUser,findWalletList } from "@/api/appuser/appuser";
+import { findAppUser,findInfoAppUser,findWalletList,findWalletAll } from "@/api/appuser/appuser";
 export default {
   name: "typesOfPoints",
   data() {
@@ -106,12 +133,15 @@ export default {
       dataList: [],
       dataInfoList:[],
       walletDataList:[],
+      walletDataAllList:[],
       walletTotal:0,
       infoTotal:0,
+      walletAllTotal:0,
       loading: true,
       infoLoading: true,
       dialogOpen: false,
       walletDialog:false,
+      walletAllDialog:false,
       // 查询参数
       queryParams: {
         pageNumber: 1,
@@ -124,6 +154,12 @@ export default {
       walletQueryParams: {
         pageNumber: 1,
         pageSize: 10,
+        instanceId:null,
+      },
+      walletAllQueryParams: {
+        pageNumber: 1,
+        pageSize: 10,
+        instanceId:null,
       },
     };
   },
@@ -160,24 +196,13 @@ export default {
       this.getInfoList()
       this.dialogOpen = true
     },
-
     getInfoList(){
       this.infoLoading = true;
       findInfoAppUser(this.infoQueryParams).then(res => {
         this.dataInfoList = res.data.list
         this.infoTotal = res.data.total
-        this.infoLoading = false
       })
     },
-    findWalletList(data){
-      this.walletQueryParams.instanceId = data.instanceId
-      findWalletList(this.walletQueryParams).then(res => {
-        this.walletDataList = res.data.list
-        this.walletTotal = res.data.total
-        this.walletDialog = true
-      })
-    },
-
     infoHandleQuery(){
       this.infoQueryParams.pageNumber = 1
       this.getInfoList();
@@ -188,20 +213,39 @@ export default {
       this.infoQueryParams.pageSize=10
       this.getInfoList();
     },
-    formatDate(isoString) {
-      const date = new Date(isoString);
-      const formattedDate = new Intl.DateTimeFormat("zh-CN", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        timeZone: "Asia/Shanghai"
-      }).format(date);
-      return formattedDate;
+
+    findWalletList(data){
+      this.walletQueryParams.instanceId = data.instanceId
+      this.walletQueryParams.pageNumber =1
+      this.walletQueryParams.pageSize=10
+      this.getWalletList()
+      this.walletDialog = true
+    },
+    getWalletList(){
+      console.log(this.walletQueryParams)
+      findWalletList(this.walletQueryParams).then(res => {
+        this.walletDataList = res.data.list
+        this.walletTotal = res.data.total
+      })
+    },
+
+    findWalletAll(data){
+      this.walletAllQueryParams.instanceId = data.instanceId
+      this.walletAllQueryParams.pageNumber =1
+      this.walletAllQueryParams.pageSize=10
+      this.getWalletAllList()
+      this.walletAllDialog = true
+    },
+    getWalletAllList(){
+      findWalletAll(this.walletAllQueryParams).then(res => {
+        this.walletDataAllList = res.data.list
+        this.walletAllTotal = res.data.total
+      })
     }
 
+
+
+   
   }
 };
 </script>

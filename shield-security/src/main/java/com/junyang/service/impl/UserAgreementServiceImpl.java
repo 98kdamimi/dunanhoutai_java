@@ -95,8 +95,13 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			String url = this.fileUploadUtil(file, 
 					FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
 			entity.setHtmlSite(url);
+			
+			MultipartFile fileTwo = FileUploadUtil.saveHtmlToBlockFile(entity.getContentInfo(),fileName+"Block");
+			String urlTwo = this.fileUploadUtil(fileTwo, 
+					FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
+			entity.setHtmlSiteBlock(urlTwo);
+			
 			entity.setTypeName(AgreementTypeEnums.getName(entity.getTypeId()));
-//			UserAgreementEntity userAgreementEntity = mongoTemplate.insert(entity);
 			JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
 			String jsonParam = JSON.toJSONString(jsonObject);
 			String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.GREEMENT_ADD.getName(), jsonParam);
@@ -129,9 +134,14 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 				String url = this.fileUploadUtil(file, 
 						FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
 				entity.setHtmlSite(url);
+				
+				MultipartFile fileTwo = FileUploadUtil.saveHtmlToBlockFile(entity.getContentInfo(),fileName+"Block");
+				String urlTwo = this.fileUploadUtil(fileTwo, 
+						FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
+				entity.setHtmlSiteBlock(urlTwo);
+				
 				JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
 				String jsonParam = JSON.toJSONString(jsonObject);
-				
 				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.GREEMENT_UPDATE.getName(), jsonParam);
 				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
 				if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
@@ -166,6 +176,7 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			query.with(pageRequest);
 			// 执行分页查询
 			List<UserAgreementEntity> list = mongoTemplate.find(query, UserAgreementEntity.class);
+			System.out.println(JSON.toJSON(list));
 			// 获取总记录数
 			PageInfo<UserAgreementEntity> info = new PageInfo<>(list);
 			info.setTotal(totalCount);

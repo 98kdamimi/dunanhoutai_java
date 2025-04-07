@@ -534,6 +534,36 @@ public class FileUploadUtil {
         return multipartFile; // 返回 MultipartFile 类型，可以上传到 S3 或其他地方
     }
     
+    public static MultipartFile saveHtmlToBlockFile(String htmlContent, String fileName) throws IOException {
+        // 设置文件路径
+    	String name;
+    	if(fileName != null && fileName.length() > 0) {
+    		name = fileName;
+    	}else {
+    		name = UUID.randomUUID().toString().replace("-", "");
+    	}
+    	String fullHtmlContent = "<!DOCTYPE html>" +
+    	        "<html lang=\"zh-CN\">" +
+    	        "<head>" +
+    	        "<meta charset=\"UTF-8\">" +
+    	        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+    	        "<title>Digital Shield</title>" +
+    	        "<style>" +
+    	        "body { color: white; background-color: black; }" +  // 设为白字黑底
+    	        "</style>" +
+    	        "</head>" +
+    	        "<body>" +
+    	        htmlContent +
+    	        "</body>" +
+    	        "</html>";
+    	// 将 HTML 内容写入到内存中的 ByteArrayOutputStream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byteArrayOutputStream.write(fullHtmlContent.getBytes(StandardCharsets.UTF_8));
+        // 使用 ByteArrayMultipartFile 创建 MultipartFile
+        MultipartFile multipartFile = new ByteArrayMultipartFile(byteArrayOutputStream.toByteArray(), name + ".html", "text/html");
+        return multipartFile; // 返回 MultipartFile 类型，可以上传到 S3 或其他地方
+    }
+    
     public static MultipartFile getMultipartFile(File file) {
         FileItem item = new DiskFileItemFactory().createItem("file"
             , MediaType.MULTIPART_FORM_DATA_VALUE
