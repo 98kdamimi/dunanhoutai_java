@@ -11,7 +11,6 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 import com.junyang.config.DappConfig;
@@ -423,6 +422,7 @@ public class HttpUtil {
 
 		return result.toString();
 	}
+	
 	
 	 public static void main(String[] args) {
 	        OkHttpClient client = new OkHttpClient();

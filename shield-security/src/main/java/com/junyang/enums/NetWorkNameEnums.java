@@ -1,11 +1,11 @@
 package com.junyang.enums;
 
 public enum NetWorkNameEnums {
-	Bitcoin(1, "Bitcoin", "BTC", "BtcTask"), ETHEREUM(2, "Ethereum", "ETH", "EthTask"),
-	BSC(3, "BNB Smart Chain", "BSC", "BscTask"), SOLANA(4, "Solana", "SOLANA", "SolanaTask"),
+	Bitcoin(1, "Bitcoin", "btc", "BtcTask"), ETHEREUM(2, "Ethereum", "eth", "EthTask"),
+	BSC(3, "BNB Smart Chain", "bch", "BscTask"), SOLANA(4, "Solana", "SOLANA", "SolanaTask"),
 	POLYGON(5, "Polygon", "POLYGON", "PolygonTask"), APTOS(6, "Aptos", "APT", "AptosTask"),
-	DOGECOIN(7, "Dogecoin", "DOGE", "DogecoinTask"), LITECOIN(8, "Litecoin", "LTC", "LitecoinTask"),
-	SUI(9, "SUI", "SUI", "SuiTask"), TRON(10, "Tron", "TRON", "TronTask");
+	DOGECOIN(7, "Dogecoin", "doge", "DogecoinTask"), LITECOIN(8, "Litecoin", "ltc", "LitecoinTask"),
+	SUI(9, "SUI", "SUI", "SuiTask"), TRON(10, "Tron", "trx", "TronTask");
 
 	private Integer index;
 

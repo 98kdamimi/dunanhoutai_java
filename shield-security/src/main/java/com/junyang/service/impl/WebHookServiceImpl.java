@@ -30,6 +30,7 @@ import com.junyang.base.ResponseBase;
 import com.junyang.constants.Constants;
 import com.junyang.entity.monitorEvent.AddAddressesQueryEntity;
 import com.junyang.entity.monitorEvent.AddressesJpushEntity;
+import com.junyang.entity.monitorEvent.BlockchainTransaction;
 import com.junyang.entity.monitorEvent.MonitorEventEntity;
 import com.junyang.entity.monitorEvent.TrackerAddressesInfoEntity;
 import com.junyang.entity.monitorEvent.TrackerInfoEntity;
@@ -41,6 +42,7 @@ import com.junyang.enums.ActionTypeEnums;
 import com.junyang.enums.EventTypeEunms;
 import com.junyang.enums.NetWorkNameEnums;
 import com.junyang.enums.ReleaseStateEnums;
+import com.junyang.enums.TokenViweUrlEnums;
 import com.junyang.enums.WebHookUrlEnums;
 import com.junyang.service.WebHookService;
 import com.junyang.utils.HttpUtil;
@@ -59,179 +61,225 @@ public class WebHookServiceImpl extends BaseApiService implements WebHookService
 
 	@Value("${WEB_HOOK_CALLBACKS}")
 	private String WEB_HOOK_CALLBACKS;
+	
+	@Value("${TOKEN_VIWE_KEY}")
+	private String TOKEN_VIWE_KEY;
 
 	@Autowired
 	@Qualifier("secondaryMongoTemplate") // 次数据源
 	private MongoTemplate secondaryMongoTemplate;
 
-	@Override
-	public ResponseBase addTaskAddresses(@RequestBody AddAddressesQueryEntity queryEntity) {
-		try {
-			// 获取现有监听任务
-			HttpResponse base = this.findTaskList(Constants.LIMIT, Constants.PAGE);
-			String temp = JSON.toJSONString(base.getData());
-			JSONArray array = JSONArray.parseArray(temp);
-			String data = array.get(0).toString();
-			TrackerInfoEntity entity = JSONObject.parseObject(data, TrackerInfoEntity.class);
-			if (entity.getTrackerList() != null && entity.getTrackerList().size() > 0) {// 已有任务
-				List<Tracker> trackerList = entity.getTrackerList();
-				for (int i = 0; i < trackerList.size(); i++) {
-					if (trackerList.get(i).getChainShortName()
-							.equals(NetWorkNameEnums.getValue(queryEntity.getNetWorkName()))) {// 判断是否存在此链的任务
-						// 查询任务详情，判断地址是否已满
-						HttpResponse response = this.findTaskaddAressList(trackerList.get(i).getTrackerId(),
-								Constants.LIMIT, Constants.PAGE);
-						String addressesStr = response.getData().toString();
-						TrackerAddressesInfoEntity addressesInfoEntity = JSONObject.parseObject(addressesStr,
-								TrackerAddressesInfoEntity.class);
-						List<AddressInfo> addressList = addressesInfoEntity.getAddressList();
-						if (addressList != null && addressList.size() < Constants.SIZE) {// 调用任务修改添加地址
-							// 判断地址集合中是否存在现有的地址
-							boolean addressesState = this.judgeAddresses(addressList, queryEntity.getAddresses());
-							if (addressesState) {
-								this.addAddresses(queryEntity,trackerList.get(i).getTrackerId());//往任务中的地址列表中追加
-							}
-							return setResultSuccess();
-						}
-					}
-				}
-				this.addTracker(queryEntity);// 没有此链任务，新增任务
-				return setResultSuccess();
-			} else {// 没有任务
-				this.addTracker(queryEntity);
-				return setResultSuccess();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-	}
+//	@Override
+//	public ResponseBase addTaskAddresses(@RequestBody AddAddressesQueryEntity queryEntity) {
+//		try {
+//			// 获取现有监听任务
+//			HttpResponse base = this.findTaskList(Constants.LIMIT, Constants.PAGE);
+//			String temp = JSON.toJSONString(base.getData());
+//			JSONArray array = JSONArray.parseArray(temp);
+//			String data = array.get(0).toString();
+//			TrackerInfoEntity entity = JSONObject.parseObject(data, TrackerInfoEntity.class);
+//			if (entity.getTrackerList() != null && entity.getTrackerList().size() > 0) {// 已有任务
+//				List<Tracker> trackerList = entity.getTrackerList();
+//				for (int i = 0; i < trackerList.size(); i++) {
+//					if (trackerList.get(i).getChainShortName()
+//							.equals(NetWorkNameEnums.getValue(queryEntity.getNetWorkName()))) {// 判断是否存在此链的任务
+//						// 查询任务详情，判断地址是否已满
+//						HttpResponse response = this.findTaskaddAressList(trackerList.get(i).getTrackerId(),
+//								Constants.LIMIT, Constants.PAGE);
+//						String addressesStr = response.getData().toString();
+//						TrackerAddressesInfoEntity addressesInfoEntity = JSONObject.parseObject(addressesStr,
+//								TrackerAddressesInfoEntity.class);
+//						List<AddressInfo> addressList = addressesInfoEntity.getAddressList();
+//						if (addressList != null && addressList.size() < Constants.SIZE) {// 调用任务修改添加地址
+//							// 判断地址集合中是否存在现有的地址
+//							boolean addressesState = this.judgeAddresses(addressList, queryEntity.getAddresses());
+//							if (addressesState) {
+//								this.addAddresses(queryEntity,trackerList.get(i).getTrackerId());//往任务中的地址列表中追加
+//							}
+//							return setResultSuccess();
+//						}
+//					}
+//				}
+//				this.addTracker(queryEntity);// 没有此链任务，新增任务
+//				return setResultSuccess();
+//			} else {// 没有任务
+//				this.addTracker(queryEntity);
+//				return setResultSuccess();
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new RuntimeException();
+//		}
+//	}
+//
+//	/**
+//	 * @category 新增任务
+//	 */
+//	public void addTracker(AddAddressesQueryEntity queryEntity) {
+//		MonitorEventEntity entity = new MonitorEventEntity();
+//		entity.setEvent(EventTypeEunms.TOKENTRANSFER.getName());// 任务类型
+//		entity.setChainShortName(NetWorkNameEnums.getValue(queryEntity.getNetWorkName()));// 链缩写
+//		entity.setTrackerName(NetWorkNameEnums.getLable(queryEntity.getNetWorkName()));// 任务名称
+//		List<String> addressesList = new ArrayList<String>();
+//		addressesList.add(queryEntity.getAddresses());
+//		entity.setAddresses(addressesList);
+//		// 获取此链对应的token
+//		List<String> tokenList = this.findNetWorkToken(queryEntity);
+//		entity.setTokenContractAddress(tokenList);
+//		entity.setWebhookUrl(WEB_HOOK_CALLBACKS);
+//		JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
+//		String jsonParam = JSON.toJSONString(jsonObject);
+//		String res = HttpUtil.sendWebHookPostRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADD_TASK.getValue(),
+//				WEB_HOOK_KEY, jsonParam);
+//		System.out.println(res);
+//	}
+//
+//	/**
+//	 * @category 新增地址
+//	 */
+//	public void addAddresses(AddAddressesQueryEntity queryEntity, String trackerId) {
+//		List<String> addressOneList = new ArrayList<String>();
+//		addressOneList.add(queryEntity.getAddresses());
+//		UpAddressesQueryEntity upAddressesQuery = new UpAddressesQueryEntity();
+//		upAddressesQuery.setAction(ActionTypeEnums.ADD.getName());
+//		upAddressesQuery.setAddresses(addressOneList);
+//		upAddressesQuery
+//				.setChainShortName(NetWorkNameEnums.getValue(queryEntity.getNetWorkName()));
+//		upAddressesQuery.setTrackerId(trackerId);
+//		
+//		JSONObject jsonObject = (JSONObject) JSONObject.toJSON(queryEntity);
+//		String jsonParam = JSON.toJSONString(jsonObject);
+//		String res = HttpUtil.sendWebHookPostRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADD_ADDRESSES.getValue(),
+//				WEB_HOOK_KEY, jsonParam);
+//		System.out.println(res);
+//	}
+//
+//	/**
+//	 * @category 判断地址集合中是否存在当前地址
+//	 */
+//	public boolean judgeAddresses(List<AddressInfo> addressList, String address) {
+//		Set<String> addressSet = new HashSet<>();
+//		for (AddressInfo addressInfo : addressList) {
+//			addressSet.add(addressInfo.getAddress());
+//		}
+//		// 使用 Set 的 contains 方法判断地址是否存在
+//		return addressSet.contains(address);
+//	}
+//
+//	/**
+//	 * @category 获取任务列表
+//	 */
+//	@SuppressWarnings("unchecked")
+//	public HttpResponse findTaskList(String limit, String page) {
+//		try {
+//			String temp;
+//			if (limit != null && page != null) {
+//				Map<String, String> params = new HashedMap();
+//				params.put("limit", limit);
+//				params.put("page", page);
+//				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_TASK_LIST.getValue(),
+//						WEB_HOOK_KEY, params);
+//			} else {
+//				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_TASK_LIST.getValue(),
+//						WEB_HOOK_KEY, null);
+//			}
+//			HttpResponse response = JSONObject.parseObject(temp, HttpResponse.class);
+//			return response;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new RuntimeException();
+//		}
+//	}
+//
+//	/**
+//	 * @category 获取 Webhook 任务订阅地址列表
+//	 * @param limit
+//	 * @param page
+//	 * @param
+//	 * @return
+//	 */
+//	@SuppressWarnings("unchecked")
+//	public HttpResponse findTaskaddAressList(String trackerId, String limit, String page) {
+//		try {
+//			String temp;
+//			if (limit != null && page != null) {
+//				Map<String, String> params = new HashedMap();
+//				params.put("trackerId", trackerId);
+//				params.put("limit", limit);
+//				params.put("page", page);
+//				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADDRESSES_TASK.getValue(),
+//						WEB_HOOK_KEY, params);
+//			} else {
+//				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADDRESSES_TASK.getValue(),
+//						WEB_HOOK_KEY, null);
+//			}
+//			HttpResponse response = JSONObject.parseObject(temp, HttpResponse.class);
+//			return response;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new RuntimeException();
+//		}
+//	}
 
-	/**
-	 * @category 新增任务
-	 */
-	public void addTracker(AddAddressesQueryEntity queryEntity) {
-		MonitorEventEntity entity = new MonitorEventEntity();
-		entity.setEvent(EventTypeEunms.TOKENTRANSFER.getName());// 任务类型
-		entity.setChainShortName(NetWorkNameEnums.getValue(queryEntity.getNetWorkName()));// 链缩写
-		entity.setTrackerName(NetWorkNameEnums.getLable(queryEntity.getNetWorkName()));// 任务名称
-		List<String> addressesList = new ArrayList<String>();
-		addressesList.add(queryEntity.getAddresses());
-		entity.setAddresses(addressesList);
-		// 获取此链对应的token
-		List<String> tokenList = this.findNetWorkToken(queryEntity);
-		entity.setTokenContractAddress(tokenList);
-		entity.setWebhookUrl(WEB_HOOK_CALLBACKS);
-		JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
-		String jsonParam = JSON.toJSONString(jsonObject);
-		String res = HttpUtil.sendWebHookPostRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADD_TASK.getValue(),
-				WEB_HOOK_KEY, jsonParam);
-		System.out.println(res);
-	}
 
-	/**
-	 * @category 新增地址
-	 */
-	public void addAddresses(AddAddressesQueryEntity queryEntity, String trackerId) {
-		List<String> addressOneList = new ArrayList<String>();
-		addressOneList.add(queryEntity.getAddresses());
-		UpAddressesQueryEntity upAddressesQuery = new UpAddressesQueryEntity();
-		upAddressesQuery.setAction(ActionTypeEnums.ADD.getName());
-		upAddressesQuery.setAddresses(addressOneList);
-		upAddressesQuery
-				.setChainShortName(NetWorkNameEnums.getValue(queryEntity.getNetWorkName()));
-		upAddressesQuery.setTrackerId(trackerId);
-		
-		JSONObject jsonObject = (JSONObject) JSONObject.toJSON(queryEntity);
-		String jsonParam = JSON.toJSONString(jsonObject);
-		String res = HttpUtil.sendWebHookPostRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADD_ADDRESSES.getValue(),
-				WEB_HOOK_KEY, jsonParam);
-		System.out.println(res);
-	}
-
-	/**
-	 * @category 判断地址集合中是否存在当前地址
-	 */
-	public boolean judgeAddresses(List<AddressInfo> addressList, String address) {
-		Set<String> addressSet = new HashSet<>();
-		for (AddressInfo addressInfo : addressList) {
-			addressSet.add(addressInfo.getAddress());
-		}
-		// 使用 Set 的 contains 方法判断地址是否存在
-		return addressSet.contains(address);
-	}
-
-	/**
-	 * @category 获取任务列表
-	 */
-	@SuppressWarnings("unchecked")
-	public HttpResponse findTaskList(String limit, String page) {
-		try {
-			String temp;
-			if (limit != null && page != null) {
-				Map<String, String> params = new HashedMap();
-				params.put("limit", limit);
-				params.put("page", page);
-				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_TASK_LIST.getValue(),
-						WEB_HOOK_KEY, params);
-			} else {
-				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_TASK_LIST.getValue(),
-						WEB_HOOK_KEY, null);
-			}
-			HttpResponse response = JSONObject.parseObject(temp, HttpResponse.class);
-			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-	}
-
-	/**
-	 * @category 获取 Webhook 任务订阅地址列表
-	 * @param limit
-	 * @param page
-	 * @param
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	public HttpResponse findTaskaddAressList(String trackerId, String limit, String page) {
-		try {
-			String temp;
-			if (limit != null && page != null) {
-				Map<String, String> params = new HashedMap();
-				params.put("trackerId", trackerId);
-				params.put("limit", limit);
-				params.put("page", page);
-				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADDRESSES_TASK.getValue(),
-						WEB_HOOK_KEY, params);
-			} else {
-				temp = HttpUtil.sendWebHookGetRequest(WEB_HOOK_URL + WebHookUrlEnums.WEBHOOK_ADDRESSES_TASK.getValue(),
-						WEB_HOOK_KEY, null);
-			}
-			HttpResponse response = JSONObject.parseObject(temp, HttpResponse.class);
-			return response;
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-	}
-
+//	/**
+//	 * @category 查询链下代币合约地址
+//	 * @param entity
+//	 * @return
+//	 */
+//	public List<String> findNetWorkToken(AddAddressesQueryEntity entity) {
+//		Query query = new Query();
+//		// 根据传入的条件构造查询
+//		if (entity.getChainId() != null && entity.getChainId().length() > 0) {
+//			query.addCriteria(Criteria.where("chainId").is(entity.getChainId()));
+//		}
+//		if (entity.getImpl() != null && entity.getImpl().length() > 0) {
+//			query.addCriteria(Criteria.where("impl").is(entity.getImpl()));
+//		}
+//		// 添加状态条件
+//		query.addCriteria(Criteria.where("status").is(ReleaseStateEnums.TOP_LINE.getLable()));
+//		// 限制只返回 address 字段
+//		query.fields().include("address");
+//		// 排序并限制查询结果为前20条数据
+//		query.with(Sort.by(Sort.Order.asc("createdAt")));
+//		query.limit(20); // 限制返回20条数据
+//		// 执行查询
+//		List<DaTokenEntity> list = secondaryMongoTemplate.find(query, DaTokenEntity.class);
+//		// 从查询结果中提取出 address 字段，并过滤掉 null 或空字符串
+//		List<String> addresses = list.stream().map(DaTokenEntity::getAddress)
+//				.filter(address -> address != null && !address.isEmpty())
+//				.collect(Collectors.toList());
+//
+//		return addresses;
+//	}
+//	
+	
+	
 	/**
 	 * @category 任务回调
 	 */
 	@Override
-	public HttpResponse Callbacks(@RequestBody Map<String, Object> payload) {
-		// 解构数据获取钱包地址获取对应的jpushId
-		List<String> registrationIds = this.getRegistrationIds("0xcd9ba57e825feeef8ff6ae73a6daacedb39eaf3a");
-		// 构建消息，推送消息
-		JPushUtils.sendPushNotification(registrationIds, "ceshi", "ceshiceshi");
-		// 返回webhook结果
-		HttpResponse httpResponse = new HttpResponse();
-		httpResponse.setCode(Constants.HTTP_RES_CODE_200);
-		httpResponse.setMsg(Constants.SUCCESS);
-		return httpResponse;
+	public HttpResponse Callbacks(@RequestBody BlockchainTransaction payload) {
+		try {
+			// 解构数据获取钱包地址获取对应的jpushId
+			if(payload != null && payload.getAddress() != null && payload.getTokenValue() != null) {
+				List<String> registrationIds = this.getRegistrationIds(payload.getAddress());
+				// 构建消息，推送消息
+				if(registrationIds != null && registrationIds.size() > 0) {
+					JPushUtils.sendPushNotification(registrationIds, "Transaction Alerts",
+							"Transaction Alerts:"+payload.getCoin()+" network "+" token "+payload.getTokenSymbol()+" "+payload.getTokenValue());
+				}
+			}
+			HttpResponse httpResponse = new HttpResponse();
+			httpResponse.setCode(Constants.HTTP_RES_CODE_200);
+			httpResponse.setMsg(Constants.SUCCESS);
+			return httpResponse;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
-
+	
 	/**
 	 * @category 根据地址获取极光id
 	 * @param address
@@ -254,13 +302,14 @@ public class WebHookServiceImpl extends BaseApiService implements WebHookService
 		List<String> list = new ArrayList<>(registrationIdsSet);
 		return list;
 	}
-
+	
 	/**
 	 * @category ADDRESS绑定极光
 	 */
 	@Override
 	public ResponseBase bindingAddresses(@RequestBody AddressesJpushEntity entity) {
 	    try {
+	    	System.out.println(JSON.toJSON(entity));
 	        // 获取当前时间
 	        Date now = new Date();
 	        
@@ -299,36 +348,39 @@ public class WebHookServiceImpl extends BaseApiService implements WebHookService
 	    }
 	}
 
+	
+	
 
-	/**
-	 * @category 查询链下代币合约地址
-	 * @param entity
-	 * @return
-	 */
-	public List<String> findNetWorkToken(AddAddressesQueryEntity entity) {
-		Query query = new Query();
-		// 根据传入的条件构造查询
-		if (entity.getChainId() != null && entity.getChainId().length() > 0) {
-			query.addCriteria(Criteria.where("chainId").is(entity.getChainId()));
+	@Override
+	public ResponseBase addTaskAddresses(@RequestBody AddAddressesQueryEntity entity) {
+		try {
+			 //新增地址
+			 String path = TokenViweUrlEnums.ADDRESSES_ADD.getValue()
+					 +NetWorkNameEnums.getValue(entity.getNetWorkName())
+					 +"/"+entity.getAddresses()+"?apikey="+TOKEN_VIWE_KEY;
+			 HttpUtil.get(path);
+			 return setResultSuccess();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
 		}
-		if (entity.getImpl() != null && entity.getImpl().length() > 0) {
-			query.addCriteria(Criteria.where("impl").is(entity.getImpl()));
+	}
+	
+	
+	public List<String> getHookAddressesList(String netWork) {
+		try {
+			String listUrl = TokenViweUrlEnums.ADDRESSES_LIST.getValue()+netWork+"?page=0&apikey="+TOKEN_VIWE_KEY+"";
+			String baseStr = HttpUtil.get(listUrl);
+			JSONObject jsonObject = JSONObject.parseObject(baseStr);
+			String dataStr = jsonObject.get("data").toString();
+			JSONObject data = JSONObject.parseObject(dataStr);
+			String listStr = data.getString("list").toString();
+			List<String> list = JSONArray.parseArray(listStr, String.class);
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
 		}
-		// 添加状态条件
-		query.addCriteria(Criteria.where("status").is(ReleaseStateEnums.TOP_LINE.getLable()));
-		// 限制只返回 address 字段
-		query.fields().include("address");
-		// 排序并限制查询结果为前20条数据
-		query.with(Sort.by(Sort.Order.asc("createdAt")));
-		query.limit(20); // 限制返回20条数据
-		// 执行查询
-		List<DaTokenEntity> list = secondaryMongoTemplate.find(query, DaTokenEntity.class);
-		// 从查询结果中提取出 address 字段，并过滤掉 null 或空字符串
-		List<String> addresses = list.stream().map(DaTokenEntity::getAddress)
-				.filter(address -> address != null && !address.isEmpty())
-				.collect(Collectors.toList());
-
-		return addresses;
 	}
 
 }
