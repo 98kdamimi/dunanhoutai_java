@@ -1,6 +1,9 @@
 package com.junyang.service;
 
+import com.junyang.entity.tronsignature.MultiSignaturesRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.junyang.base.HttpResponse;
@@ -29,4 +32,11 @@ public interface TronSignatureService {
 	@ApiOperation(value = "获取tron账户代币",notes = "获取tron账户代币",response = ResponseBase.class)
 	HttpResponse getAddressToken(String address);
 
+	@PostMapping("/createMultiSign")
+	@ApiOperation(value = "新增多签交易记录",notes ="新增多签交易记录",response = ResponseBase.class)
+	ResponseBase createMultiSign(MultiSignaturesRequest request);
+
+	@GetMapping("/getMultiSign")
+	@ApiOperation(value = "查询多签交易记录",notes ="查询多签交易记录",response = ResponseBase.class)
+	ResponseBase getMultiSign(String address);
 }
