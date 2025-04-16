@@ -43,7 +43,7 @@ public class MultiSignaturesEntity {
 
         @ApiModelProperty(name = "contract", value = "合约列表", required = false, dataType = "List<Contract>")
         @Field("contract")
-        private List<Contract> contract;
+        private Object contract;
 
         @ApiModelProperty(name = "refBlockBytes", value = "引用区块字节", required = false, dataType = "String")
         @Field("ref_block_bytes")
@@ -79,28 +79,13 @@ public class MultiSignaturesEntity {
 
                 @ApiModelProperty(name = "value", value = "值", required = false, dataType = "Value")
                 @Field("value")
-                private Value value;
+                private Object value;  // 或者 Map<String, Object>
 
                 @ApiModelProperty(name = "typeUrl", value = "类型URL", required = false, dataType = "String")
                 @Field("type_url")
                 private String typeUrl;
 
-                @Data
-                @ApiModel(value = "值", description = "参数值")
-                public static class Value {
 
-                    @ApiModelProperty(name = "amount", value = "金额", required = false, dataType = "Long")
-                    @Field("amount")
-                    private long amount;
-
-                    @ApiModelProperty(name = "ownerAddress", value = "发送方地址", required = false, dataType = "String")
-                    @Field("owner_address")
-                    private String ownerAddress;
-
-                    @ApiModelProperty(name = "toAddress", value = "接收方地址", required = false, dataType = "String")
-                    @Field("to_address")
-                    private String toAddress;
-                }
             }
         }
     }
@@ -140,4 +125,8 @@ public class MultiSignaturesEntity {
         }
     }
 
+
+    @ApiModelProperty(name = "activePermissions", value = "活动权限", required = false, dataType = "activePermissions")
+    @Field("active_permissions")
+    private Object activePermissions;
 }

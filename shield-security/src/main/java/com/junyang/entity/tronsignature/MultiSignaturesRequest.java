@@ -37,7 +37,7 @@ public class MultiSignaturesRequest {
     public static class RawData {
 
         @ApiModelProperty(name = "contract", value = "合约列表", required = false, dataType = "List<Contract>")
-        private List<Contract> contract;
+        private Object contract;
 
         @ApiModelProperty(name = "refBlockBytes", value = "引用区块字节", required = false, dataType = "String")
         @JsonProperty("ref_block_bytes")
@@ -67,28 +67,12 @@ public class MultiSignaturesRequest {
             @ApiModel(value = "参数", description = "合约参数")
             public static class Parameter {
 
-                @ApiModelProperty(name = "value", value = "值", required = false, dataType = "Value")
-                private Value value;
+                @ApiModelProperty(name = "value", value = "参数值（任意JSON结构）")
+                private Object value;  // 或者 Map<String, Object>
 
                 @ApiModelProperty(name = "typeUrl", value = "类型URL", required = false, dataType = "String")
                 @JsonProperty("type_url")
                 private String typeUrl;
-
-                @Data
-                @ApiModel(value = "值", description = "参数值")
-                public static class Value {
-
-                    @ApiModelProperty(name = "amount", value = "金额", required = false, dataType = "Long")
-                    private long amount;
-
-                    @ApiModelProperty(name = "ownerAddress", value = "发送方地址", required = false, dataType = "String")
-                    @JsonProperty("owner_address")
-                    private String ownerAddress;
-
-                    @ApiModelProperty(name = "toAddress", value = "接收方地址", required = false, dataType = "String")
-                    @JsonProperty("to_address")
-                    private String toAddress;
-                }
             }
         }
     }

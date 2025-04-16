@@ -143,28 +143,7 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 
 				// 映射 Contract
 				if (request.getRawData().getContract() != null) {
-					List<MultiSignaturesEntity.RawData.Contract> contracts = request.getRawData().getContract().stream().map(reqContract -> {
-						MultiSignaturesEntity.RawData.Contract contract = new MultiSignaturesEntity.RawData.Contract();
-						contract.setType(reqContract.getType());
-
-						// 映射 Parameter
-						if (reqContract.getParameter() != null) {
-							MultiSignaturesEntity.RawData.Contract.Parameter parameter = new MultiSignaturesEntity.RawData.Contract.Parameter();
-							parameter.setTypeUrl(reqContract.getParameter().getTypeUrl());
-
-							// 映射 Value
-							if (reqContract.getParameter().getValue() != null) {
-								MultiSignaturesEntity.RawData.Contract.Parameter.Value value = new MultiSignaturesEntity.RawData.Contract.Parameter.Value();
-								value.setAmount(reqContract.getParameter().getValue().getAmount());
-								value.setOwnerAddress(reqContract.getParameter().getValue().getOwnerAddress());
-								value.setToAddress(reqContract.getParameter().getValue().getToAddress());
-								parameter.setValue(value);
-							}
-							contract.setParameter(parameter);
-						}
-						return contract;
-					}).collect(Collectors.toList());
-					rawData.setContract(contracts);
+					rawData.setContract(request.getRawData().getContract());
 				}
 				entity.setRawData(rawData);
 			}
@@ -196,6 +175,10 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 					// 设置到 MultiSignaturesEntity
 					entity.setOwnerPermission(ownerPermissionObj);
 				}
+				//存储activePermissions
+				JSONArray  activePermissions = accountjsonObject.getJSONArray("activePermissions");
+//				System.out.print(activePermissions);
+				entity.setActivePermissions(activePermissions);
 			}
 			// 保存到 MongoDB
 			// 查询条件
