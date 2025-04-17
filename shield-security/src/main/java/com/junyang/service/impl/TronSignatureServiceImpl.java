@@ -157,13 +157,30 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 	}
 
 	@Override
-	public ResponseBase getMultiSign(String address) {
+	public ResponseBase getMultiSign(String address, int pageNumber, int pageSize) {
 		try {
 			Query query = new Query();
 			query.addCriteria(Criteria.where("signatureProgress.address").is(address));
+
+			// 构建排序对象
+			Sort sort = Sort.by(Sort.Direction.DESC, "_id"); // 替换为实际的时间字段
+			query.with(sort);
+
+			// 构建分页请求对象
+			pageNumber = Math.max(pageNumber - 1, 0); // 页码从 0 开始
+			PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+			query.with(pageRequest);
+
 			List<MultiSignaturesEntity> list = mongoTemplate.find(query, MultiSignaturesEntity.class);
-			System.out.println(JSON.toJSON(list));
-			return setResultSuccess(list);
+
+			// 获取总记录数
+			long totalCount = mongoTemplate.count(query, MultiSignaturesEntity.class);
+
+			// 构建分页结果
+			PageInfo<MultiSignaturesEntity> pageInfo = new PageInfo<>(list);
+			pageInfo.setTotal(totalCount);
+
+			return setResultSuccess(pageInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();

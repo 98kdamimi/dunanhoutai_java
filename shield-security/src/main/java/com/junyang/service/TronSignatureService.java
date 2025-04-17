@@ -10,6 +10,7 @@ import com.junyang.base.ResponseBase;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/tronSignature")
 @Api(value = "多签",tags = "多签")
@@ -37,5 +38,9 @@ public interface TronSignatureService {
 
 	@GetMapping("/getMultiSign")
 	@ApiOperation(value = "查询多签交易记录",notes ="查询多签交易记录",response = ResponseBase.class)
-	ResponseBase getMultiSign(String address);
+	ResponseBase getMultiSign(
+			@RequestParam String address,
+			@RequestParam(defaultValue = "1") int pageNumber, // 默认值为 1
+			@RequestParam(defaultValue = "10") int pageSize  // 默认值为 10
+	);
 }
