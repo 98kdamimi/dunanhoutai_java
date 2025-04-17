@@ -37,6 +37,10 @@ public class MultiSignaturesEntity {
     @Field("signdata")
     private Object signdata;
 
+    @ApiModelProperty(name = "threshold", value = "交易阈值", dataType = "int")
+    @Field("threshold")
+    private int threshold;
+
     @ApiModelProperty(name = "signatureProgress", value = "当前地址", required = false, dataType = "<SignatureProgress>")
     @Field("signatureProgress")
     private Object signatureProgress; // 签名进度列表
