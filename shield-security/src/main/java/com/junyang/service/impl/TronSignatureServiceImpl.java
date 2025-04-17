@@ -123,81 +123,32 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 	}
 
 	@Override
-	public ResponseBase createMultiSign(@RequestBody MultiSignaturesRequest request) {
+	public ResponseBase createMultiSign(@RequestBody MultiSignaturesEntity entity) {
 		try {
-			// 将请求参数转换为实体类
-			MultiSignaturesEntity entity = new MultiSignaturesEntity();
-			entity.setVisible(request.isVisible());
-			entity.setTxID(request.getTxID());
-			entity.setRawaddress(request.getRawaddress());
-			entity.setRawDataHex(request.getRawDataHex());
-			entity.setSignature(request.getSignature());
-
-			// 映射 RawData
-			if (request.getRawData() != null) {
-				MultiSignaturesEntity.RawData rawData = new MultiSignaturesEntity.RawData();
-				rawData.setRefBlockBytes(request.getRawData().getRefBlockBytes());
-				rawData.setRefBlockHash(request.getRawData().getRefBlockHash());
-				rawData.setExpiration(request.getRawData().getExpiration());
-				rawData.setTimestamp(request.getRawData().getTimestamp());
-
-				// 映射 Contract
-				if (request.getRawData().getContract() != null) {
-					rawData.setContract(request.getRawData().getContract());
-				}
-				entity.setRawData(rawData);
-			}
-
-
-			//这里去调用接口 拿到有所有权的账户
-			if (request.getRawaddress() != null  && !request.getRawaddress().isEmpty()) {
-				String account = HttpUtil.get(GET_ACCOUNT_URL+"?address="+request.getRawaddress());
-				// 解析返回的 JSON 数据
-				JSONObject accountjsonObject = JSONObject.parseObject(account);
-				JSONObject ownerPermission = accountjsonObject.getJSONObject("ownerPermission");
-				// 映射 ownerPermission 数据到 MultiSignaturesEntity
-				if (ownerPermission != null) {
-					MultiSignaturesEntity.OwnerPermission ownerPermissionObj = new MultiSignaturesEntity.OwnerPermission();
-					ownerPermissionObj.setThreshold(ownerPermission.getInteger("threshold"));
-					ownerPermissionObj.setPermissionName(ownerPermission.getString("permissionName"));
-
-					// 映射 keys
-					List<MultiSignaturesEntity.OwnerPermission.Key> keys = ownerPermission.getJSONArray("keys").stream()
-							.map(key -> {
-								JSONObject keyObj = (JSONObject) key;
-								MultiSignaturesEntity.OwnerPermission.Key keyEntity = new MultiSignaturesEntity.OwnerPermission.Key();
-								keyEntity.setAddress(keyObj.getString("address"));
-								keyEntity.setWeight(keyObj.getInteger("weight"));
-								return keyEntity;
-							}).collect(Collectors.toList());
-					ownerPermissionObj.setKeys(keys);
-
-					// 设置到 MultiSignaturesEntity
-					entity.setOwnerPermission(ownerPermissionObj);
-				}
-				//存储activePermissions
-				JSONArray  activePermissions = accountjsonObject.getJSONArray("activePermissions");
-//				System.out.print(activePermissions);
-				entity.setActivePermissions(activePermissions);
-			}
-			// 保存到 MongoDB
 			// 查询条件
 			Query query = new Query(Criteria.where("txID").is(entity.getTxID()));
 
-			// 更新操作
-			Update update = new Update();
-			update.set("visible", entity.isVisible());
-			update.set("rawData", entity.getRawData());
-			update.set("rawaddress", entity.getRawaddress());
-			update.set("rawDataHex", entity.getRawDataHex());
-			update.set("signature", entity.getSignature());
-			update.set("ownerPermission", entity.getOwnerPermission());
+			//判断数据库中txId是否存在
+			Boolean hasId = mongoTemplate.exists(query, MultiSignaturesEntity.class);
+			if(hasId)
+			{
+				//如果存在 已经创建完成交易了  修改 signdata 和 signatureProgress中 相对应address的issign和signTime
+				Update update = new Update();
+				update.set("nowAddress", entity.getNowAddress());
+				update.set("signdata", entity.getSigndata());
+				//修改signatureProgress中相对应address的issign和signTime
+				update.set("signatureProgress", entity.getSignatureProgress());
+				mongoTemplate.updateFirst(
+						query,
+						update,
+						MultiSignaturesEntity.class
+				);
+			}else{
+				//不存在 直接写入
+				// 直接插入数据
+				mongoTemplate.insert(entity);
+			}
 
-			// 如果不存在则新增
-			FindAndModifyOptions options = FindAndModifyOptions.options().upsert(true).returnNew(true);
-
-			// 执行更新或新增
-			MultiSignaturesEntity result = mongoTemplate.findAndModify(query, update, options, MultiSignaturesEntity.class);
 			return setResultSuccess(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -209,7 +160,7 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 	public ResponseBase getMultiSign(String address) {
 		try {
 			Query query = new Query();
-			query.addCriteria(Criteria.where("ownerPermission.keys.address").is(address));
+			query.addCriteria(Criteria.where("signatureProgress.address").is(address));
 			List<MultiSignaturesEntity> list = mongoTemplate.find(query, MultiSignaturesEntity.class);
 			System.out.println(JSON.toJSON(list));
 			return setResultSuccess(list);

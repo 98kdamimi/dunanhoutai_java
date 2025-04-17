@@ -13,120 +13,48 @@ import java.util.List;
 @ApiModel(value = "多签记录", description = "波场多签记录实体类")
 public class MultiSignaturesEntity {
 
-    @ApiModelProperty(name = "visible", value = "是否可见", required = false, dataType = "Boolean")
-    @Field("visible")
-    private boolean visible;
-
-    @ApiModelProperty(name = "rawaddress", value = "原始地址", required = false, dataType = "String")
-    @Field("rawaddress")
-    private String rawaddress;
-
-    @ApiModelProperty(name = "txID", value = "交易ID", required = false, dataType = "String")
+    @ApiModelProperty(name = "txID", value = "交易ID", dataType = "String")
     @Field("txID")
     private String txID;
 
-    @ApiModelProperty(name = "rawData", value = "原始数据", required = false, dataType = "RawData")
-    @Field("raw_data")
-    private RawData rawData;
+    @ApiModelProperty(name = "fromAddress", value = "发送地址",  required = false, dataType = "String")
+    @Field("fromAddress")
+    private String fromAddress;
 
-    @ApiModelProperty(name = "rawDataHex", value = "原始数据Hex", required = false, dataType = "String")
-    @Field("raw_data_hex")
-    private String rawDataHex;
+    @ApiModelProperty(name = "nowAddress", value = "当前地址", dataType = "String")
+    @Field("nowAddress")
+    private String nowAddress;
 
-    @ApiModelProperty(name = "signature", value = "签名列表", required = false, dataType = "List<String>")
-    @Field("signature")
-    private List<String> signature;
+    @ApiModelProperty(name = "toAddress", value = "接收地址", dataType = "String")
+    @Field("toAddress")
+    private String toAddress;
 
+    @ApiModelProperty(name = "amount", value = "数量", dataType = "int")
+    @Field("amount")
+    private int amount;
+
+    @ApiModelProperty(name = "signdata", value = "签名数据", dataType = "Object")
+    @Field("signdata")
+    private Object signdata;
+
+    @ApiModelProperty(name = "signatureProgress", value = "当前地址", required = false, dataType = "<SignatureProgress>")
+    @Field("signatureProgress")
+    private Object signatureProgress; // 签名进度列表
+    /**
+     * 签名进度内部类
+     */
     @Data
-    @ApiModel(value = "原始数据", description = "交易的原始数据")
-    public static class RawData {
+    public static class SignatureProgress {
+        @Field("address")
+        private String address; // 签名地址
 
-        @ApiModelProperty(name = "contract", value = "合约列表", required = false, dataType = "List<Contract>")
-        @Field("contract")
-        private Object contract;
+        @Field("isSign")
+        private int isSign; // 是否已签名（1=是，0=否）
 
-        @ApiModelProperty(name = "refBlockBytes", value = "引用区块字节", required = false, dataType = "String")
-        @Field("ref_block_bytes")
-        private String refBlockBytes;
+        @Field("signTime")
+        private long signTime; // 签名时间戳
 
-        @ApiModelProperty(name = "refBlockHash", value = "引用区块哈希", required = false, dataType = "String")
-        @Field("ref_block_hash")
-        private String refBlockHash;
-
-        @ApiModelProperty(name = "expiration", value = "过期时间", required = false, dataType = "Long")
-        @Field("expiration")
-        private long expiration;
-
-        @ApiModelProperty(name = "timestamp", value = "时间戳", required = false, dataType = "Long")
-        @Field("timestamp")
-        private long timestamp;
-
-        @Data
-        @ApiModel(value = "合约", description = "交易合约")
-        public static class Contract {
-
-            @ApiModelProperty(name = "parameter", value = "参数", required = false, dataType = "Parameter")
-            @Field("parameter")
-            private Parameter parameter;
-
-            @ApiModelProperty(name = "type", value = "合约类型", required = false, dataType = "String")
-            @Field("type")
-            private String type;
-
-            @Data
-            @ApiModel(value = "参数", description = "合约参数")
-            public static class Parameter {
-
-                @ApiModelProperty(name = "value", value = "值", required = false, dataType = "Value")
-                @Field("value")
-                private Object value;  // 或者 Map<String, Object>
-
-                @ApiModelProperty(name = "typeUrl", value = "类型URL", required = false, dataType = "String")
-                @Field("type_url")
-                private String typeUrl;
-
-
-            }
-        }
+        @Field("weight")
+        private int weight; // 签名权重
     }
-
-
-    @ApiModelProperty(name = "ownerPermission", value = "所有者权限", required = false, dataType = "OwnerPermission")
-    @Field("owner_permission")
-    private OwnerPermission ownerPermission;
-
-    @Data
-    @ApiModel(value = "所有者权限", description = "所有者权限信息")
-    public static class OwnerPermission {
-
-        @ApiModelProperty(name = "keys", value = "密钥列表", required = false, dataType = "List<Key>")
-        @Field("keys")
-        private List<Key> keys;
-
-        @ApiModelProperty(name = "threshold", value = "阈值", required = false, dataType = "Integer")
-        @Field("threshold")
-        private Integer threshold;
-
-        @ApiModelProperty(name = "permissionName", value = "权限名称", required = false, dataType = "String")
-        @Field("permission_name")
-        private String permissionName;
-
-        @Data
-        @ApiModel(value = "密钥", description = "密钥信息")
-        public static class Key {
-
-            @ApiModelProperty(name = "address", value = "地址", required = false, dataType = "String")
-            @Field("address")
-            private String address;
-
-            @ApiModelProperty(name = "weight", value = "权重", required = false, dataType = "Integer")
-            @Field("weight")
-            private Integer weight;
-        }
-    }
-
-
-    @ApiModelProperty(name = "activePermissions", value = "活动权限", required = false, dataType = "activePermissions")
-    @Field("active_permissions")
-    private Object activePermissions;
 }
