@@ -44,6 +44,11 @@ public class MultiSignaturesEntity {
     @ApiModelProperty(name = "signatureProgress", value = "当前地址", required = false, dataType = "<SignatureProgress>")
     @Field("signatureProgress")
     private Object signatureProgress; // 签名进度列表
+
+    @ApiModelProperty(name = "tokeninfo", value = "代币详情", required = false, dataType = "Object")
+    @Field("tokeninfo")
+    private Object tokeninfo;
+
     /**
      * 签名进度内部类
      */

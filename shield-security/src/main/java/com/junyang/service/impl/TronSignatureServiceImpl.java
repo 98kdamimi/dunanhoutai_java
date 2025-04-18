@@ -137,6 +137,7 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 				update.set("nowAddress", entity.getNowAddress());
 				update.set("signdata", entity.getSigndata());
 				update.set("threshold", entity.getThreshold());
+				update.set("tokeninfo", entity.getTokeninfo());
 				//修改signatureProgress中相对应address的issign和signTime
 				update.set("signatureProgress", entity.getSignatureProgress());
 				mongoTemplate.updateFirst(
