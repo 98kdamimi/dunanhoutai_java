@@ -29,9 +29,9 @@ public class MultiSignaturesEntity {
     @Field("toAddress")
     private String toAddress;
 
-    @ApiModelProperty(name = "amount", value = "数量", dataType = "int")
+    @ApiModelProperty(name = "amount", value = "数量", dataType = "double")
     @Field("amount")
-    private int amount;
+    private double amount;
 
     @ApiModelProperty(name = "signdata", value = "签名数据", dataType = "Object")
     @Field("signdata")
