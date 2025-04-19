@@ -43,4 +43,10 @@ public interface TronSignatureService {
 			@RequestParam(defaultValue = "1") int pageNumber, // 默认值为 1
 			@RequestParam(defaultValue = "10") int pageSize  // 默认值为 10
 	);
+
+	@GetMapping("/failMultiSign")
+	@ApiOperation(value = "多签交易广播失败",notes ="多签交易广播失败，返回上次签名结果",response = ResponseBase.class)
+	ResponseBase failMultiSign(String txID,String address);
+
+
 }

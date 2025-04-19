@@ -31,6 +31,8 @@ import com.junyang.base.HttpResponse;
 import com.junyang.constants.Constants;
 import com.junyang.entity.tronsignature.MultiSignaturesEntity;
 
+import static cn.hutool.json.XMLTokener.entity;
+
 @RestController
 @Transactional
 @CrossOrigin
@@ -128,16 +130,62 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 			// 查询条件
 			Query query = new Query(Criteria.where("txID").is(entity.getTxID()));
 
+
+
 			//判断数据库中txId是否存在
 			Boolean hasId = mongoTemplate.exists(query, MultiSignaturesEntity.class);
 			if(hasId)
 			{
+
+				// 查询数据库中原有的数据
+				MultiSignaturesEntity existingEntity = mongoTemplate.findOne(query, MultiSignaturesEntity.class);
+				if (existingEntity != null) {
+					// 将原有的 signdata 值赋给 lastsigndata
+					entity.setLastsigndata(existingEntity.getSigndata());
+				}
+
+				//修改signatureProgress中相对应address的issign和signTime
+				// 获取 signatureProgress 列表
+				List<MultiSignaturesEntity.SignatureProgress> progressList = (List<MultiSignaturesEntity.SignatureProgress>) existingEntity.getSignatureProgress();
+				// 遍历并修改对应 address 的 isSign 和 signTime
+				for (MultiSignaturesEntity.SignatureProgress progress : progressList) {
+					if (progress.getAddress().equals(entity.getNowAddress())) {
+						progress.setIsSign(1); // 设置 isSign 为 1
+						progress.setSignTime(System.currentTimeMillis()/1000); // 设置签名时间为当前时间戳
+						break;
+					}
+				}
+				entity.setSignatureProgress(progressList);
+
+
 				//如果存在 已经创建完成交易了  修改 signdata 和 signatureProgress中 相对应address的issign和signTime
 				Update update = new Update();
+				update.set("lastsigndata", entity.getLastsigndata());
 				update.set("nowAddress", entity.getNowAddress());
 				update.set("signdata", entity.getSigndata());
 				update.set("threshold", entity.getThreshold());
 				update.set("tokeninfo", entity.getTokeninfo());
+				update.set("signatureProgress", entity.getSignatureProgress());
+
+				mongoTemplate.updateFirst(
+						query,
+						update,
+						MultiSignaturesEntity.class
+				);
+			}else{
+				//不存在 直接写入
+				// 设置lastsigndata
+				entity.setLastsigndata(entity.getSigndata());
+				// 遍历 signatureProgress 列表
+				for (MultiSignaturesEntity.SignatureProgress progress : entity.getSignatureProgress()) {
+					// 判断是否是目标 address
+					if (progress.getAddress().equals(entity.getNowAddress())) {
+						// 插入 signdata
+						progress.setSigndata(entity.getSigndata());
+						break;
+					}
+				}
+
 				//修改signatureProgress中相对应address的issign和signTime
 				// 获取 signatureProgress 列表
 				List<MultiSignaturesEntity.SignatureProgress> progressList = (List<MultiSignaturesEntity.SignatureProgress>) entity.getSignatureProgress();
@@ -149,18 +197,15 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 						break;
 					}
 				}
-				update.set("signatureProgress", progressList);
-				mongoTemplate.updateFirst(
-						query,
-						update,
-						MultiSignaturesEntity.class
-				);
-			}else{
-				//不存在 直接写入
-				// 直接插入数据
+
 				mongoTemplate.insert(entity);
 			}
-
+			// 遍历 signatureProgress 列表并隐藏 signdata 字段
+			for (MultiSignaturesEntity.SignatureProgress progress : entity.getSignatureProgress()) {
+				progress.setSigndata(null); // 将 signdata 设置为 null
+			}
+			// 隐藏 lastsigndata 字段
+			entity.setLastsigndata(null);
 			return setResultSuccess(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -185,6 +230,14 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 
 			List<MultiSignaturesEntity> list = mongoTemplate.find(query, MultiSignaturesEntity.class);
 
+			// 移除不需要的字段
+			list.forEach(entity -> {
+				entity.setLastsigndata(null); // 删除 tokeninfo 字段
+				for (MultiSignaturesEntity.SignatureProgress progress : entity.getSignatureProgress()) {
+					progress.setSigndata(null); // 将 signdata 设置为 null
+				}
+			});
+
 			// 获取总记录数
 			long totalCount = mongoTemplate.count(query, MultiSignaturesEntity.class);
 
@@ -196,6 +249,46 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();
+		}
+	}
+
+	@Override
+	public ResponseBase failMultiSign(String txID,String address) {
+		try{
+			Query query = new Query(Criteria.where("txID").is(txID));
+			// 查询数据库中原有的数据
+			MultiSignaturesEntity existingEntity = mongoTemplate.findOne(query, MultiSignaturesEntity.class);
+			// 遍历 signatureProgress 列表
+			for (MultiSignaturesEntity.SignatureProgress progress : existingEntity.getSignatureProgress()) {
+				// 判断是否是目标 address
+				if (progress.getAddress().equals(address)) {
+					//设置issign 为 0
+					progress.setIsSign(0);
+					progress.setSignTime(0);
+					break;
+				}
+			}
+			existingEntity.setSigndata(existingEntity.getLastsigndata());
+
+			Update update = new Update();
+			update.set("signatureProgress", existingEntity.getSignatureProgress());
+			update.set("signdata", existingEntity.getSigndata());
+			mongoTemplate.updateFirst(
+					query,
+					update,
+					MultiSignaturesEntity.class
+			);
+
+			// 遍历 signatureProgress 列表并隐藏 signdata 字段
+			for (MultiSignaturesEntity.SignatureProgress progress : existingEntity.getSignatureProgress()) {
+				progress.setSigndata(null); // 将 signdata 设置为 null
+			}
+			// 隐藏 lastsigndata 字段
+			existingEntity.setLastsigndata(null);
+
+			return setResultSuccess(existingEntity);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 	
