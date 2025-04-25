@@ -15,7 +15,12 @@ public enum LanguageEnums {
 //	ZH_HK(2, "zh-HK", "繁体中文"),
 //	FIL(3, "fil", ""), 
 //	PT_BR(4, "pt-BR", ""),
-	EN_US(5, "en-US", "en");
+	EN_US(5, "en-US", "en"),
+	KO(6, "ko", "ko"),
+	JA(7, "ja", "ja"),
+	VI(8, "vi", "vi"),
+	DE(9, "de", "de"),
+	AR(10, "ar", "ar");
 
 	private Integer index;
 
