@@ -76,6 +76,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/version/msgWarn").permitAll()
                 .antMatchers("/webhook/**").permitAll()
                 .antMatchers("/tronSignature/**").permitAll()
+                .antMatchers("/delegatelist/**").permitAll()
                 //swagger放行
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/images/**").permitAll()

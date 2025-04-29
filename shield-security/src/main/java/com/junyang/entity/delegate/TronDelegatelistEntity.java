@@ -26,6 +26,10 @@ public class TronDelegatelistEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "receiverAddress", value = "钱包地址", required = false, dataType = "String")
 	private String receiverAddress;
 	
+	@TableField("stakingAddress")
+	@ApiModelProperty(name = "stakingAddress", value = "质押账户", required = false, dataType = "String")
+	private String stakingAddress;
+	
 	@TableField("amount")
 	@ApiModelProperty(name = "amount", value = "委托数量", required = false, dataType = "String")
 	private String amount;

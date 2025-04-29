@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -58,6 +59,10 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	@Autowired
+	@Qualifier("secondaryMongoTemplate") // 次数据源
+	private MongoTemplate secondaryMongoTemplate;
 
 	@Override
 	@SysLogAnnotation(module = "轮播图管理", type = "POST", remark = "轮播图列表查询")
@@ -70,13 +75,13 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 			if(entity.getSortType() != null && entity.getSortType().length() > 0) {
 				query.addCriteria(Criteria.where("sortType").is(entity.getSortType()));
 			}
-			long totalCount = mongoTemplate.count(query, CarouselEntity.class);// 总条数
+			long totalCount = secondaryMongoTemplate.count(query, CarouselEntity.class);// 总条数
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.DESC, "createdAt"));
+			        Sort.by(Sort.Direction.DESC, "language"));
 			query.with(pageRequest);
-			List<CarouselEntity> list = mongoTemplate.find(query, CarouselEntity.class);
+			List<CarouselEntity> list = secondaryMongoTemplate.find(query, CarouselEntity.class);
 			// 获取总记录数
 			PageInfo<CarouselEntity> info = new PageInfo<>(list);
 			info.setTotal(totalCount);
@@ -92,15 +97,9 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 	public ResponseBase delete(String id) {
 		try {
 			if(id != null && id.length() > 0) {
-				String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.CAROUSE_DELETE.getName()+"?id="+id+"");
-				RpcResponseEntity responseEntity = JSONObject.parseObject(baseStr, RpcResponseEntity.class);
-				if(responseEntity.getSuccess()) {
-					 Query query = new Query(Criteria.where("_id").is(id));
-				     mongoTemplate.remove(query, CarouselEntity.class);
-				     return setResultSuccess();
-				}else {
-					return setResultError(Constants.ERROR);
-				}
+				 Query query = new Query(Criteria.where("_id").is(id));
+				 secondaryMongoTemplate.remove(query, CarouselEntity.class);
+			     return setResultSuccess();
 			}else {
 				return setResult(400, "参数异常", null);
 			}
@@ -123,14 +122,9 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 							entity.setLogoURI(logUrl);
 						}
 					}
-					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
-					String jsonParam = JSON.toJSONString(jsonObject);
-					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.CAROUSE_ADD.getName(), jsonParam);
-					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
-					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
-						this.getRpc();
-						return setResultSuccess();
-					}
+					GenericityUtil.setDateStrTwo(entity);
+					secondaryMongoTemplate.insert(entity);
+					return setResultSuccess();
 				}
 				return setResultError(Constants.ERROR);
 			}else {
@@ -205,15 +199,9 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 							entity.setLogoURI(logUrl);
 						}
 					}
-					JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
-					String jsonParam = JSON.toJSONString(jsonObject);
-					String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.CAROUSE_UPDATE.getName(), jsonParam);
-					RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
-					if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
-						entity.setGmtModified(new Date());
-						mongoTemplate.save(entity);
-						return setResultSuccess();
-					}
+					GenericityUtil.setDateStrTwoUp(entity);
+					secondaryMongoTemplate.save(entity);
+					return setResultSuccess();
 				}
 				return setResultError(Constants.ERROR);
 			}else {
@@ -225,27 +213,5 @@ public class CarouselServiceImpl extends BaseApiService implements CarouselServi
 		}
 	}
 	
-	public void getRpc() {
-		try {
-			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.CAROUSE_LIST.getName());
-			RpcResponseEntity responseEntity = JSONObject.parseObject(baseStr, RpcResponseEntity.class);
-			if (responseEntity.getData() != null && responseEntity.getData().toString().length() > 0) {
-				List<CarouselEntity> list = JSONArray.parseArray(responseEntity.getData().toString(), CarouselEntity.class);
-				if (list != null && list.size() > 0) {
-					for (int i = 0; i < list.size(); i++) {
-						Query query = new Query(Criteria.where("_id").is(list.get(i).getId()));
-						boolean exists = mongoTemplate.exists(query, CarouselEntity.class, "carousel_db");
-						if (exists == false) {
-							GenericityUtil.setDate(list.get(i));
-							mongoTemplate.insert(list.get(i));
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-	}
 	
 }

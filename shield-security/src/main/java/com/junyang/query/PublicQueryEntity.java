@@ -42,7 +42,7 @@ public class PublicQueryEntity extends PageQueryHelperEntity{
 	
 	@TableField(exist = false)
 	@ApiModelProperty(name = "typeId",value = "分类",required = true,dataType = "Integer")
-    private Integer typeId;
+    private String typeId;
 	
 	@TableField(exist = false)
 	@ApiModelProperty(name = "name",value = "名称",required = true,dataType = "Integer")
@@ -64,5 +64,9 @@ public class PublicQueryEntity extends PageQueryHelperEntity{
 	@TableField(exist = false)
 	@ApiModelProperty(name = "version",value = "版本",required = true,dataType = "String")
     private String version;
+	
+	@TableField(exist = false)
+	@ApiModelProperty(name = "language",value = "语言",required = true,dataType = "String")
+    private String language;
 
 }

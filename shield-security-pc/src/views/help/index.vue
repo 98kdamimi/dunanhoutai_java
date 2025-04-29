@@ -1,33 +1,33 @@
 <template>
-  <div class="u-padding-20">
-    <div class="app-container white-bg u-padding-30">
-      <div class="flex_sb">
-      <el-form :model="queryParams" ref="queryForm"  size="mini" :inline="true" v-show="showSearch">
-        <el-form-item label="语言" prop="language">
-          <el-select v-model="queryParams.language" filterable  placeholder="请选择语言"  style="width: 100%;" >
-            <el-option
+  <div class="mainBox">
+    <div class="app-container">
+      <div class="conetntBox">
+        <div class="flex_sb">
+          <el-form :model="queryParams"  size="small" :inline="true" label-width="68px">
+            <el-form-item label="语言" prop="language">
+              <el-select v-model="queryParams.language" filterable  placeholder="请选择语言"  style="width: 100%;" >
+                <el-option
                   v-for="item in languageList"
                   :key="item.name"
                   :label="item.name"
                   :value="item.name">
-            </el-option>
-          </el-select>
-      </el-form-item>
-       
-        <el-form-item>
-          <el-button type="primary" icon="el-icon-search" @click="handleQuery">搜索</el-button>
-          <el-button icon="el-icon-refresh" @click="resetQuery">重置</el-button>
-        </el-form-item>
-      </el-form>
-
-      <el-row :gutter="10" class="mb8">
-        <el-col :span="1.5">
-          <el-button type="primary" plain icon="el-icon-plus" size="mini" @click="handleAdd"
-            v-hasPermi="['system:menu:add']">新增</el-button>
-        </el-col>
-      </el-row>
-      </div>
-      <el-table :data="dataList" max-height="600" v-loading="loading">
+                </el-option>
+                  </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
+              <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+            </el-form-item>
+          </el-form>
+          <el-row :gutter="10" class="mb8">
+            <el-col :span="1.5">
+              <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
+                添加
+              </el-button>
+            </el-col>
+          </el-row>
+        </div>
+        <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column prop="icon" label="图标" align="center" width="100">
             <template slot-scope="scope">
@@ -37,7 +37,7 @@
           <el-table-column label="菜单名称" align="center" prop="menuName" :show-overflow-tooltip="true"/>
           <el-table-column label="语言" align="center" prop="language" :show-overflow-tooltip="true"/>
           <el-table-column label="跳转地址" align="center" prop="toUrl" :show-overflow-tooltip="true"/>
-          <el-table-column label="创建时间" align="center" prop="setTime" />
+          <el-table-column label="创建时间" align="center" prop="createdAt" />
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
               <el-button type="text"  @click="handleUpdate(scope.row)">编辑</el-button>
@@ -92,6 +92,7 @@
           <el-button @click="cancel">取 消</el-button>
         </div>
       </el-dialog>
+      </div>
     </div>
   </div>
 </template>
@@ -154,8 +155,6 @@ export default {
   methods: {
     // 选择图标
     selected(name) {
-      console.log("*************************************")
-      console.log(name)
       this.form.iconImg = name;
     },
     getLanguageList(){
@@ -190,12 +189,14 @@ export default {
     },
     /** 搜索按钮操作 */
     handleQuery() {
+      this.queryParams.pageNumber = 1;
+      this.queryParams.pageSize = 10;
       this.getList();
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
-      this.handleQuery();
+      this.queryParams ={}
+      this.getList();
     },
     /** 新增按钮操作 */
     handleAdd(row) {

@@ -33,7 +33,7 @@
           <el-table-column label="联系方式" align="center" prop="linkName" :show-overflow-tooltip="true" width="550"/>
           <el-table-column label="语言" align="center" prop="language" :show-overflow-tooltip="true"/>
           <el-table-column label="跳转地址" align="center" prop="toUrl" :show-overflow-tooltip="true"/>
-          <el-table-column label="创建时间" align="center" prop="setTime" />
+          <el-table-column label="创建时间" align="center" prop="createdAt" />
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="scope">
               <el-button type="text"  @click="handleUpdate(scope.row)">编辑</el-button>

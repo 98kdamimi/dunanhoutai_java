@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.junyang.aop.SysLogAnnotation;
 import com.junyang.base.BaseApiService;
 import com.junyang.base.ResponseBase;
+import com.junyang.entity.appuser.AppUserEntity;
 import com.junyang.entity.instance.InstanceEntity;
 import com.junyang.entity.response.AccountStatisticsEntity;
 import com.junyang.entity.response.TotalAccounts;
@@ -50,7 +51,6 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 		// 获取今日新增量
 		long countToday = this.getDateCount(DateUtil.getStartOfDay(new Date()), DateUtil.getEndOfDay(new Date()));
 		statisticsEntity.setCountToday(countToday);
-
 		// 获取近七天新增量
 		long countWeek = this.getDateCount(DateUtil.getSevenDaysAgo(new Date()), DateUtil.getStartOfDay(new Date()));
 		statisticsEntity.setCountWeek(countWeek);
@@ -58,13 +58,11 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 		// 获取本月新增量
 		long countMonth = this.getDateCount(DateUtil.getStartOfMonth(new Date()), DateUtil.getEndOfMonth(new Date()));
 		statisticsEntity.setCountMonth(countMonth);
-
 		// 获取本年新增量
 		long countYear = this.getDateCount(DateUtil.getStartOfYear(new Date()), DateUtil.getEndOfYear(new Date()));
 		statisticsEntity.setCountYear(countYear);
-
 		// 总量
-		long countAll = secondaryMongoTemplate.count(new Query(), InstanceEntity.class);
+		long countAll = secondaryMongoTemplate.count(new Query(), AppUserEntity.class);
 		statisticsEntity.setCountAll(countAll);
 		return setResultSuccess(statisticsEntity);
 	}
@@ -205,9 +203,18 @@ public class StatisticsServiceImpl extends BaseApiService implements StatisticsS
 
 	// 根据时间范围查询记录数
 	public long getDateCount(String startDate, String endDate) {
-		Query query = new Query();
-		query.addCriteria(Criteria.where("createdAt").gte(startDate).lte(endDate));
-		return secondaryMongoTemplate.count(query, InstanceEntity.class);
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"); // 根据你的时间格式调整
+			Date start = sdf.parse(startDate);
+			Date end = sdf.parse(endDate);
+			// 创建查询
+			Query query = new Query();
+			query.addCriteria(Criteria.where("createdAt").gte(start).lte(end));
+			return secondaryMongoTemplate.count(query, AppUserEntity.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
 	}
 
 	// 符合条件的accout数量

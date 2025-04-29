@@ -10,9 +10,11 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.junyang.aop.ExcelAnnotation;
 import com.junyang.base.FileResponse;
 import com.junyang.constants.Constants;
+import com.junyang.entity.transaction.TransactionEntity;
 
 
 public class GenericityUtil {
@@ -28,6 +30,13 @@ public class GenericityUtil {
     public static <T> T setDate(T t) throws IllegalAccessException, InvocationTargetException{
         Date date = new Date();
         BeanUtils.setProperty(t, "setTime", date);
+        BeanUtils.setProperty(t, "gmtModified", date);
+        return t;
+    }
+    
+    public static <T> T setDateTwo(T t) throws IllegalAccessException, InvocationTargetException{
+        Date date = new Date();
+        BeanUtils.setProperty(t, "createdAt", date);
         BeanUtils.setProperty(t, "gmtModified", date);
         return t;
     }
@@ -63,6 +72,29 @@ public class GenericityUtil {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         BeanUtils.setProperty(t, "createdAt", format.format(date));
         BeanUtils.setProperty(t, "updatedAt", format.format(date));
+        return t;
+    }
+    
+    public static <T> T setDateStrTwo(T t) throws IllegalAccessException, InvocationTargetException{
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        BeanUtils.setProperty(t, "createdAt", format.format(date));
+        BeanUtils.setProperty(t, "updatedAt", format.format(date));
+        return t;
+    }
+    
+    public static <T> T setDateStrTwoUp(T t) throws IllegalAccessException, InvocationTargetException{
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        BeanUtils.setProperty(t, "updatedAt", format.format(date));
+        return t;
+    }
+    
+    
+    public static <T> T addDate(T t) throws IllegalAccessException, InvocationTargetException{
+        Date date = new Date();
+        BeanUtils.setProperty(t, "createdAt", date);
+        BeanUtils.setProperty(t, "updatedAt", date);
         return t;
     }
 
@@ -121,6 +153,7 @@ public class GenericityUtil {
             return ""; // 处理异常，你可以根据需要进行调整
         }
     }
+
     
    
 }

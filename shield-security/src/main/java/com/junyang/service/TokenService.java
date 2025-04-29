@@ -19,10 +19,6 @@ public interface TokenService {
 //	@ApiOperation(value = "通过RPC接口获取",notes = "通过RPC接口获取",response = ResponseBase.class)
 //	ResponseBase rpcList();
 	
-	@GetMapping("/ThirdPartylist")
-	@ApiOperation(value = "获取第三方平台代币",notes = "获取第三方平台代币",response = ResponseBase.class)
-	ResponseBase ThirdPartylist();
-	
 	@PostMapping("/findList")
 	@ApiOperation(value = "pc端代币分页列表",notes = "pc端代币分页列表",response = ResponseBase.class)
 	ResponseBase findList(PublicQueryEntity entity);

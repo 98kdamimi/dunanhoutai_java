@@ -324,11 +324,17 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>cn.jpush.api</groupId>
-		    <artifactId>jpush-client</artifactId>
-		    <version>3.3.9</version>
-		</dependency>
-		
+            <groupId>cn.jpush.api</groupId>
+            <artifactId>jiguang-common</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+
+		 <dependency>
+            <groupId>io.github.jpush</groupId>
+            <artifactId>jiguang-sdk</artifactId>
+            <version>5.1.15</version>
+        </dependency>
+
 		<dependency>
 		    <groupId>com.squareup.okhttp3</groupId>
 		    <artifactId>okhttp</artifactId>
@@ -346,7 +352,13 @@
 		    <artifactId>tonlib</artifactId>
 		    <version>0.9.5</version>
 		</dependency>
-<!-- 
+		<dependency>
+		    <groupId>com.konghq</groupId>
+		    <artifactId>unirest-java</artifactId>
+		    <version>3.14.5</version> 
+		</dependency>
+
+<!-- 	
 		<dependency>
 		    <groupId>io.github.neodix42</groupId>
 		    <artifactId>tonlib</artifactId>

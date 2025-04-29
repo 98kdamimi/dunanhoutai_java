@@ -21,13 +21,13 @@
           <el-table :data="dataList" max-height="600">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="交易哈希" align="center" key="txid" prop="txid"/>
-          <el-table-column label="账户id" align="center" key="accountId" prop="accountId"/>
+          <!-- <el-table-column label="账户id" align="center" key="accountId" prop="accountId"/> -->
           <el-table-column label="发送地址" align="center" key="fromAddress" prop="fromAddress"/>
           <el-table-column label="接收地址" align="center" key="toAddress" prop="toAddress"/>
           <el-table-column label="网络名称" align="center" key="networkName" prop="networkName"/>
           <el-table-column label="代币名称" align="center" key="tokenName" prop="tokenName"/>
           <el-table-column label="交易数量" align="center" key="amount" prop="amount"/>
-          <el-table-column label="交易类型" align="center" key="type" prop="type"/>
+          <!-- <el-table-column label="交易类型" align="center" key="type" prop="type"/> -->
           <el-table-column label="交易方向" align="center" key="direction" prop="direction"/>
           <el-table-column label="交易时间" align="center" key="createdAt" prop="createdAt"/>
         </el-table>

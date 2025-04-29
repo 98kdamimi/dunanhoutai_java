@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@Document(collection = "user_agreement")
+@Document(collection = "agreements")
 @ApiModel(value = "用户协议",description = "用户协议")
 public class UserAgreementEntity {
 	
@@ -18,7 +18,7 @@ public class UserAgreementEntity {
 	
 	@TableField("typeId")
 	@ApiModelProperty(name = "typeId", value = "协议分类", required = false, dataType = "Integer")
-	private Integer typeId;
+	private String typeId;
 	
 	@TableField("typeName")
 	@ApiModelProperty(name = "typeName", value = "协议分类名称", required = false, dataType = "String")
@@ -47,5 +47,13 @@ public class UserAgreementEntity {
 	@TableField("gmt_modified")
 	@ApiModelProperty(name = "gmtModified",value = "更新时间",required = false,dataType = "Date")
 	private Date gmtModified;
+	
+	@TableField("createdAt")
+	@ApiModelProperty(name = "createdAt",value = "创建时间",required = false,dataType = "Date")
+    private String createdAt;
+	
+	@TableField("updatedAt")
+	@ApiModelProperty(name = "updatedAt",value = "更新时间",required = false,dataType = "Date")
+	private String updatedAt;
 
 }

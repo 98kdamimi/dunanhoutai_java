@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Document(collection = "help_db")
+@Document(collection = "helps")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "个人中心帮助菜单",description = "个人中心帮助菜单")
 public class HelpEntity extends PageQueryHelperEntity{
@@ -44,5 +44,14 @@ public class HelpEntity extends PageQueryHelperEntity{
 	@TableField("gmt_modified")
 	@ApiModelProperty(name = "gmtModified",value = "更新时间",required = false,dataType = "Date")
 	private Date gmtModified;
+	
+	
+	@TableField("createdAt")
+	@ApiModelProperty(name = "createdAt",value = "创建时间",required = false,dataType = "Date")
+    private String createdAt;
+	
+	@TableField("updatedAt")
+	@ApiModelProperty(name = "updatedAt",value = "更新时间",required = false,dataType = "Date")
+	private String updatedAt;
 
 }

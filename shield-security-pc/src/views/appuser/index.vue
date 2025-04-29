@@ -24,8 +24,8 @@
           <el-table-column label="操作" align="center">
             <template slot-scope="scope">
               <el-button type="text" @click="findInfoList(scope.row)">访问记录</el-button>
-              <el-button type="text" @click="findWalletList(scope.row)">代币明细</el-button>
-              <el-button type="text" @click="findWalletAll(scope.row)">钱包余额</el-button>
+              <!-- <el-button type="text" @click="findWalletList(scope.row)">代币明细</el-button>
+              <el-button type="text" @click="findWalletAll(scope.row)">钱包余额</el-button> -->
             </template>
           </el-table-column>
         </el-table>

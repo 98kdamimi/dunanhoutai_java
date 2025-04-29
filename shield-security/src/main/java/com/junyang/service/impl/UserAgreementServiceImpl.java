@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -51,6 +52,10 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
+	@Autowired
+	@Qualifier("secondaryMongoTemplate") // 次数据源
+	private MongoTemplate secondaryMongoTemplate;
+	
 
 	@Value("${http_url}")
 	private String HTTP_URL;
@@ -76,7 +81,7 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			if(entity.getLanguageType() != null) {
 				query.addCriteria(Criteria.where("languageType").is(entity.getLanguageType()));
 			}
-			UserAgreementEntity agreementEntity = mongoTemplate.findOne(query, UserAgreementEntity.class);
+			UserAgreementEntity agreementEntity = secondaryMongoTemplate.findOne(query, UserAgreementEntity.class);
 			if(agreementEntity != null) {
 				if(AgreementTypeEnums.USER_AGREEMENT.getIndex().equals(entity.getTypeId())) {
 					return setResultError("此语言用户协议已存在，无法再次添加");
@@ -102,16 +107,9 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			entity.setHtmlSiteBlock(urlTwo);
 			
 			entity.setTypeName(AgreementTypeEnums.getName(entity.getTypeId()));
-			JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
-			String jsonParam = JSON.toJSONString(jsonObject);
-			String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.GREEMENT_ADD.getName(), jsonParam);
-			RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
-			if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
-				this.getRpc();
-				return setResultSuccess();
-
-			}
-			return setResultError(Constants.ERROR);
+			GenericityUtil.setDateStrTwo(entity);
+			secondaryMongoTemplate.insert(entity);
+			return setResultSuccess();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException();
@@ -122,7 +120,7 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 	@SysLogAnnotation(module = "协议管理", type = "POST", remark = "编辑协议")
 	public ResponseBase update(@RequestBody UserAgreementEntity entity) {
 		try {
-			UserAgreementEntity agreementEntity = mongoTemplate.findById(entity.getId(), UserAgreementEntity.class);
+			UserAgreementEntity agreementEntity = secondaryMongoTemplate.findById(entity.getId(), UserAgreementEntity.class);
 			if(agreementEntity != null) {
 				String fileName = null;
 				if(AgreementTypeEnums.USER_AGREEMENT.getIndex().equals(entity.getTypeId())) {//用户协议
@@ -140,16 +138,9 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 						FilePathEnums.HELP.getIndex(), null,entity.getLanguageType());
 				entity.setHtmlSiteBlock(urlTwo);
 				
-				JSONObject jsonObject = (JSONObject) JSONObject.toJSON(entity);
-				String jsonParam = JSON.toJSONString(jsonObject);
-				String res = HttpUtil.sendPostRequest(HTTP_URL+HttpAddressEunms.GREEMENT_UPDATE.getName(), jsonParam);
-				RpcResponseEntity rpcResponse = JSONObject.parseObject(res, RpcResponseEntity.class);
-				if(rpcResponse.getSuccess() != null && rpcResponse.getSuccess()) {
-					entity.setGmtModified(new Date());
-					mongoTemplate.save(entity);
-					return setResultSuccess();
-				}
-				return setResultError(Constants.ERROR);
+				GenericityUtil.setDateStrTwoUp(entity);
+				secondaryMongoTemplate.save(entity);
+				return setResultSuccess();
 			}else {
 				return setResultError(Constants.ERROR);
 			}
@@ -160,7 +151,7 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 	}
 
 	@Override
-	public ResponseBase findType(PublicQueryEntity entity) {
+	public ResponseBase findType(@RequestBody PublicQueryEntity entity) {
 		try {
 			Query query = new Query();
 			if(entity.getTypeId() != null) {
@@ -168,15 +159,17 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 			}else {
 				return setResult(400, "缺少类型参数", null);
 			}
-			long totalCount = mongoTemplate.count(query, UserAgreementEntity.class);// 总条数
+			if(entity.getLanguage() != null) {
+				query.addCriteria(Criteria.where("languageType").is(entity.getLanguage()));
+			}
+			long totalCount = secondaryMongoTemplate.count(query, UserAgreementEntity.class);// 总条数
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.DESC, "setTime"));
+					Sort.by(Sort.Direction.DESC, "languageType"));
 			query.with(pageRequest);
 			// 执行分页查询
-			List<UserAgreementEntity> list = mongoTemplate.find(query, UserAgreementEntity.class);
-			System.out.println(JSON.toJSON(list));
+			List<UserAgreementEntity> list = secondaryMongoTemplate.find(query, UserAgreementEntity.class);
 			// 获取总记录数
 			PageInfo<UserAgreementEntity> info = new PageInfo<>(list);
 			info.setTotal(totalCount);
@@ -187,42 +180,15 @@ public class UserAgreementServiceImpl extends BaseApiService implements UserAgre
 		}
 	}
 	
-	public void getRpc() {
-		try {
-			String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.GREEMENT_LIST.getName());
-			RpcResponseEntity responseEntity = JSONObject.parseObject(baseStr, RpcResponseEntity.class);
-			if (responseEntity.getData() != null && responseEntity.getData().toString().length() > 0) {
-				List<UserAgreementEntity> list = JSONArray.parseArray(responseEntity.getData().toString(), UserAgreementEntity.class);
-				if (list != null && list.size() > 0) {
-					for (int i = 0; i < list.size(); i++) {
-						Query query = new Query(Criteria.where("_id").is(list.get(i).getId()));
-						boolean exists = mongoTemplate.exists(query, UserAgreementEntity.class, "user_agreement");
-						if (exists == false) {
-							GenericityUtil.setDate(list.get(i));
-							mongoTemplate.insert(list.get(i));
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-	}
+	
 	
 	@Override
 	public ResponseBase delete(String id) {
 		try {
 			if(id != null && id.length() > 0) {
-				String baseStr = HttpUtil.get(HTTP_URL + HttpAddressEunms.GREEMENT_DELETE.getName()+"?id="+id+"");
-				RpcResponseEntity responseEntity = JSONObject.parseObject(baseStr, RpcResponseEntity.class);
-				if(responseEntity.getSuccess()) {
-					 Query query = new Query(Criteria.where("_id").is(id));
-					 mongoTemplate.remove(query, UserAgreementEntity.class);
-				     return setResultSuccess();
-				}else {
-					return setResultError(Constants.ERROR);
-				}
+				 Query query = new Query(Criteria.where("_id").is(id));
+				 secondaryMongoTemplate.remove(query, UserAgreementEntity.class);
+			     return setResultSuccess();
 			}else {
 				return setResult(400, "参数异常", null);
 			}

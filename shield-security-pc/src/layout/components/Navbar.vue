@@ -223,8 +223,8 @@ export default {
   },
   created() {
     this.userInfo = this.$store.state.user.userInfo;
-    this.getMsgWarn()
-    this.startMsgWarnTimer();
+    // this.getMsgWarn()
+    // this.startMsgWarnTimer();
   },
   methods: {
 

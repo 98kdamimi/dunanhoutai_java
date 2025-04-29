@@ -4,15 +4,18 @@
       <div class="conetntBox">
         <div class="flex_sb">
           <el-form :model="queryParams" size="small" :inline="true" label-width="68px">
-            <el-form-item label="" prop="receiverAddress">
-              <el-input v-model="queryParams.receiverAddress" placeholder="请输入钱包地址"></el-input>
+            <el-form-item label="" prop="stakingAddress">
+              <el-input v-model="queryParams.stakingAddress" placeholder="请输入质押账户地址"></el-input>
             </el-form-item>
-            <el-form-item label="" prop="tradeState">
+            <el-form-item label="" prop="receiverAddress">
+              <el-input v-model="queryParams.receiverAddress" placeholder="请输入申请地址"></el-input>
+            </el-form-item>
+            <!-- <el-form-item label="" prop="tradeState">
               <el-select v-model="queryParams.tradeState" filterable placeholder="请选择交易类型" style="width: 90%;">
                 <el-option v-for="item in tradeStateList" :key="item.name" :label="item.name" :value="item.value">
                 </el-option>
               </el-select>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="" prop="resourceType">
               <el-select v-model="queryParams.resourceType" filterable placeholder="请选择委托类型" style="width: 90%;">
                 <el-option v-for="item in energyTypeList" :key="item.name" :label="item.name" :value="item.value">
@@ -28,7 +31,8 @@
 
         <el-table :data="dataList" max-height="600">
           <el-table-column label="序号" type="index" width="50" align="center" />
-          <el-table-column label="钱包地址" align="center" key="receiverAddress" prop="receiverAddress" />
+          <el-table-column label="质押账户地址" align="center" key="stakingAddress" prop="stakingAddress" />
+          <el-table-column label="申请账户地址" align="center" key="receiverAddress" prop="receiverAddress" />
           <el-table-column label="委托TRX量" align="center" key="amount" prop="amount" />
           <el-table-column label="委托资源量" align="center" key="resourceAmount" prop="resourceAmount">
             <template slot-scope="scope">
@@ -41,12 +45,12 @@
               <span v-else>能量</span>
             </template>
           </el-table-column>
-          <el-table-column label="交易类型" align="center" prop="tradeState">
+          <!-- <el-table-column label="交易类型" align="center" prop="tradeState">
             <template slot-scope="scope">
               <span v-if="scope.row.tradeState === 'send'">委托</span>
               <span v-else>取消委托</span>
             </template>
-          </el-table-column>
+          </el-table-column> -->
           <el-table-column label="交易id" align="center" key="transactionId" prop="transactionId" />
           <el-table-column label="创建时间" align="center" prop="timestamp"></el-table-column>
         </el-table>

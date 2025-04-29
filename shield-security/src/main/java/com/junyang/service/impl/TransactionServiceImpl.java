@@ -54,7 +54,7 @@ public class TransactionServiceImpl extends BaseApiService implements Transactio
 			// 构建分页请求对象
 			int pageNumber = Math.max(entity.getPageNumber() - 1, 0);
 			PageRequest pageRequest = PageRequest.of(pageNumber, entity.getPageSize(),
-					Sort.by(Sort.Direction.DESC, "setTime"));
+					Sort.by(Sort.Direction.DESC, "createdAt"));
 			query.with(pageRequest);
 			List<TransactionEntity> list = secondaryMongoTemplate.find(query, TransactionEntity.class);
 			// 获取总记录数

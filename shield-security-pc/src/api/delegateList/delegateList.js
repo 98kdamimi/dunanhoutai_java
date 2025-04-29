@@ -7,3 +7,21 @@ export function findDelegatelist(data) {
         data
     })
 }
+
+
+export function findStatistics(data) {
+    return request({
+        url: 'delegatelist/findStatistics',
+        method: 'post',
+        data
+    })
+}
+
+export function findStatisticsNum(data) {
+    return request({
+        url: 'delegatelist/findStatisticsNum',
+        method: 'post',
+        data
+    })
+}
+

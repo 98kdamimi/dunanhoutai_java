@@ -41,7 +41,6 @@ import com.junyang.enums.SourceEnums;
 import com.junyang.poi.statistics.SwapTokenPoi;
 import com.junyang.query.PublicQueryEntity;
 import com.junyang.service.TokenService;
-import com.junyang.utils.CoinGeckoAPIUtil;
 import com.junyang.utils.ExcelUtils;
 import com.junyang.utils.FileUploadUtil;
 import com.junyang.utils.GenericityUtil;
@@ -100,30 +99,7 @@ public class TokenServiceImpl extends BaseApiService implements TokenService{
 		}
 	}
 
-	@Override
-	@SysLogAnnotation(module = "代币管理", type = "GET", remark = "获取第三方平台代币")
-	public ResponseBase ThirdPartylist() {
-		try {
-			String str = CoinGeckoAPIUtil.fetchTokenData();
-			if(str != null &&str.length() > 0) {
-				List<PlatformTokenEntity> list = JSONArray.parseArray(str, PlatformTokenEntity.class);
-				if(list != null && list.size() > 0) {
-					for (int i = 0; i < list.size(); i++) {
-						Query query = new Query(Criteria.where("_id").is(list.get(i).getId()));
-						boolean exists = mongoTemplate.exists(query, PlatformTokenEntity.class, "platform_token");
-						if (exists == false) {
-							mongoTemplate.insert(list.get(i));
-						}
-					}
-				}
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException();
-		}
-		return null;
-	}
+	
 
 	@Override
 	@SysLogAnnotation(module = "代币管理", type = "POST", remark = "分页代币列表")

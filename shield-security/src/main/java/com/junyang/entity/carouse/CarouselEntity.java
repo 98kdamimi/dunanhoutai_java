@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Document(collection = "carousel_db")
+@Document(collection = "carousels")
 @ApiModel(value = "轮播图",description = "轮播图")
 public class CarouselEntity extends PageQueryHelperEntity{
 	
@@ -34,12 +34,20 @@ public class CarouselEntity extends PageQueryHelperEntity{
 	@ApiModelProperty(name = "toUrl", value = "跳转地址", required = false, dataType = "String")
 	private String toUrl;
 	
-	@TableField("set_time")
+	@TableField("setTime")
 	@ApiModelProperty(name = "setTime",value = "创建时间",required = false,dataType = "Date")
     private Date setTime;
 	
 	@TableField("gmt_modified")
 	@ApiModelProperty(name = "gmtModified",value = "更新时间",required = false,dataType = "Date")
 	private Date gmtModified;
+	
+	@TableField("createdAt")
+	@ApiModelProperty(name = "createdAt",value = "创建时间",required = false,dataType = "Date")
+    private String createdAt;
+	
+	@TableField("updatedAt")
+	@ApiModelProperty(name = "updatedAt",value = "更新时间",required = false,dataType = "Date")
+	private String updatedAt;
 
 }

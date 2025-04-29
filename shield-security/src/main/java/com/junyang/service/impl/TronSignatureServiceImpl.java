@@ -53,8 +53,13 @@ public class TronSignatureServiceImpl extends BaseApiService implements TronSign
 	@Override
 	public HttpResponse signJudge(String address) {
 		try {
+			System.out.println(address);
 			String base = HttpUtil.get(GET_ACCOUNT_URL+"?address="+address);
+			System.out.println(base);
 			TronAccountEntity accountEntity = JSONObject.parseObject(base, TronAccountEntity.class);
+			if(accountEntity.getOwnerPermission() == null) {
+				return senSuccess(false);
+			}
 			if(accountEntity.getOwnerPermission().getKeys().size() > 1 || accountEntity.getActivePermissions().get(0).getKeys().size() > 1) {
 				return senSuccess(true);
 			}

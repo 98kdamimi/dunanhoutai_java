@@ -5,9 +5,9 @@
       </el-tab-pane>
       <el-tab-pane label="账户统计" name="first">
       </el-tab-pane>
-      <el-tab-pane label="应用监控" name="third">
+      <!-- <el-tab-pane label="应用监控" name="third">
         是大多数都是
-      </el-tab-pane>
+      </el-tab-pane> -->
     </el-tabs>
 
     <div v-if="tabIndex == 0">

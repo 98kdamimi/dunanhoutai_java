@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Document(collection = "link_email")
+@Document(collection = "linkemails")
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "联系邮箱",description = "联系邮箱")
 public class LinkEmailEntity extends PageQueryHelperEntity{
@@ -42,5 +42,13 @@ public class LinkEmailEntity extends PageQueryHelperEntity{
 	@TableField("gmt_modified")
 	@ApiModelProperty(name = "gmtModified",value = "更新时间",required = false,dataType = "Date")
 	private Date gmtModified;
+	
+	@TableField("createdAt")
+	@ApiModelProperty(name = "createdAt",value = "创建时间",required = false,dataType = "Date")
+    private String createdAt;
+	
+	@TableField("updatedAt")
+	@ApiModelProperty(name = "updatedAt",value = "更新时间",required = false,dataType = "Date")
+	private String updatedAt;
 
 }

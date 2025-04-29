@@ -15,5 +15,13 @@ public interface TronDelegatelistService {
 	@PostMapping("/findList")
 	@ApiOperation(value = "查询委托记录",notes = "查询委托记录",response = ResponseBase.class)
 	ResponseBase findList(TronDelegatelistEntity entity);
+	
+	@PostMapping("/findStatistics")
+	@ApiOperation(value = "查询委托统计",notes = "查询委托统计",response = ResponseBase.class)
+	ResponseBase findStatistics(TronDelegatelistEntity entity);
+	
+	@PostMapping("/findStatisticsNum")
+	@ApiOperation(value = "查询委托统计",notes = "查询委托统计",response = ResponseBase.class)
+	ResponseBase findStatisticsNum(TronDelegatelistEntity entity);
 
 }

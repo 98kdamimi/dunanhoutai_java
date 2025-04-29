@@ -2,19 +2,37 @@
   <div class="mainBox">
     <div class="app-container">
       <div class="conetntBox">
-        <el-row style="margin-bottom: 20px;">
-          <el-col :span="24" style="text-align: right;">
-            <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
-              添加
-            </el-button>
-          </el-col>
-        </el-row>
+        <div class="flex_sb">
+          <el-form :model="queryParams"  size="small" :inline="true" label-width="68px">
+            <el-form-item label="语言" prop="language">
+              <el-select v-model="queryParams.language" filterable  placeholder="请选择语言"  style="width: 100%;" >
+                <el-option
+                  v-for="item in languageList"
+                  :key="item.name"
+                  :label="item.name"
+                  :value="item.name">
+                </el-option>
+                  </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
+              <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+            </el-form-item>
+          </el-form>
+          <el-row :gutter="10" class="mb8">
+            <el-col :span="1.5">
+              <el-button type="primary" icon="el-icon-plus" @click="handleAdd">
+                添加
+              </el-button>
+            </el-col>
+          </el-row>
+        </div>
         <el-table :data="dataList" max-height="600" v-loading="loading">
           <el-table-column label="序号" type="index" width="50" align="center" />
           <el-table-column label="邮箱地址" align="center" prop="email" />
           <el-table-column label="语言" align="center" prop="language" />
           <el-table-column label="内容" align="center" prop="contentData" :show-overflow-tooltip="true"/>
-          <el-table-column label="创建时间" align="setTime" prop="setTime" />
+          <el-table-column label="创建时间" align="center" prop="createdAt" />
           <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template slot-scope="scope" v-if="scope.row.roleId !== 1">
             <el-button  type="text"  @click="handleUpdate(scope.row)">编辑</el-button>

@@ -10,13 +10,11 @@ export function agreementAdd(data) {
 }
 
 //协议列表
-export function agreementFindType(typeId) {
+export function agreementFindType(data) {
     return request({
         url: 'agreement/findType',
         method: 'post',
-        params: {
-            'typeId': typeId
-        }
+        data
     })
 }
 
